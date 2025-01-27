@@ -4,7 +4,7 @@ export const styles = StyleSheet.create({
     flex: 1,
   },
   questionInputSectionContainer: {
-    position: "absolute",
+    position: "relative",
     bottom: 0,
     flexDirection: "row",
     alignItems: "center",

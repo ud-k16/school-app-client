@@ -1,10 +1,10 @@
-import { FlatList, Text, TextInput, View } from "react-native";
+import { FlatList, Keyboard, Text, TextInput, View } from "react-native";
 import { styles } from "./styles";
 import MaterialIcons from "@expo/vector-icons/MaterialIcons";
 import useAIChat from "../../hooks/useAIChat";
 
 const AIChat = () => {
-  const { messages, inputQuestion, getAnswer } = useAIChat();
+  const { messages, currentQuestion, inputQuestion, getAnswer } = useAIChat();
   const QandACard = ({ item }) => {
     console.log(item);
 
@@ -20,6 +20,7 @@ const AIChat = () => {
       <FlatList data={messages} renderItem={QandACard} />
       <View style={styles.questionInputSectionContainer}>
         <TextInput
+          value={currentQuestion}
           style={styles.textInputStyle}
           onChangeText={inputQuestion}
           placeholder="Ask Gemini"
@@ -30,7 +31,10 @@ const AIChat = () => {
           name="send"
           size={24}
           color="black"
-          onPress={getAnswer}
+          onPress={() => {
+            Keyboard.dismiss();
+            getAnswer();
+          }}
         />
       </View>
     </View>

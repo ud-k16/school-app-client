@@ -3,7 +3,7 @@ import { useState } from "react";
 const useAiChat = () => {
   const [state, setState] = useState({
     messages: [],
-    currentQuestion: "",
+    userInput: "",
   });
   const getAnswer = async () => {
     const requestOptions = {
@@ -12,7 +12,7 @@ const useAiChat = () => {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        question: state.currentQuestion,
+        question: state.userInput,
       }),
     };
     const response = await fetch(
@@ -25,26 +25,13 @@ const useAiChat = () => {
     if (result.status) {
       setState((prev) => ({
         ...prev,
-        messages: [
-          ...prev.messages,
-          {
-            question: state.currentQuestion,
-            answer: result.data,
-          },
-        ],
-        currentQuestion: "",
       }));
     }
   };
-  const inputQuestion = (text = "") => {
-    setState((prev) => ({
-      ...prev,
-      currentQuestion: text,
-    }));
-  };
+
   return {
     ...state,
-    inputQuestion,
+    setState,
     getAnswer,
   };
 };

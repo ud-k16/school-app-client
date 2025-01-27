@@ -4,12 +4,14 @@ import MaterialIcons from "@expo/vector-icons/MaterialIcons";
 import useAIChat from "../../hooks/useAIChat";
 
 const AIChat = () => {
-  const { messages, currentQuestion, inputQuestion, getAnswer } = useAIChat();
+  const { messages, userInput, setState, getAnswer } = useAIChat();
   const QandACard = ({ item }) => {
     return (
       <View style={styles.chatCardContainer}>
         <Text style={styles.questionContainer}>{item.question}</Text>
-        <Text style={styles.answerContainer}>{item.answer}</Text>
+        {item.answer && (
+          <Text style={styles.answerContainer}>{item.answer}</Text>
+        )}
       </View>
     );
   };
@@ -18,9 +20,14 @@ const AIChat = () => {
       <FlatList data={messages} renderItem={QandACard} />
       <View style={styles.questionInputSectionContainer}>
         <TextInput
-          value={currentQuestion}
+          defaultValue={userInput}
           style={styles.textInputStyle}
-          onChangeText={inputQuestion}
+          onChangeText={(text) =>
+            setState((prev) => ({
+              ...prev,
+              userInput: text,
+            }))
+          }
           placeholder="Ask Gemini"
           multiline
           autoFocus
@@ -30,6 +37,17 @@ const AIChat = () => {
           size={24}
           color="black"
           onPress={() => {
+            setState((prev) => ({
+              ...prev,
+              messages: [
+                ...prev.messages,
+                {
+                  question: userInput,
+                  answer: "",
+                },
+              ],
+              userInput: "", //clearing textfield
+            }));
             Keyboard.dismiss();
             getAnswer();
           }}

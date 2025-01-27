@@ -6,12 +6,10 @@ import useAIChat from "../../hooks/useAIChat";
 const AIChat = () => {
   const { messages, currentQuestion, inputQuestion, getAnswer } = useAIChat();
   const QandACard = ({ item }) => {
-    console.log(item);
-
     return (
-      <View>
-        <Text>{item.question}</Text>
-        <Text>{item.answer}</Text>
+      <View style={styles.chatCardContainer}>
+        <Text style={styles.questionContainer}>{item.question}</Text>
+        <Text style={styles.answerContainer}>{item.answer}</Text>
       </View>
     );
   };

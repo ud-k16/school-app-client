@@ -1,13 +1,19 @@
+import { isLoading } from "expo-font";
 import { useEffect, useRef, useState } from "react";
 
 const useAiChat = () => {
   const [state, setState] = useState({
     messages: [],
+    isLoading: false,
   });
   const [userInput, setUserInput] = useState("");
   const messageRef = useRef();
 
   const getAnswer = async () => {
+    setState((prev) => ({
+      ...prev,
+      isLoading: true,
+    }));
     const requestOptions = {
       method: "POST",
       headers: {
@@ -30,9 +36,14 @@ const useAiChat = () => {
           data: result.data,
           sender: "gemini",
         });
+
         return { ...prev };
       });
     }
+    setState((prev) => ({
+      ...prev,
+      isLoading: false,
+    }));
   };
   useEffect(() => {
     messageRef.current.scrollToEnd();

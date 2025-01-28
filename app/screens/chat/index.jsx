@@ -12,15 +12,22 @@ import useAIChat from "../../hooks/useAIChat";
 import Loader from "../../components/Loader";
 
 const AIChat = () => {
-  const { messages, userInput, messageRef, setState, getAnswer, setUserInput } =
-    useAIChat();
+  const {
+    messages,
+    userInput,
+    messageRef,
+    isLoading,
+    setState,
+    getAnswer,
+    setUserInput,
+  } = useAIChat();
   const QandACard = ({ item }) => {
     return (
       <View style={styles.chatCardContainer}>
-        <Text style={styles.questionContainer}>{item.question}</Text>
-        {!item.answer && <Loader />}
-        {item.answer && (
-          <Text style={styles.answerContainer}>{item.answer}</Text>
+        {item.sender === "gemini" ? (
+          <Text style={styles.answerContainer}>{item.data}</Text>
+        ) : (
+          <Text style={styles.questionContainer}>{item.data}</Text>
         )}
       </View>
     );

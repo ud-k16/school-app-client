@@ -12,7 +12,7 @@ import useAIChat from "../../hooks/useAIChat";
 import Loader from "../../components/Loader";
 
 const AIChat = () => {
-  const { messages, userInput, setState, getAnswer, setUserInput } =
+  const { messages, userInput, messageRef, setState, getAnswer, setUserInput } =
     useAIChat();
   const QandACard = ({ item }) => {
     return (
@@ -27,7 +27,7 @@ const AIChat = () => {
   };
   return (
     <View style={styles.container}>
-      <FlatList data={messages} renderItem={QandACard} />
+      <FlatList data={messages} renderItem={QandACard} ref={messageRef} />
       <View style={styles.questionInputSectionContainer}>
         <TextInput
           defaultValue={userInput}
@@ -45,8 +45,8 @@ const AIChat = () => {
             setUserInput(""); //clearing input field
             setState((prev) => {
               prev.messages.push({
-                question: userInput,
-                answer: "",
+                data: userInput,
+                sender: "me",
               });
               return { ...prev };
             });

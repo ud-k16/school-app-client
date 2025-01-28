@@ -1,11 +1,19 @@
-import { FlatList, Keyboard, Text, TextInput, View } from "react-native";
+import {
+  Dimensions,
+  FlatList,
+  Keyboard,
+  Text,
+  TextInput,
+  View,
+} from "react-native";
 import { styles } from "./styles";
 import MaterialIcons from "@expo/vector-icons/MaterialIcons";
 import useAIChat from "../../hooks/useAIChat";
 import Loader from "../../components/Loader";
 
 const AIChat = () => {
-  const { messages, userInput, setState, getAnswer } = useAIChat();
+  const { messages, userInput, setState, getAnswer, setUserInput } =
+    useAIChat();
   const QandACard = ({ item }) => {
     return (
       <View style={styles.chatCardContainer}>
@@ -24,12 +32,7 @@ const AIChat = () => {
         <TextInput
           defaultValue={userInput}
           style={styles.textInputStyle}
-          onChangeText={(text) =>
-            setState((prev) => ({
-              ...prev,
-              userInput: text,
-            }))
-          }
+          onChangeText={(text) => setUserInput(text)}
           placeholder="Ask Gemini"
           multiline
           autoFocus
@@ -39,17 +42,14 @@ const AIChat = () => {
           size={24}
           color="black"
           onPress={() => {
-            setState((prev) => ({
-              ...prev,
-              messages: [
-                ...prev.messages,
-                {
-                  question: userInput,
-                  answer: "",
-                },
-              ],
-              userInput: "", //clearing textfield
-            }));
+            setUserInput(""); //clearing input field
+            setState((prev) => {
+              prev.messages.push({
+                question: userInput,
+                answer: "",
+              });
+              return { ...prev };
+            });
             Keyboard.dismiss();
             getAnswer();
           }}

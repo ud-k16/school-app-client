@@ -44,21 +44,26 @@ const AIChat = () => {
           autoFocus
         />
         <MaterialIcons
+          suppressHighlighting={false}
           name="send"
           size={24}
-          color="black"
-          onPress={() => {
-            setUserInput(""); //clearing input field
-            setState((prev) => {
-              prev.messages.push({
-                data: userInput,
-                sender: "me",
-              });
-              return { ...prev };
-            });
-            Keyboard.dismiss();
-            getAnswer();
-          }}
+          color={isLoading ? "gray" : "black"}
+          onPress={
+            isLoading
+              ? null
+              : () => {
+                  setUserInput(""); //clearing input field
+                  setState((prev) => {
+                    prev.messages.push({
+                      data: userInput,
+                      sender: "me",
+                    });
+                    return { ...prev };
+                  });
+                  Keyboard.dismiss();
+                  getAnswer();
+                }
+          }
         />
       </View>
     </View>

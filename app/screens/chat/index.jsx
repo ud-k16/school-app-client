@@ -9,7 +9,6 @@ import {
 import { styles } from "./styles";
 import MaterialIcons from "@expo/vector-icons/MaterialIcons";
 import useAIChat from "../../hooks/useAIChat";
-import Loader from "../../components/Loader";
 
 const AIChat = () => {
   const {

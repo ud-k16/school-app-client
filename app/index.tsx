@@ -1,14 +1,51 @@
-import { View } from "react-native";
+// app/Main.js
+import React from "react";
+import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import AIChat from "./screens/chat";
+import MaterialCommunityIcons from "@expo/vector-icons/MaterialCommunityIcons";
+import Entypo from "@expo/vector-icons/Entypo";
 
-export default function Index() {
+const Tab = createBottomTabNavigator();
+
+const Main = () => {
   return (
-    <View
-      style={{
-        flex: 1,
+    <Tab.Navigator
+      initialRouteName="TimeTable"
+      screenOptions={{
+        headerShown: false, // Hide header for each screen in the tab
+        tabBarActiveTintColor: "tomato", // Active tab color
+        tabBarInactiveTintColor: "gray", // Inactive tab color
       }}
     >
-      <AIChat />
-    </View>
+      <Tab.Screen
+        name="TimeTable"
+        component={AIChat}
+        options={{
+          tabBarIcon: ({ color, size }) => (
+            <MaterialCommunityIcons name="timetable" size={24} color="black" />
+          ),
+        }}
+      />
+      <Tab.Screen
+        name="Course"
+        component={AIChat}
+        options={{
+          tabBarIcon: ({ color, size }) => (
+            <Entypo name="book" size={24} color="black" />
+          ),
+        }}
+      />
+      <Tab.Screen
+        name="Settings"
+        component={AIChat}
+        options={{
+          tabBarIcon: ({ color, size }) => (
+            <Entypo name="chat" size={24} color="black" />
+          ),
+        }}
+      />
+    </Tab.Navigator>
   );
-}
+};
+
+export default Main;

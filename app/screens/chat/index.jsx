@@ -2,6 +2,7 @@ import { FlatList, Keyboard, Text, TextInput, View } from "react-native";
 import { styles } from "./styles";
 import MaterialIcons from "@expo/vector-icons/MaterialIcons";
 import useAIChat from "../../hooks/useAIChat";
+import Loader from "../../components/Loader";
 
 const AIChat = () => {
   const { messages, userInput, setState, getAnswer } = useAIChat();
@@ -9,6 +10,7 @@ const AIChat = () => {
     return (
       <View style={styles.chatCardContainer}>
         <Text style={styles.questionContainer}>{item.question}</Text>
+        {!item.answer && <Loader />}
         {item.answer && (
           <Text style={styles.answerContainer}>{item.answer}</Text>
         )}

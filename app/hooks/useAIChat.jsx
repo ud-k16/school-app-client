@@ -23,9 +23,15 @@ const useAiChat = () => {
     const result = await response.json();
 
     if (result.status) {
-      setState((prev) => ({
-        ...prev,
-      }));
+      setState((prev) => {
+        const lengthOfArray = prev.messages.length - 1;
+
+        prev.messages[lengthOfArray] = {
+          question: prev.messages[lengthOfArray].question,
+          answer: result.data,
+        };
+        return { ...prev };
+      });
     }
   };
 

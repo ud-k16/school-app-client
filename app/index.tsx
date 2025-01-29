@@ -1,7 +1,7 @@
 // app/Main.js
 import React from "react";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import AIChat from "./screens/chat";
+import AIChat from "./common/screens/chat";
 import MaterialCommunityIcons from "@expo/vector-icons/MaterialCommunityIcons";
 import Entypo from "@expo/vector-icons/Entypo";
 

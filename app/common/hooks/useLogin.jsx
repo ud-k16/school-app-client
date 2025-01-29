@@ -1,33 +1,29 @@
-import { isLoading } from "expo-font";
-import { useEffect, useRef, useState } from "react";
+import { useState } from "react";
 import Constants from "expo-constants";
 
 const useAiChat = () => {
   const [state, setState] = useState({
-    messages: [],
     isLoading: false,
   });
-  const [userInput, setUserInput] = useState("");
-  const messageRef = useRef();
-  const { API_URL } = Constants.expoConfig.extra;
-
-  const getAnswer = async () => {
+  const { API_URL } = Constants.manifest2.extra;
+  const authenticateUser = async () => {
     setState((prev) => ({
       ...prev,
       isLoading: true,
     }));
+    const data = {
+      userId,
+      password,
+    };
     const requestOptions = {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({
-        question: userInput,
-      }),
+      body: JSON.stringify(data),
     };
-    console.log(`${API_URL}/gemini/gemini-request`);
     const response = await fetch(
-      `${API_URL}/gemini/gemini-request`,
+      `${process.env.BASE_API_URL}/gemini/gemini-request`,
       requestOptions
     );
 
@@ -48,17 +44,11 @@ const useAiChat = () => {
       isLoading: false,
     }));
   };
-  useEffect(() => {
-    messageRef.current.scrollToEnd();
-  }, [state.messages.length]);
 
   return {
     ...state,
-    messageRef,
-    userInput,
-    setUserInput,
-    setState,
-    getAnswer,
+
+    authenticateUser,
   };
 };
 export default useAiChat;

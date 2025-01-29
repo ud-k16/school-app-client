@@ -13,7 +13,7 @@ const Login = () => {
         secureTextEntry
       />
       <Pressable style={styles.loginButtonStyle}>
-        <Text>Login</Text>
+        <Text style={styles.loginButtonTextStyle}>Login</Text>
       </Pressable>
     </View>
   );

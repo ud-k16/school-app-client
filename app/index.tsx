@@ -2,6 +2,7 @@
 import React from "react";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import AIChat from "./common/screens/chat";
+import Login from "./common/screens/login";
 import MaterialCommunityIcons from "@expo/vector-icons/MaterialCommunityIcons";
 import Entypo from "@expo/vector-icons/Entypo";
 
@@ -19,7 +20,7 @@ const Main = () => {
     >
       <Tab.Screen
         name="TimeTable"
-        component={AIChat}
+        component={Login}
         options={{
           tabBarIcon: ({ color, size }) => (
             <MaterialCommunityIcons name="timetable" size={24} color="black" />

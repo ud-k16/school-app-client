@@ -10,22 +10,28 @@ export const styles = StyleSheet.create({
   },
   logoConatiner: {
     alignSelf: "center",
-
-    height: moderateScale(50),
+    height: moderateScale(200),
   },
   textInputStyle: {
     alignSelf: "center",
-    height: moderateScale(30),
+    width: "90%",
+    height: moderateScale(60),
     borderColor: Themes.greyShade,
     borderWidth: moderateScale(2),
     borderStyle: "solid",
+    borderRadius: moderateScale(5),
+    paddingHorizontal: moderateScale(10),
   },
   loginButtonStyle: {
     alignSelf: "center",
     justifyContent: "center",
     alignItems: "center",
     backgroundColor: Themes.secondary,
-    height: moderateScale(30),
+    width: "60%",
+    height: moderateScale(50),
     borderRadius: moderateScale(5),
+  },
+  loginButtonTextStyle: {
+    color: Themes.white,
   },
 });

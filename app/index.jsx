@@ -3,6 +3,7 @@ import React from "react";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import AIChat from "./common/screens/chat";
 import Login from "./common/screens/login";
+import ManageTimeTable from "./teacher/screens/manageTimeTable";
 import MaterialCommunityIcons from "@expo/vector-icons/MaterialCommunityIcons";
 import Entypo from "@expo/vector-icons/Entypo";
 
@@ -29,7 +30,7 @@ const Main = () => {
       />
       <Tab.Screen
         name="Course"
-        component={AIChat}
+        component={ManageTimeTable}
         options={{
           tabBarIcon: ({ color, size }) => (
             <Entypo name="book" size={24} color="black" />

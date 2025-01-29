@@ -11,6 +11,8 @@ export const styles = StyleSheet.create({
   logoConatiner: {
     alignSelf: "center",
     height: moderateScale(200),
+    width: "90%",
+    resizeMode: "contain",
   },
   textInputStyle: {
     alignSelf: "center",

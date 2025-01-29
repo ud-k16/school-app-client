@@ -1,11 +1,11 @@
 import { styles } from "./styles";
-
+import LOGO from "../../../assets/logo.png";
 import { Image, Pressable, Text, TextInput, View } from "react-native";
 
 const Login = () => {
   return (
     <View style={styles.container}>
-      <Image alt="Image Not Found" style={styles.logoConatiner} />
+      <Image alt="Image Not Found" style={styles.logoConatiner} source={LOGO} />
       <TextInput style={styles.textInputStyle} placeholder="User Id" />
       <TextInput
         style={styles.textInputStyle}

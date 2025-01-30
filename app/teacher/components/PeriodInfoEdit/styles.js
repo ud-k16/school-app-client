@@ -21,6 +21,10 @@ export const styles = StyleSheet.create({
     paddingHorizontal: moderateScale(10),
     fontSize: moderateScale(17),
   },
+  dropdownPlaceHolderStyle: {
+    fontSize: moderateScale(17),
+    color: Themes.greyShade,
+  },
   displayStack1: {
     flexDirection: "row",
     justifyContent: "space-evenly",

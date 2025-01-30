@@ -11,7 +11,11 @@ const PeriodInfoEdit = () => {
           placeholder="Period Name  (ex.)Assembly"
         />
         <Text>OR</Text>
-        <DropDown />
+        <DropDown
+          style={styles.textInputStyle}
+          placeHolder="Course"
+          placeHolderStyle={styles.dropdownPlaceHolderStyle}
+        />
         <Text style={styles.inputTitleTextStyle}>Start Time</Text>
         <View style={styles.displayStack1}>
           <TextInput

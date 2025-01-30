@@ -10,7 +10,7 @@ const PeriodInfoEdit = () => {
           style={styles.textInputStyle}
           placeholder="Period Name  (ex.)Assembly"
         />
-        <Text>OR</Text>
+        <Text style={styles.ORTextStyle}>OR</Text>
         <DropDown
           style={styles.textInputStyle}
           placeHolder="Course"

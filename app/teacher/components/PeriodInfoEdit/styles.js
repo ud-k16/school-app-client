@@ -25,6 +25,11 @@ export const styles = StyleSheet.create({
     fontSize: moderateScale(17),
     color: Themes.greyShade,
   },
+  ORTextStyle: {
+    fontSize: moderateScale(17),
+    color: Themes.greyShade,
+    alignSelf: "center",
+  },
   displayStack1: {
     flexDirection: "row",
     justifyContent: "space-evenly",

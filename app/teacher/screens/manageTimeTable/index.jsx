@@ -2,12 +2,15 @@ import { Pressable, ScrollView, Text, TextInput, View } from "react-native";
 import { styles } from "./styles";
 import Headers from "../../../common/components/Header";
 import TimeBreak from "../../components/TimeBreak";
+import useTimeTable from "../../hooks/useTimeTable";
+
 const ManageTimeTable = () => {
+  const { workDays } = useTimeTable();
   return (
     <View style={styles.container}>
       <Headers title="Time Table" />
       <ScrollView contentContainerStyle={styles.scrollViewContainer}>
-        <TimeBreak />
+        <TimeBreak dayOfWeek={workDays[0]} />
       </ScrollView>
     </View>
   );

@@ -3,8 +3,7 @@ import { useState } from "react";
 const useTimeTable = () => {
   const [state, setState] = useState({
     class: null,
-    numberOfPeriods: null,
-    periodDuration: null,
+    workDays: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
   });
   return {
     ...state,

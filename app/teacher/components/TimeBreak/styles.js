@@ -5,7 +5,15 @@ import { StyleSheet } from "react-native";
 export const styles = StyleSheet.create({
   container: {
     flex: 1,
-    paddingVertical: moderateScale(10),
+    padding: moderateScale(5),
+    rowGap: moderateScale(10),
+  },
+  weekDayTextStyle: {
+    fontWeight: 600,
+    alignSelf: "center",
+    height: moderateScale(50),
+    fontSize: moderateScale(40),
+    color: Themes.secondary,
   },
   textInputStyle: {
     alignSelf: "center",

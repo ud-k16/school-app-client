@@ -1,6 +1,6 @@
 import { Pressable } from "react-native";
 import { styles } from "./styles";
-
+import DropDown from "../../../common/components/DropDown";
 import { ScrollView, Text, TextInput, View } from "react-native";
 const PeriodInfoEdit = () => {
   return (
@@ -10,6 +10,8 @@ const PeriodInfoEdit = () => {
           style={styles.textInputStyle}
           placeholder="Period Name  (ex.)Assembly"
         />
+        <Text>OR</Text>
+        <DropDown />
         <Text style={styles.inputTitleTextStyle}>Start Time</Text>
         <View style={styles.displayStack1}>
           <TextInput

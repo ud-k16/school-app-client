@@ -1,7 +1,7 @@
-import React, {useRef, useState} from 'react';
-import {Image, Modal, Text, TouchableOpacity, View} from 'react-native';
-import downIcon from './assests/down.png';
-import {styles} from './styles';
+import React, { useRef, useState } from "react";
+import { Image, Modal, Text, TouchableOpacity, View } from "react-native";
+import downIcon from "./assests/down.png";
+import { styles } from "./styles";
 /**
  * DropDown component
  * selected value is received through function onChange
@@ -11,28 +11,28 @@ import {styles} from './styles';
  * onChange (required)
  */
 const Dropdown = ({
-  placeHolder = 'Select',
-  data = [{label: '', value: ''}],
-  onChange,
+  placeHolder = "Select",
+  data = [{ label: "", value: "" }],
+  onChange = () => {},
   style,
   containerStyle,
   placeHolderStyle,
   activeColor,
   iconSize = 20,
-  iconColor = '',
-  labelField = '',
-  valueField = '',
+  iconColor = "",
+  labelField = "",
+  valueField = "",
   icon,
 }) => {
   const isIcon = React.isValidElement(icon);
   const [show, setShow] = useState(false);
-  const [selected, setSelected] = useState('');
-  const [position, setPosition] = useState('');
+  const [selected, setSelected] = useState("");
+  const [position, setPosition] = useState("");
   const ref = useRef();
-  const iconStyle = useRef({width: iconSize, height: iconSize}).current;
+  const iconStyle = useRef({ width: iconSize, height: iconSize }).current;
   const toggleVisibility = () => setShow(!show);
   const hideVisibility = () => setShow(false);
-  const onOptonSelection = value => {
+  const onOptonSelection = (value) => {
     setShow(false);
     setSelected(value);
   };
@@ -54,7 +54,8 @@ const Dropdown = ({
         onPress={toggleVisibility}
         style={[styles.dropDown, style]}
         ref={ref}
-        onLayout={locatePosition}>
+        onLayout={locatePosition}
+      >
         <View style={styles.labelContainerStyle}>
           <Text
             children={selected ? selected : placeHolder}
@@ -65,7 +66,7 @@ const Dropdown = ({
           ) : (
             <Image
               source={downIcon}
-              style={[iconStyle, {tintColor: iconColor}]}
+              style={[iconStyle, { tintColor: iconColor }]}
             />
           )}
         </View>
@@ -76,11 +77,12 @@ const Dropdown = ({
             setShow(false);
           }}
           activeOpacity={1}
-          style={{flex: 1}}>
+          style={{ flex: 1 }}
+        >
           <View style={[styles.optionView, containerStyle, position]}>
-            {data.map(data => {
-              const label = labelField ? data[labelField] : data['label'];
-              const value = valueField ? data[valueField] : data['value'];
+            {data.map((data) => {
+              const label = labelField ? data[labelField] : data["label"];
+              const value = valueField ? data[valueField] : data["value"];
               return (
                 <TouchableOpacity
                   onPress={() => {
@@ -89,9 +91,10 @@ const Dropdown = ({
                   }}
                   style={[
                     styles.optionContainer,
-                    selected == value && {backgroundColor: activeColor},
+                    selected == value && { backgroundColor: activeColor },
                   ]}
-                  key={value}>
+                  key={value}
+                >
                   <Text style={styles.textStyle}>{label}</Text>
                 </TouchableOpacity>
               );

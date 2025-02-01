@@ -10,14 +10,9 @@ const CustomModal = ({
 }) => {
   return (
     <Modal visible={visibility} transparent onRequestClose={hideModal}>
-      <Pressable onPress={hideModal} style={styles.modalContainerOverLay}>
-        <Pressable
-          style={[styles.modalContentDefaultStyle, contentContainerStyle]}
-          onPress={null}
-        >
-          {children}
-        </Pressable>
-      </Pressable>
+      <View style={[styles.modalContentDefaultStyle, contentContainerStyle]}>
+        {children}
+      </View>
     </Modal>
   );
 };

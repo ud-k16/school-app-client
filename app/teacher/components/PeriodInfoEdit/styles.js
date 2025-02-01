@@ -4,10 +4,22 @@ import { StyleSheet } from "react-native";
 
 export const styles = StyleSheet.create({
   container: {
-    flex: 1,
     padding: moderateScale(5),
+    paddingTop: moderateScale(20),
     rowGap: moderateScale(10),
     backgroundColor: Themes.white,
+    marginTop: moderateScale(40),
+    alignSelf: "center",
+    width: "80%",
+    height: "80%",
+  },
+  closeIconStyle: {
+    alignSelf: "flex-end",
+    position: "absolute",
+    top: moderateScale(-28),
+    right: moderateScale(-20),
+    backgroundColor: Themes.white,
+    borderRadius: moderateScale(25),
   },
   scrollViewContainer: {
     flexGrow: 1,

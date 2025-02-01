@@ -2,9 +2,18 @@ import { Pressable } from "react-native";
 import { styles } from "./styles";
 import DropDown from "../../../common/components/DropDown";
 import { ScrollView, Text, TextInput, View } from "react-native";
-const PeriodInfoEdit = () => {
+import AntDesign from "@expo/vector-icons/AntDesign";
+
+const PeriodInfoEdit = ({ hideModal = () => {} }) => {
   return (
     <View style={styles.container}>
+      <AntDesign
+        name="closecircleo"
+        size={35}
+        color="black"
+        style={styles.closeIconStyle}
+        onPress={hideModal}
+      />
       <ScrollView contentContainerStyle={styles.scrollViewContainer}>
         <TextInput
           style={styles.textInputStyle}

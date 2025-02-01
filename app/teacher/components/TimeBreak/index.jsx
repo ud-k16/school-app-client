@@ -21,7 +21,7 @@ const TimeBreak = ({
         visibility={addPeriodModalVisibility}
         hideModal={hideModal}
       >
-        <PeriodInfoEdit />
+        <PeriodInfoEdit hideModal={hideModal} />
       </CustomModalComponent>
     </View>
   );

@@ -7,6 +7,7 @@ export const styles = StyleSheet.create({
     flex: 1,
     padding: moderateScale(5),
     rowGap: moderateScale(10),
+    backgroundColor: Themes.white,
   },
   scrollViewContainer: {
     flexGrow: 1,

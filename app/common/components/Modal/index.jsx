@@ -9,13 +9,16 @@ const CustomModal = ({
   contentContainerStyle = {},
 }) => {
   return (
-    <Modal visible={visibility}>
+    <Modal visible={visibility} transparent onRequestClose={hideModal}>
       <Pressable onPress={hideModal} style={styles.modalContainerOverLay}>
-        <View style={[styles.modalContentDefaultStyle, contentContainerStyle]}>
+        <Pressable
+          style={[styles.modalContentDefaultStyle, contentContainerStyle]}
+          onPress={null}
+        >
           {children}
-        </View>
+        </Pressable>
       </Pressable>
     </Modal>
   );
 };
-export default Modal;
+export default CustomModal;

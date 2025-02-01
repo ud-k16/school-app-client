@@ -11,7 +11,7 @@ export const styles = StyleSheet.create({
   weekDayTextStyle: {
     fontWeight: 600,
     alignSelf: "center",
-    height: moderateScale(50),
+    height: "auto",
     fontSize: moderateScale(40),
     color: Themes.secondary,
   },

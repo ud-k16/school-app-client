@@ -21,9 +21,24 @@ const TeacherContextProvider = ({ children }) => {
     });
   };
 
+  // function to delete period to particular day
+  const deletePeriodOfDay = ({ day, payload }) => {
+    // payload is an object with format {time:"",subject:""}
+    setTimeTable((prev) => {
+      //   retriving already available periods for the particular day
+      const availablePeriods = prev.get(day) || [];
+      //   deleting given time period
+      const newPeriodSet = availablePeriods.filter(
+        (period) => period.time !== payload.time
+      );
+      //   updating the day and its periods
+      prev.set(day, newPeriodSet);
+      return new Map(prev);
+    });
+  };
   return (
     <TeacherContext.Provider
-      value={{ timeTable, setTimeTable, addPeriodOfDay, updatePeriodOfDay }}
+      value={{ timeTable, setTimeTable, addPeriodOfDay, deletePeriodOfDay }}
     >
       {children}
     </TeacherContext.Provider>

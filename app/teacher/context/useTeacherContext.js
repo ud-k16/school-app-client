@@ -6,6 +6,8 @@ const TeacherContextProvider = ({ children }) => {
 
   // function to add period to particular day
   const addPeriodOfDay = ({ day, payload }) => {
+    console.log({ day, payload });
+
     // payload is an object with format {time:"",subject:""}
     setTimeTable((prev) => {
       //   retriving already available periods for the particular day
@@ -44,7 +46,7 @@ const TeacherContextProvider = ({ children }) => {
     </TeacherContext.Provider>
   );
 };
-export const useCartContext = () => {
+export const useTeacherContext = () => {
   const context = useContext(TeacherContext);
   if (!context) {
     throw new Error("Error using Context");

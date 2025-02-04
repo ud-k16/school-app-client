@@ -14,11 +14,14 @@ const UpdatePeriodsForDay = ({
   const { timeTable } = useTeacherContext();
   return (
     <View style={styles.container}>
-      <Text style={styles.weekDayTextStyle}>{dayOfWeek}</Text>
-      <Pressable style={styles.addButtonStyle} onPress={showModal}>
-        <FontAwesome5 name="calendar-plus" size={24} color="black" />
-        <Text style={styles.addButtonTextStyle}> Add Period </Text>
-      </Pressable>
+      <View style={styles.displayStack1}>
+        <Text style={styles.weekDayTextStyle}>{dayOfWeek}</Text>
+        <Pressable style={styles.addButtonStyle} onPress={showModal}>
+          <FontAwesome5 name="calendar-plus" size={24} color="black" />
+          <Text style={styles.addButtonTextStyle}> Add </Text>
+        </Pressable>
+      </View>
+
       {timeTable.get(dayOfWeek)?.length > 0 &&
         timeTable.get(dayOfWeek)?.map((period) => {
           return (

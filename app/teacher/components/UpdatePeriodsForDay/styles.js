@@ -5,7 +5,7 @@ import { StyleSheet } from "react-native";
 export const styles = StyleSheet.create({
   container: {
     flex: 1,
-    padding: moderateScale(5),
+    padding: moderateScale(15),
     rowGap: moderateScale(10),
   },
   weekDayTextStyle: {
@@ -14,6 +14,11 @@ export const styles = StyleSheet.create({
     height: "auto",
     fontSize: moderateScale(40),
     color: Themes.secondary,
+  },
+  displayStack1: {
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "space-between",
   },
   textInputStyle: {
     alignSelf: "center",
@@ -26,7 +31,7 @@ export const styles = StyleSheet.create({
   addButtonStyle: {
     backgroundColor: Themes.white,
     borderRadius: moderateScale(5),
-    width: "60%",
+    width: "30%",
     alignSelf: "center",
     flexDirection: "row",
     justifyContent: "space-evenly",

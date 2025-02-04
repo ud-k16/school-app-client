@@ -19,7 +19,15 @@ const TimeBreak = ({
         <FontAwesome5 name="calendar-plus" size={24} color="black" />
         <Text style={styles.addButtonTextStyle}> Add Period </Text>
       </Pressable>
-      <Text>{timeTable.get(dayOfWeek)?.toString()}</Text>
+      {timeTable.get(dayOfWeek)?.length > 0 &&
+        timeTable.get(dayOfWeek)?.map((period) => {
+          return (
+            <View>
+              <Text>{period.time}</Text>
+              <Text>{period.subject}</Text>
+            </View>
+          );
+        })}
       <CustomModalComponent
         visibility={addPeriodModalVisibility}
         hideModal={hideModal}

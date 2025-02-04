@@ -3,7 +3,7 @@ export const Themes = {
   secondary: "#134d25",
   white: "white",
   greyShade: "grey",
-  lightFadedGreen: "#bfe3c8",
+  lightFadedGreen: "#70cc89",
   textColor: "",
   backgroundColor: "",
   red: "red",

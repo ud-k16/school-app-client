@@ -50,7 +50,7 @@ export const styles = StyleSheet.create({
   periodDisplayCardContainer: {
     alignSelf: "center",
     width: "90%",
-    height: moderateScale(60),
+    minHeight: moderateScale(60),
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "space-evenly",
@@ -61,5 +61,11 @@ export const styles = StyleSheet.create({
     fontWeight: 600,
     color: Themes.greyShade,
     fontSize: moderateScale(20),
+  },
+  subjectTextStyle: {
+    fontWeight: 900,
+    color: Themes.lightFadedGreen,
+    fontSize: moderateScale(20),
+    textTransform: "uppercase",
   },
 });

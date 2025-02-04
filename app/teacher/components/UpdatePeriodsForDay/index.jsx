@@ -30,7 +30,9 @@ const UpdatePeriodsForDay = ({
             <View style={styles.periodDisplayCardContainer}>
               <View>
                 <Text style={styles.periodTextStyle}>{period.time}</Text>
-                <Text>{period.subject || "Assembly"}</Text>
+                <Text style={styles.subjectTextStyle}>
+                  {period.subject || "Assembly For The People Replublic"}
+                </Text>
               </View>
 
               <MaterialIcons

@@ -121,6 +121,7 @@ const PeriodInfoEdit = ({ hideModal = () => {}, day = "" }) => {
           <DropDown
             style={styles.timeInput}
             data={timeMeridian}
+            placeHolder="meridian"
             onChange={(text) =>
               setStartTime((prev) => ({
                 ...prev,
@@ -133,19 +134,19 @@ const PeriodInfoEdit = ({ hideModal = () => {}, day = "" }) => {
         <View style={styles.displayStack1}>
           <DropDown
             style={styles.timeInput}
-            placeholder="hours"
+            placeHolder="hours"
             data={hoursOptions}
             onChange={(text) => setEndTime((prev) => ({ ...prev, hr: text }))}
           />
           <DropDown
             style={styles.timeInput}
-            placeholder="mins"
+            placeHolder="mins"
             data={minuteCreationFunction()}
             onChange={(text) => setEndTime((prev) => ({ ...prev, min: text }))}
           />
           <DropDown
             style={styles.timeInput}
-            placeholder="meridian"
+            placeHolder="meridian"
             data={timeMeridian}
             onChange={(text) =>
               setEndTime((prev) => ({ ...prev, meridian: text }))

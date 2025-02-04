@@ -56,7 +56,11 @@ export const styles = StyleSheet.create({
     fontSize: moderateScale(30),
   },
   timeInput: {
-    width: "45%",
+    height: moderateScale(60),
+    borderWidth: moderateScale(2),
+    borderRadius: moderateScale(5),
+    paddingHorizontal: moderateScale(10),
+    fontSize: moderateScale(17),
   },
   saveButtonStyle: {
     backgroundColor: Themes.secondary,

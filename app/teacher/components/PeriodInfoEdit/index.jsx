@@ -8,7 +8,7 @@ import { useTeacherContext } from "../../context/useTeacherContext";
 
 const PeriodInfoEdit = ({ hideModal = () => {}, day = "" }) => {
   const [subject, setSubject] = useState("");
-  const timeOptions = [
+  const hoursOptions = [
     {
       label: "01",
       value: "01",
@@ -58,6 +58,16 @@ const PeriodInfoEdit = ({ hideModal = () => {}, day = "" }) => {
       value: "12",
     },
   ];
+  const timeMeridian = [
+    {
+      label: "am",
+      value: "am",
+    },
+    {
+      label: "pm",
+      value: "pm",
+    },
+  ];
   const minuteCreationFunction = () => {
     const minutesArray = [];
     for (let i = 0; i < 60; i++) {
@@ -68,8 +78,8 @@ const PeriodInfoEdit = ({ hideModal = () => {}, day = "" }) => {
     }
     return minutesArray;
   };
-  const [startTime, setStartTime] = useState({ hr: "", min: "" });
-  const [endTime, setEndTime] = useState({ hr: "", min: "" });
+  const [startTime, setStartTime] = useState({ hr: "", min: "", meridian: "" });
+  const [endTime, setEndTime] = useState({ hr: "", min: "", meridian: "" });
   const { addPeriodOfDay } = useTeacherContext();
   return (
     <View style={styles.container}>
@@ -94,39 +104,51 @@ const PeriodInfoEdit = ({ hideModal = () => {}, day = "" }) => {
         />
         <Text style={styles.inputTitleTextStyle}>Start Time</Text>
         <View style={styles.displayStack1}>
-          <TextInput
-            style={[styles.textInputStyle, styles.timeInput]}
-            placeholder="hours"
-            maxLength={2}
-            onChangeText={(text) =>
-              setStartTime((prev) => ({ hr: text, min: prev.min }))
+          <DropDown
+            style={styles.timeInput}
+            data={hoursOptions}
+            placeHolder="hours"
+            onChange={(text) => setStartTime((prev) => ({ ...prev, hr: text }))}
+          />
+          <DropDown
+            style={styles.timeInput}
+            placeHolder="mins"
+            data={minuteCreationFunction()}
+            onChange={(text) =>
+              setStartTime((prev) => ({ ...prev, min: text }))
             }
           />
-          <TextInput
-            style={[styles.textInputStyle, styles.timeInput]}
-            placeholder="mins"
-            maxLength={2}
-            onChangeText={(text) =>
-              setStartTime((prev) => ({ hr: prev.hr, min: text }))
+          <DropDown
+            style={styles.timeInput}
+            data={timeMeridian}
+            onChange={(text) =>
+              setStartTime((prev) => ({
+                ...prev,
+                meridian: text,
+              }))
             }
           />
         </View>
         <Text style={styles.inputTitleTextStyle}>End Time</Text>
         <View style={styles.displayStack1}>
-          <TextInput
-            style={[styles.textInputStyle, styles.timeInput]}
+          <DropDown
+            style={styles.timeInput}
             placeholder="hours"
-            maxLength={2}
-            onChangeText={(text) =>
-              setEndTime((prev) => ({ hr: text, min: prev.min }))
-            }
+            data={hoursOptions}
+            onChange={(text) => setEndTime((prev) => ({ ...prev, hr: text }))}
           />
-          <TextInput
-            style={[styles.textInputStyle, styles.timeInput]}
+          <DropDown
+            style={styles.timeInput}
             placeholder="mins"
-            maxLength={2}
-            onChangeText={(text) =>
-              setEndTime((prev) => ({ hr: prev.hr, min: text }))
+            data={minuteCreationFunction()}
+            onChange={(text) => setEndTime((prev) => ({ ...prev, min: text }))}
+          />
+          <DropDown
+            style={styles.timeInput}
+            placeholder="meridian"
+            data={timeMeridian}
+            onChange={(text) =>
+              setEndTime((prev) => ({ ...prev, meridian: text }))
             }
           />
         </View>
@@ -136,7 +158,7 @@ const PeriodInfoEdit = ({ hideModal = () => {}, day = "" }) => {
             addPeriodOfDay({
               day,
               payload: {
-                time: `${startTime.hr}:${startTime.min}-${endTime.hr}:${endTime.min}`,
+                time: `${startTime.hr}:${startTime.min} ${startTime.meridian}-${endTime.hr}:${endTime.min} ${endTime.meridian}`,
                 subject,
               },
             });

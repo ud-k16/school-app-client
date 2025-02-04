@@ -56,6 +56,7 @@ export const styles = StyleSheet.create({
     fontSize: moderateScale(30),
   },
   timeInput: {
+    width: moderateScale(80),
     height: moderateScale(60),
     borderWidth: moderateScale(2),
     borderRadius: moderateScale(5),

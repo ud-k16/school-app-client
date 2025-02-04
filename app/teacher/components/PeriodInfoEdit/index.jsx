@@ -58,7 +58,7 @@ const PeriodInfoEdit = ({ hideModal = () => {}, day = "" }) => {
       value: "12",
     },
   ];
-  const timeMeridian = [
+  const timemeridiam = [
     {
       label: "am",
       value: "am",
@@ -78,8 +78,8 @@ const PeriodInfoEdit = ({ hideModal = () => {}, day = "" }) => {
     }
     return minutesArray;
   };
-  const [startTime, setStartTime] = useState({ hr: "", min: "", meridian: "" });
-  const [endTime, setEndTime] = useState({ hr: "", min: "", meridian: "" });
+  const [startTime, setStartTime] = useState({ hr: "", min: "", meridiam: "" });
+  const [endTime, setEndTime] = useState({ hr: "", min: "", meridiam: "" });
   const { addPeriodOfDay } = useTeacherContext();
   return (
     <View style={styles.container}>
@@ -120,12 +120,12 @@ const PeriodInfoEdit = ({ hideModal = () => {}, day = "" }) => {
           />
           <DropDown
             style={styles.timeInput}
-            data={timeMeridian}
-            placeHolder="meridian"
+            data={timemeridiam}
+            placeHolder="am/pm"
             onChange={(text) =>
               setStartTime((prev) => ({
                 ...prev,
-                meridian: text,
+                meridiam: text,
               }))
             }
           />
@@ -146,10 +146,10 @@ const PeriodInfoEdit = ({ hideModal = () => {}, day = "" }) => {
           />
           <DropDown
             style={styles.timeInput}
-            placeHolder="meridian"
-            data={timeMeridian}
+            placeHolder="am/pm"
+            data={timemeridiam}
             onChange={(text) =>
-              setEndTime((prev) => ({ ...prev, meridian: text }))
+              setEndTime((prev) => ({ ...prev, meridiam: text }))
             }
           />
         </View>
@@ -159,7 +159,7 @@ const PeriodInfoEdit = ({ hideModal = () => {}, day = "" }) => {
             addPeriodOfDay({
               day,
               payload: {
-                time: `${startTime.hr}:${startTime.min} ${startTime.meridian}-${endTime.hr}:${endTime.min} ${endTime.meridian}`,
+                time: `${startTime.hr}:${startTime.min} ${startTime.meridiam}-${endTime.hr}:${endTime.min} ${endTime.meridiam}`,
                 subject,
               },
             });

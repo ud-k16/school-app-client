@@ -5,7 +5,7 @@ import PeriodInfoEdit from "../PeriodInfoEdit";
 import CustomModalComponent from "../../../common/components/Modal";
 import { useTeacherContext } from "../../context/useTeacherContext";
 
-const TimeBreak = ({
+const UpdatePeriodsForDay = ({
   dayOfWeek = "",
   addPeriodModalVisibility = false,
   showModal = () => {},
@@ -37,4 +37,4 @@ const TimeBreak = ({
     </View>
   );
 };
-export default TimeBreak;
+export default UpdatePeriodsForDay;

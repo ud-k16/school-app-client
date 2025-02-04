@@ -1,7 +1,7 @@
 import { Pressable, ScrollView, Text, TextInput, View } from "react-native";
 import { styles } from "./styles";
 import Headers from "../../../common/components/Header";
-import TimeBreak from "../../components/TimeBreak";
+import UpdatePeriodsForDay from "../../components/UpdatePeriodsForDay";
 import useTimeTable from "../../hooks/useTimeTable";
 
 const ManageTimeTable = () => {
@@ -11,7 +11,7 @@ const ManageTimeTable = () => {
     <View style={styles.container}>
       <Headers title="Time Table" />
       <ScrollView contentContainerStyle={styles.scrollViewContainer}>
-        <TimeBreak
+        <UpdatePeriodsForDay
           dayOfWeek={workDays[0]}
           addPeriodModalVisibility={addPeriodModalVisibility}
           showModal={showModal}

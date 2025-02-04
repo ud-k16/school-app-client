@@ -13,7 +13,7 @@ const UpdatePeriodsForDay = ({
   showModal = () => {},
   hideModal = () => {},
 }) => {
-  const { timeTable } = useTeacherContext();
+  const { timeTable, deletePeriodOfDay } = useTeacherContext();
   return (
     <View style={styles.container}>
       <View style={styles.displayStack1}>
@@ -37,6 +37,9 @@ const UpdatePeriodsForDay = ({
                 name="delete-outline"
                 size={24}
                 color={Themes.red}
+                onPress={() => {
+                  deletePeriodOfDay({ day: dayOfWeek, time: period.time });
+                }}
               />
             </View>
           );

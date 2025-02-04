@@ -1,5 +1,12 @@
 import React, { useRef, useState } from "react";
-import { Image, Modal, Text, TouchableOpacity, View } from "react-native";
+import {
+  Image,
+  Modal,
+  ScrollView,
+  Text,
+  TouchableOpacity,
+  View,
+} from "react-native";
 import downIcon from "./assests/down.png";
 import { styles } from "./styles";
 /**
@@ -80,25 +87,27 @@ const Dropdown = ({
           style={{ flex: 1 }}
         >
           <View style={[styles.optionView, containerStyle, position]}>
-            {data.map((data) => {
-              const label = labelField ? data[labelField] : data["label"];
-              const value = valueField ? data[valueField] : data["value"];
-              return (
-                <TouchableOpacity
-                  onPress={() => {
-                    onOptonSelection(label);
-                    onChange(value);
-                  }}
-                  style={[
-                    styles.optionContainer,
-                    selected == value && { backgroundColor: activeColor },
-                  ]}
-                  key={value}
-                >
-                  <Text style={styles.textStyle}>{label}</Text>
-                </TouchableOpacity>
-              );
-            })}
+            <ScrollView style={{ flexGrow: 1 }}>
+              {data.map((data) => {
+                const label = labelField ? data[labelField] : data["label"];
+                const value = valueField ? data[valueField] : data["value"];
+                return (
+                  <TouchableOpacity
+                    onPress={() => {
+                      onOptonSelection(label);
+                      onChange(value);
+                    }}
+                    style={[
+                      styles.optionContainer,
+                      selected == value && { backgroundColor: activeColor },
+                    ]}
+                    key={value}
+                  >
+                    <Text style={styles.textStyle}>{label}</Text>
+                  </TouchableOpacity>
+                );
+              })}
+            </ScrollView>
           </View>
         </TouchableOpacity>
       </Modal>

@@ -47,4 +47,19 @@ export const styles = StyleSheet.create({
     fontWeight: 600,
     fontSize: moderateScale(20),
   },
+  periodDisplayCardContainer: {
+    alignSelf: "center",
+    width: "90%",
+    height: moderateScale(60),
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "space-evenly",
+    borderWidth: moderateScale(1),
+    borderColor: Themes.lightFadedGreen,
+  },
+  periodTextStyle: {
+    fontWeight: 600,
+    color: Themes.greyShade,
+    fontSize: moderateScale(20),
+  },
 });

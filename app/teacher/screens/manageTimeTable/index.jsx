@@ -1,24 +1,15 @@
-import { Pressable, ScrollView, Text, TextInput, View } from "react-native";
+import { ScrollView, View } from "react-native";
 import { styles } from "./styles";
 import Headers from "../../../common/components/Header";
-import UpdatePeriodsForDay from "../../components/UpdatePeriodsForDay";
+import WorkDays from "../../components/WorkDays";
 
 const ManageTimeTable = () => {
-  const workDays = [
-    "Monday",
-    "Tuesday",
-    "Wednesday",
-    "Thursday",
-    "Friday",
-    "saturday",
-    "sunday",
-  ];
   return (
     <View style={styles.container}>
       <Headers title="Time Table" />
-      <ScrollView
-        contentContainerStyle={styles.scrollViewContainer}
-      ></ScrollView>
+      <ScrollView contentContainerStyle={styles.scrollViewContainer}>
+        <WorkDays />
+      </ScrollView>
     </View>
   );
 };

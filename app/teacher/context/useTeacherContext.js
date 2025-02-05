@@ -1,10 +1,22 @@
 import { createContext, useContext, useState } from "react";
 
 const TeacherContext = createContext();
+
 const TeacherContextProvider = ({ children }) => {
-  const [workDays, setWorkDays] = useState([]);
+  // variable to hold info about working weekdays in the timetable
+  const [workDays, setWorkDays] = useState([
+    { day: "Monday", holiday: false },
+    { day: "Tuesday", holiday: false },
+    { day: "Wednesday", holiday: false },
+    { day: "Thursday", holiday: false },
+    { day: "Friday", holiday: false },
+    { day: "saturday", holiday: true },
+    { day: "sunday", holiday: true },
+  ]);
+  // variable that holds periods data for the respective day
   const [timeTable, setTimeTable] = useState(new Map());
 
+  // function to mark a day as working day
   // function to add period to particular day
   const addPeriodOfDay = ({ day, payload }) => {
     // payload is an object with format {time:"",subject:""}
@@ -55,7 +67,7 @@ const TeacherContextProvider = ({ children }) => {
     });
   };
 
-  // function to swap up  period to particular day
+  // function to swap down  period to particular day
   const swapDownPeriod = ({ day, index }) => {
     setTimeTable((prev) => {
       //   retriving already available periods for the particular day

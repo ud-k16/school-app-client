@@ -4,9 +4,9 @@ import { Pressable, ScrollView, Text, View } from "react-native";
 import FontAwesome5 from "@expo/vector-icons/FontAwesome5";
 import Entypo from "@expo/vector-icons/Entypo";
 import { Themes } from "@/app/utils/themes";
-import { Link } from "expo-router";
+import { Link, router } from "expo-router";
 
-const WorkDays = ({ navigation }) => {
+const WorkDays = () => {
   const { workDays, toggleHolidayFlag } = useTeacherContext();
 
   return (
@@ -14,34 +14,44 @@ const WorkDays = ({ navigation }) => {
       <Text style={styles.holidayTextStyle}> Holiday</Text>
       <ScrollView contentContainerStyle={styles.scrollViewContainer}>
         {workDays.map((weekDays, index) => (
-          <Link
-            key={index}
-            href={{
-              pathname: "/teacher/components/UpdatePeriodsForDay",
-              params: { dayOfWeek: weekDays.day },
-            }}
-          >
-            <View style={styles.displayStack1}>
-              <Text style={styles.weekDaysTextStyle}>{weekDays.day}</Text>
-              <View style={styles.displayStack2}>
-                <FontAwesome5 name="edit" size={24} color="black" />
-                <Pressable
-                  style={styles.checkBoxStyle}
-                  onPress={() => {
-                    toggleHolidayFlag(weekDays.day);
-                  }}
-                >
-                  {weekDays.holiday && (
-                    <Entypo
-                      name="check"
-                      size={25}
-                      color={Themes.lightFadedGreen}
-                    />
-                  )}
-                </Pressable>
-              </View>
+          <View style={styles.displayStack1} key={index}>
+            <Text style={styles.weekDaysTextStyle}>{weekDays.day}</Text>
+            <View style={styles.displayStack2}>
+              <Pressable
+                onPress={
+                  weekDays.holiday
+                    ? null
+                    : () => {
+                        router.navigate({
+                          pathname: "/teacher/components/UpdatePeriodsForDay",
+                          params: { dayOfWeek: weekDays.day },
+                        });
+                      }
+                }
+              >
+                <FontAwesome5
+                  name="edit"
+                  size={24}
+                  color={weekDays.holiday ? Themes.greyShade : "black"}
+                />
+              </Pressable>
+
+              <Pressable
+                style={styles.checkBoxStyle}
+                onPress={() => {
+                  toggleHolidayFlag(weekDays.day);
+                }}
+              >
+                {weekDays.holiday && (
+                  <Entypo
+                    name="check"
+                    size={25}
+                    color={Themes.lightFadedGreen}
+                  />
+                )}
+              </Pressable>
             </View>
-          </Link>
+          </View>
         ))}
       </ScrollView>
     </View>

@@ -68,4 +68,12 @@ export const styles = StyleSheet.create({
     fontSize: moderateScale(20),
     textTransform: "uppercase",
   },
+  arrowContainer: {
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "space-around",
+  },
+  displayStackData: {
+    maxWidth: moderateScale(200),
+  },
 });

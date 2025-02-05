@@ -30,30 +30,35 @@ const UpdatePeriodsForDay = ({
         timeTable.get(dayOfWeek)?.map((period, index) => {
           return (
             <View style={styles.periodDisplayCardContainer}>
-              <View>
+              <View style={styles.displayStackData}>
                 <Text style={styles.periodTextStyle}>{period.time}</Text>
                 <Text style={styles.subjectTextStyle}>
                   {period.subject || "Assembly For The People Replublic"}
                 </Text>
               </View>
-              <AntDesign
-                name="arrowdown"
-                size={24}
-                color="black"
-                onPress={() => {
-                  swapDownPeriod({ day: dayOfWeek, index });
-                }}
-              />
-              {index !== 0 && (
-                <AntDesign
-                  name="arrowup"
-                  size={24}
-                  color="black"
-                  onPress={() => {
-                    swapUpPeriod({ day: dayOfWeek, index });
-                  }}
-                />
-              )}
+              <View style={styles.arrowContainer}>
+                {index !== 0 && (
+                  <AntDesign
+                    name="arrowup"
+                    size={24}
+                    color="black"
+                    onPress={() => {
+                      swapUpPeriod({ day: dayOfWeek, index });
+                    }}
+                  />
+                )}
+                {index + 1 !== timeTable.get(dayOfWeek)?.length && (
+                  <AntDesign
+                    name="arrowdown"
+                    size={24}
+                    color="black"
+                    onPress={() => {
+                      swapDownPeriod({ day: dayOfWeek, index });
+                    }}
+                  />
+                )}
+              </View>
+
               <MaterialIcons
                 name="delete-outline"
                 size={24}

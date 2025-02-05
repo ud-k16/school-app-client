@@ -54,6 +54,16 @@ const WorkDays = () => {
           </View>
         ))}
       </ScrollView>
+      <Pressable
+        style={styles.previewButtonStyle}
+        onPress={() => {
+          router.navigate({
+            pathname: "/teacher/components/PreviewTimeTable",
+          });
+        }}
+      >
+        <Text style={styles.previewButtonTextStyle}>Preview</Text>
+      </Pressable>
     </View>
   );
 };

@@ -8,6 +8,10 @@ export const styles = StyleSheet.create({
     padding: moderateScale(15),
     rowGap: moderateScale(10),
   },
+  scrollViewContainer: {
+    flexGrow: 1,
+    rowGap: moderateScale(10),
+  },
   weekDayTextStyle: {
     fontWeight: 600,
     alignSelf: "center",

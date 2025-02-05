@@ -1,6 +1,6 @@
 import { styles } from "./styles";
 import FontAwesome5 from "@expo/vector-icons/FontAwesome5";
-import { Pressable, Text, View } from "react-native";
+import { Pressable, ScrollView, Text, View } from "react-native";
 import PeriodInfoEdit from "../PeriodInfoEdit";
 import CustomModalComponent from "../../../common/components/Modal";
 import { useTeacherContext } from "../../context/useTeacherContext";
@@ -24,51 +24,53 @@ const UpdatePeriodsForDay = () => {
           <Text style={styles.addButtonTextStyle}> Add </Text>
         </Pressable>
       </View>
+      <ScrollView style={styles.scrollViewContainer}>
+        {timeTable.get(dayOfWeek)?.length > 0 &&
+          timeTable.get(dayOfWeek)?.map((period, index) => {
+            return (
+              <View style={styles.periodDisplayCardContainer}>
+                <View style={styles.displayStackData}>
+                  <Text style={styles.periodTextStyle}>{period.time}</Text>
+                  <Text style={styles.subjectTextStyle}>
+                    {period.subject || "Assembly For The People Replublic"}
+                  </Text>
+                </View>
+                <View style={styles.arrowContainer}>
+                  {index !== 0 && (
+                    <AntDesign
+                      name="arrowup"
+                      size={24}
+                      color="black"
+                      onPress={() => {
+                        swapUpPeriod({ day: dayOfWeek, index });
+                      }}
+                    />
+                  )}
+                  {index + 1 !== timeTable.get(dayOfWeek)?.length && (
+                    <AntDesign
+                      name="arrowdown"
+                      size={24}
+                      color="black"
+                      onPress={() => {
+                        swapDownPeriod({ day: dayOfWeek, index });
+                      }}
+                    />
+                  )}
+                </View>
 
-      {timeTable.get(dayOfWeek)?.length > 0 &&
-        timeTable.get(dayOfWeek)?.map((period, index) => {
-          return (
-            <View style={styles.periodDisplayCardContainer}>
-              <View style={styles.displayStackData}>
-                <Text style={styles.periodTextStyle}>{period.time}</Text>
-                <Text style={styles.subjectTextStyle}>
-                  {period.subject || "Assembly For The People Replublic"}
-                </Text>
+                <MaterialIcons
+                  name="delete-outline"
+                  size={24}
+                  color={Themes.red}
+                  onPress={() => {
+                    deletePeriodOfDay({ day: dayOfWeek, time: period.time });
+                  }}
+                />
               </View>
-              <View style={styles.arrowContainer}>
-                {index !== 0 && (
-                  <AntDesign
-                    name="arrowup"
-                    size={24}
-                    color="black"
-                    onPress={() => {
-                      swapUpPeriod({ day: dayOfWeek, index });
-                    }}
-                  />
-                )}
-                {index + 1 !== timeTable.get(dayOfWeek)?.length && (
-                  <AntDesign
-                    name="arrowdown"
-                    size={24}
-                    color="black"
-                    onPress={() => {
-                      swapDownPeriod({ day: dayOfWeek, index });
-                    }}
-                  />
-                )}
-              </View>
+            );
+          })}
+      </ScrollView>
 
-              <MaterialIcons
-                name="delete-outline"
-                size={24}
-                color={Themes.red}
-                onPress={() => {
-                  deletePeriodOfDay({ day: dayOfWeek, time: period.time });
-                }}
-              />
-            </View>
-          );
-        })}
       <CustomModalComponent
         visibility={addPeriodModalVisibility}
         hideModal={hideModal}

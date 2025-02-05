@@ -8,8 +8,10 @@ import MaterialIcons from "@expo/vector-icons/MaterialIcons";
 import AntDesign from "@expo/vector-icons/AntDesign";
 import { Themes } from "@/app/utils/themes";
 import usePeriodModal from "../../hooks/usePeriodModal";
+import { useLocalSearchParams } from "expo-router/build/hooks";
 
-const UpdatePeriodsForDay = ({ dayOfWeek = "Monday" }) => {
+const UpdatePeriodsForDay = () => {
+  const { dayOfWeek = "Monday" } = useLocalSearchParams();
   const { timeTable, deletePeriodOfDay, swapUpPeriod, swapDownPeriod } =
     useTeacherContext();
   const { addPeriodModalVisibility, showModal, hideModal } = usePeriodModal();

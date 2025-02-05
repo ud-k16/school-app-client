@@ -11,9 +11,11 @@ const WorkDays = ({ navigation }) => {
 
   return (
     <View style={styles.container}>
+      <Text style={styles.holidayTextStyle}> Holiday</Text>
       <ScrollView contentContainerStyle={styles.scrollViewContainer}>
-        {workDays.map((weekDays) => (
+        {workDays.map((weekDays, index) => (
           <Link
+            key={index}
             href={{
               pathname: "/teacher/components/UpdatePeriodsForDay",
               params: { dayOfWeek: weekDays.day },

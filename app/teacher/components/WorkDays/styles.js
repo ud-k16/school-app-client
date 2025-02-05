@@ -40,4 +40,10 @@ export const styles = StyleSheet.create({
     height: moderateScale(28),
     borderRadius: moderateScale(5),
   },
+  holidayTextStyle: {
+    alignSelf: "flex-end",
+    fontSize: moderateScale(25),
+    color: Themes.secondary,
+    fontWeight: 600,
+  },
 });

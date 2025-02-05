@@ -5,17 +5,25 @@ const TeacherContext = createContext();
 const TeacherContextProvider = ({ children }) => {
   // variable to hold info about working weekdays in the timetable
   const [workDays, setWorkDays] = useState([
-    { day: "Monday", holiday: false },
-    { day: "Tuesday", holiday: false },
-    { day: "Wednesday", holiday: false },
-    { day: "Thursday", holiday: false },
-    { day: "Friday", holiday: false },
+    { day: "monday", holiday: false },
+    { day: "tuesday", holiday: false },
+    { day: "wednesday", holiday: false },
+    { day: "thursday", holiday: false },
+    { day: "friday", holiday: false },
     { day: "saturday", holiday: true },
     { day: "sunday", holiday: true },
   ]);
   // variable that holds periods data for the respective day
   const [timeTable, setTimeTable] = useState(new Map());
 
+  // toggle holiday flag function
+  const toggleHolidayFlag = (day) => {
+    setWorkDays((prev) => {
+      const index = prev.findIndex((value) => value.day === day);
+      prev[index].holiday = !prev[index].holiday;
+      return [...prev];
+    });
+  };
   // function to mark a day as working day
   // function to add period to particular day
   const addPeriodOfDay = ({ day, payload }) => {
@@ -94,6 +102,7 @@ const TeacherContextProvider = ({ children }) => {
         deletePeriodOfDay,
         swapUpPeriod,
         swapDownPeriod,
+        toggleHolidayFlag,
       }}
     >
       {children}

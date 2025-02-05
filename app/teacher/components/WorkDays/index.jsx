@@ -7,7 +7,7 @@ import { Themes } from "@/app/utils/themes";
 import { Link } from "expo-router";
 
 const WorkDays = ({ navigation }) => {
-  const { workDays } = useTeacherContext();
+  const { workDays, toggleHolidayFlag } = useTeacherContext();
 
   return (
     <View style={styles.container}>
@@ -25,7 +25,12 @@ const WorkDays = ({ navigation }) => {
               <Text style={styles.weekDaysTextStyle}>{weekDays.day}</Text>
               <View style={styles.displayStack2}>
                 <FontAwesome5 name="edit" size={24} color="black" />
-                <Pressable style={styles.checkBoxStyle}>
+                <Pressable
+                  style={styles.checkBoxStyle}
+                  onPress={() => {
+                    toggleHolidayFlag(weekDays.day);
+                  }}
+                >
                   {weekDays.holiday && (
                     <Entypo
                       name="check"

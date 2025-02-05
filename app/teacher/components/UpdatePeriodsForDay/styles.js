@@ -14,6 +14,7 @@ export const styles = StyleSheet.create({
     height: "auto",
     fontSize: moderateScale(40),
     color: Themes.secondary,
+    textTransform: "capitalize",
   },
   displayStack1: {
     flexDirection: "row",

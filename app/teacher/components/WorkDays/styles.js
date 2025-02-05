@@ -20,6 +20,7 @@ export const styles = StyleSheet.create({
     backgroundColor: Themes.white,
   },
   weekDaysTextStyle: {
+    textTransform: "capitalize",
     fontWeight: 600,
     width: "50%",
     fontSize: moderateScale(30),

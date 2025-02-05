@@ -2,6 +2,7 @@ import { createContext, useContext, useState } from "react";
 
 const TeacherContext = createContext();
 const TeacherContextProvider = ({ children }) => {
+  const [workDays, setWorkDays] = useState([]);
   const [timeTable, setTimeTable] = useState(new Map());
 
   // function to add period to particular day
@@ -74,6 +75,8 @@ const TeacherContextProvider = ({ children }) => {
     <TeacherContext.Provider
       value={{
         timeTable,
+        workDays,
+        setWorkDays,
         setTimeTable,
         addPeriodOfDay,
         deletePeriodOfDay,

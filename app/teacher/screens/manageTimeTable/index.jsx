@@ -2,22 +2,23 @@ import { Pressable, ScrollView, Text, TextInput, View } from "react-native";
 import { styles } from "./styles";
 import Headers from "../../../common/components/Header";
 import UpdatePeriodsForDay from "../../components/UpdatePeriodsForDay";
-import useTimeTable from "../../hooks/useTimeTable";
 
 const ManageTimeTable = () => {
-  const { workDays, addPeriodModalVisibility, showModal, hideModal } =
-    useTimeTable();
+  const workDays = [
+    "Monday",
+    "Tuesday",
+    "Wednesday",
+    "Thursday",
+    "Friday",
+    "saturday",
+    "sunday",
+  ];
   return (
     <View style={styles.container}>
       <Headers title="Time Table" />
-      <ScrollView contentContainerStyle={styles.scrollViewContainer}>
-        <UpdatePeriodsForDay
-          dayOfWeek={workDays[0]}
-          addPeriodModalVisibility={addPeriodModalVisibility}
-          showModal={showModal}
-          hideModal={hideModal}
-        />
-      </ScrollView>
+      <ScrollView
+        contentContainerStyle={styles.scrollViewContainer}
+      ></ScrollView>
     </View>
   );
 };

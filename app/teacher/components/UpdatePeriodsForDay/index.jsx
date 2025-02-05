@@ -7,15 +7,12 @@ import { useTeacherContext } from "../../context/useTeacherContext";
 import MaterialIcons from "@expo/vector-icons/MaterialIcons";
 import AntDesign from "@expo/vector-icons/AntDesign";
 import { Themes } from "@/app/utils/themes";
+import usePeriodModal from "../../hooks/usePeriodModal";
 
-const UpdatePeriodsForDay = ({
-  dayOfWeek = "",
-  addPeriodModalVisibility = false,
-  showModal = () => {},
-  hideModal = () => {},
-}) => {
+const UpdatePeriodsForDay = ({ dayOfWeek = "Monday" }) => {
   const { timeTable, deletePeriodOfDay, swapUpPeriod, swapDownPeriod } =
     useTeacherContext();
+  const { addPeriodModalVisibility, showModal, hideModal } = usePeriodModal();
   return (
     <View style={styles.container}>
       <View style={styles.displayStack1}>

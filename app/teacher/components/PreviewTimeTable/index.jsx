@@ -1,7 +1,7 @@
 import { useTeacherContext } from "../../context/useTeacherContext";
 import { styles } from "./styles";
 
-import { View, Text } from "react-native";
+import { View, Text, ScrollView } from "react-native";
 const PreviewTimeTable = () => {
   const { timeTable, workDays } = useTeacherContext();
   return (

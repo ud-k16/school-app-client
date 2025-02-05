@@ -5,6 +5,7 @@ import PeriodInfoEdit from "../PeriodInfoEdit";
 import CustomModalComponent from "../../../common/components/Modal";
 import { useTeacherContext } from "../../context/useTeacherContext";
 import MaterialIcons from "@expo/vector-icons/MaterialIcons";
+import AntDesign from "@expo/vector-icons/AntDesign";
 import { Themes } from "@/app/utils/themes";
 
 const UpdatePeriodsForDay = ({
@@ -13,7 +14,8 @@ const UpdatePeriodsForDay = ({
   showModal = () => {},
   hideModal = () => {},
 }) => {
-  const { timeTable, deletePeriodOfDay } = useTeacherContext();
+  const { timeTable, deletePeriodOfDay, swapUpPeriod, swapDownPeriod } =
+    useTeacherContext();
   return (
     <View style={styles.container}>
       <View style={styles.displayStack1}>
@@ -25,7 +27,7 @@ const UpdatePeriodsForDay = ({
       </View>
 
       {timeTable.get(dayOfWeek)?.length > 0 &&
-        timeTable.get(dayOfWeek)?.map((period) => {
+        timeTable.get(dayOfWeek)?.map((period, index) => {
           return (
             <View style={styles.periodDisplayCardContainer}>
               <View>
@@ -34,7 +36,24 @@ const UpdatePeriodsForDay = ({
                   {period.subject || "Assembly For The People Replublic"}
                 </Text>
               </View>
-
+              <AntDesign
+                name="arrowdown"
+                size={24}
+                color="black"
+                onPress={() => {
+                  swapDownPeriod({ day: dayOfWeek, index });
+                }}
+              />
+              {index !== 0 && (
+                <AntDesign
+                  name="arrowup"
+                  size={24}
+                  color="black"
+                  onPress={() => {
+                    swapUpPeriod({ day: dayOfWeek, index });
+                  }}
+                />
+              )}
               <MaterialIcons
                 name="delete-outline"
                 size={24}

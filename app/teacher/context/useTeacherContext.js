@@ -6,8 +6,6 @@ const TeacherContextProvider = ({ children }) => {
 
   // function to add period to particular day
   const addPeriodOfDay = ({ day, payload }) => {
-    console.log({ day, payload });
-
     // payload is an object with format {time:"",subject:""}
     setTimeTable((prev) => {
       //   retriving already available periods for the particular day
@@ -37,9 +35,51 @@ const TeacherContextProvider = ({ children }) => {
       return new Map(prev);
     });
   };
+
+  // function to swap up  period to particular day
+  const swapUpPeriod = ({ day, index }) => {
+    setTimeTable((prev) => {
+      //   retriving already available periods for the particular day
+      const availablePeriods = prev.get(day) || [];
+      //   deleting given time period and previous state
+      const deleted = availablePeriods.splice(index - 1, 2);
+
+      // adding in the deleted times by swaping it
+      availablePeriods.splice(index - 1, 0, deleted[1]);
+      availablePeriods.splice(index, 0, deleted[0]);
+      //   updating the day and its periods
+      prev.set(day, availablePeriods);
+      // return new updated timetable
+      return new Map(prev);
+    });
+  };
+
+  // function to swap up  period to particular day
+  const swapDownPeriod = ({ day, index }) => {
+    setTimeTable((prev) => {
+      //   retriving already available periods for the particular day
+      const availablePeriods = prev.get(day) || [];
+      //   deleting given time period and previous state
+      const deleted = availablePeriods.splice(index, 2);
+      // adding in the deleted times by swaping it
+      availablePeriods.splice(index, 0, deleted[1]);
+      availablePeriods.splice(index + 1, 0, deleted[0]);
+      //   updating the day and its periods
+      prev.set(day, availablePeriods);
+      return new Map(prev);
+    });
+  };
+
   return (
     <TeacherContext.Provider
-      value={{ timeTable, setTimeTable, addPeriodOfDay, deletePeriodOfDay }}
+      value={{
+        timeTable,
+        setTimeTable,
+        addPeriodOfDay,
+        deletePeriodOfDay,
+        swapUpPeriod,
+        swapDownPeriod,
+      }}
     >
       {children}
     </TeacherContext.Provider>

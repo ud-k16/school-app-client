@@ -1,11 +1,13 @@
 import { useTeacherContext } from "../../context/useTeacherContext";
 import { styles } from "./styles";
+import Headers from "../../../common/components/Header";
+import { View, Text, ScrollView, Pressable } from "react-native";
 
-import { View, Text, ScrollView } from "react-native";
 const PreviewTimeTable = () => {
   const { timeTable, workDays } = useTeacherContext();
   return (
     <View style={styles.container}>
+      <Headers title="Preview" />
       <ScrollView style={styles.scrollViewContainer}>
         {workDays.map(({ day, holiday }, index) => {
           return (
@@ -32,6 +34,9 @@ const PreviewTimeTable = () => {
             </View>
           );
         })}
+        <Pressable style={styles.publishButtonStyle}>
+          <Text style={styles.publishButtonTextStyle}>Publish</Text>
+        </Pressable>
       </ScrollView>
     </View>
   );

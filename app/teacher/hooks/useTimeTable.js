@@ -17,7 +17,7 @@ const useTimeTable = () => {
         },
         body: JSON.stringify(data),
       };
-      const url = `${API_URL}`;
+      const url = `${API_URL}/timetable/publish`;
       const response = await fetch(url, requestOptions);
       const result = await response.json();
       setState((prev) => ({ ...prev, isLoading: false }));

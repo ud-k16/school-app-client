@@ -12,7 +12,6 @@ export const styles = StyleSheet.create({
     backgroundColor: "white",
   },
   optionView: {
-    borderStyle: "solid",
     borderWidth: 1,
     backgroundColor: "#f0f7f4",
     elevation: 5,

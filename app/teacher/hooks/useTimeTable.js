@@ -6,10 +6,15 @@ const useTimeTable = () => {
   });
   const { API_URL } = Constants.expoConfig.extra;
 
-  const publishTimeTable = async () => {
+  const publishTimeTable = async ({ id, timeTable }) => {
+    // console.log({ id, timetable });
+
     try {
       setState((prev) => ({ ...prev, isLoading: true }));
-      const data = {};
+      const entries = Array.from(timeTable);
+      const data = { id, timetable: entries };
+      console.log(data);
+
       const requestOptions = {
         method: "POST",
         headers: {
@@ -20,6 +25,8 @@ const useTimeTable = () => {
       const url = `${API_URL}/timetable/publish`;
       const response = await fetch(url, requestOptions);
       const result = await response.json();
+      console.log(result);
+
       setState((prev) => ({ ...prev, isLoading: false }));
     } catch (error) {
       console.log(error);

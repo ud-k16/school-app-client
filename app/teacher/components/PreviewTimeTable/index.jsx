@@ -2,9 +2,11 @@ import { useTeacherContext } from "../../context/useTeacherContext";
 import { styles } from "./styles";
 import Headers from "../../../common/components/Header";
 import { View, Text, ScrollView, Pressable } from "react-native";
+import useTimeTable from "../../hooks/useTimeTable";
 
 const PreviewTimeTable = () => {
   const { timeTable, workDays } = useTeacherContext();
+  const { isLoading, publishTimeTable } = useTimeTable();
   return (
     <View style={styles.container}>
       <Headers title="Preview" />
@@ -34,7 +36,12 @@ const PreviewTimeTable = () => {
             </View>
           );
         })}
-        <Pressable style={styles.publishButtonStyle}>
+        <Pressable
+          style={styles.publishButtonStyle}
+          onPress={() => {
+            publishTimeTable({ id: 8, timeTable });
+          }}
+        >
           <Text style={styles.publishButtonTextStyle}>Publish</Text>
         </Pressable>
       </ScrollView>

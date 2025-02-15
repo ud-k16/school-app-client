@@ -7,6 +7,7 @@ import {
   TouchableOpacity,
   View,
 } from "react-native";
+import { SafeAreaView } from "react-native-safe-area-context";
 import downIcon from "./assests/down.png";
 import { styles } from "./styles";
 /**
@@ -78,39 +79,41 @@ const Dropdown = ({
           )}
         </View>
       </TouchableOpacity>
-      <Modal transparent visible={show} onRequestClose={hideVisibility}>
-        <TouchableOpacity
-          onPress={() => {
-            setShow(false);
-          }}
-          activeOpacity={1}
-          style={{ flex: 1 }}
-        >
-          <View style={[styles.optionView, containerStyle, position]}>
-            <ScrollView style={{ flexGrow: 1 }}>
-              {data.map((data) => {
-                const label = labelField ? data[labelField] : data["label"];
-                const value = valueField ? data[valueField] : data["value"];
-                return (
-                  <TouchableOpacity
-                    onPress={() => {
-                      onOptonSelection(label);
-                      onChange(value);
-                    }}
-                    style={[
-                      styles.optionContainer,
-                      selected == value && { backgroundColor: activeColor },
-                    ]}
-                    key={value}
-                  >
-                    <Text style={styles.textStyle}>{label}</Text>
-                  </TouchableOpacity>
-                );
-              })}
-            </ScrollView>
-          </View>
-        </TouchableOpacity>
-      </Modal>
+      <SafeAreaView style={{ flex: 1 }}>
+        <Modal transparent visible={show} onRequestClose={hideVisibility}>
+          <TouchableOpacity
+            onPress={() => {
+              setShow(false);
+            }}
+            activeOpacity={1}
+            style={{ flex: 1 }}
+          >
+            <View style={[styles.optionView, containerStyle, position]}>
+              <ScrollView style={{ flexGrow: 1 }}>
+                {data.map((data) => {
+                  const label = labelField ? data[labelField] : data["label"];
+                  const value = valueField ? data[valueField] : data["value"];
+                  return (
+                    <TouchableOpacity
+                      onPress={() => {
+                        onOptonSelection(label);
+                        onChange(value);
+                      }}
+                      style={[
+                        styles.optionContainer,
+                        selected == value && { backgroundColor: activeColor },
+                      ]}
+                      key={value}
+                    >
+                      <Text style={styles.textStyle}>{label}</Text>
+                    </TouchableOpacity>
+                  );
+                })}
+              </ScrollView>
+            </View>
+          </TouchableOpacity>
+        </Modal>
+      </SafeAreaView>
     </View>
   );
 };

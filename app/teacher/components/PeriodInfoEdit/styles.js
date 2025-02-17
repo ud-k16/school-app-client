@@ -65,6 +65,7 @@ export const styles = StyleSheet.create({
   },
   errorTextStyle: {
     color: Themes.red,
+    textAlign: "center",
   },
 
   saveButtonStyle: {

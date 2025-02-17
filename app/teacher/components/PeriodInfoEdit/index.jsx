@@ -88,8 +88,8 @@ const PeriodInfoEdit = ({ hideModal = () => {}, day = "" }) => {
         <View style={styles.displayStack1}>
           <DropDown
             style={styles.timeInput}
-            placeHolder="hours"
             data={hoursOptions}
+            placeHolder="hours"
             onChange={(text) =>
               setState((prev) => ({
                 ...prev,

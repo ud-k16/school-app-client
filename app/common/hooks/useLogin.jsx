@@ -32,7 +32,7 @@ const useLogin = () => {
     const result = await response.json();
 
     if (result.status) {
-      const storageResponse = await setUser(result?.data);
+      const storageResponse = await setUser(JSON.stringify(result?.data));
       if (storageResponse)
         setAuthState((prev) => {
           return {

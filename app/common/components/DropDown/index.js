@@ -78,7 +78,6 @@ const Dropdown = ({
           )}
         </View>
       </TouchableOpacity>
-
       <Modal transparent visible={show} onRequestClose={hideVisibility}>
         <TouchableOpacity
           onPress={() => {

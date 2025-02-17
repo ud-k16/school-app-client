@@ -94,8 +94,14 @@ const usePeriodModal = () => {
       return {
         ...prev,
         subjectError: prev.subject ? "" : "Enter subject",
-        startTimeError: prev.startTime ? "" : "Enter start Time",
-        endTimeError: prev.endTime ? "" : "Enter start Time",
+        startTimeError:
+          prev.startTime.hr && prev.startTime.meridiam && prev.startTime.min
+            ? ""
+            : "Enter start Time",
+        endTimeError:
+          prev.endTime.hr && prev.endTime.meridiam && prev.endTime.min
+            ? ""
+            : "Enter End Time",
       };
     });
   };

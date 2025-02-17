@@ -63,6 +63,10 @@ export const styles = StyleSheet.create({
     paddingHorizontal: moderateScale(10),
     fontSize: moderateScale(17),
   },
+  errorTextStyle: {
+    color: Themes.red,
+  },
+
   saveButtonStyle: {
     backgroundColor: Themes.secondary,
     borderRadius: moderateScale(5),

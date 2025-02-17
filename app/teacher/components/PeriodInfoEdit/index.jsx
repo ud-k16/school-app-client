@@ -42,7 +42,7 @@ const PeriodInfoEdit = ({ hideModal = () => {}, day = "" }) => {
           placeHolder="Course"
           placeHolderStyle={styles.dropdownPlaceHolderStyle}
         />
-        <Text>{subjectError}</Text>
+        <Text style={styles.errorTextStyle}>{subjectError}</Text>
         <Text style={styles.inputTitleTextStyle}>Start Time</Text>
         <View style={styles.displayStack1}>
           <DropDown
@@ -82,6 +82,7 @@ const PeriodInfoEdit = ({ hideModal = () => {}, day = "" }) => {
             }
           />
         </View>
+        <Text style={styles.errorTextStyle}>{startTimeError}</Text>
 
         <Text style={styles.inputTitleTextStyle}>End Time</Text>
         <View style={styles.displayStack1}>
@@ -119,6 +120,8 @@ const PeriodInfoEdit = ({ hideModal = () => {}, day = "" }) => {
             }
           />
         </View>
+        <Text style={styles.errorTextStyle}>{endTimeError}</Text>
+
         <Pressable
           style={styles.saveButtonStyle}
           onPress={() => {

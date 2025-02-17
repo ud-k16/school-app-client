@@ -1,11 +1,16 @@
 import { useState } from "react";
 import Constants from "expo-constants";
+import { useAsyncStorage } from "@react-native-async-storage/async-storage";
+import { useAuthContext } from "../context/useAuthContext";
 
 const useLogin = () => {
   const [state, setState] = useState({
     isLoading: false,
   });
   const { API_URL } = Constants.expoConfig.extra;
+  const { setItem: setUser } = useAsyncStorage("user");
+  const { setState: setAuthState } = useAuthContext();
+
   const authenticateUser = async () => {
     setState((prev) => ({
       ...prev,
@@ -27,6 +32,15 @@ const useLogin = () => {
     const result = await response.json();
 
     if (result.status) {
+      const storageResponse = await setUser(result?.data);
+      if (storageResponse)
+        setAuthState((prev) => {
+          return {
+            ...prev,
+            authenticated: true,
+            user: result.data,
+          };
+        });
     }
     setState((prev) => ({
       ...prev,

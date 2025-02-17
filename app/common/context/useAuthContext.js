@@ -18,7 +18,7 @@ const AuthContextProvider = ({ children }) => {
           ...prev,
           authenticated: true,
           isLoading: false,
-          user,
+          user: JSON.parse(user),
         };
       else
         return {

@@ -6,10 +6,15 @@ import Login from "./common/screens/login";
 import ManageTimeTable from "./teacher/screens/manageTimeTable";
 import MaterialCommunityIcons from "@expo/vector-icons/MaterialCommunityIcons";
 import Entypo from "@expo/vector-icons/Entypo";
+import { useAuthContext } from "./common/context/useAuthContext";
+import { Text } from "react-native";
 
 const Tab = createBottomTabNavigator();
 
 const Main = () => {
+  const { isLoading, authenticated } = useAuthContext();
+  if (isLoading) return <Text>Wait</Text>;
+  else if (!authenticated) return <Login />;
   return (
     <Tab.Navigator
       initialRouteName="TimeTable"
@@ -21,7 +26,7 @@ const Main = () => {
     >
       <Tab.Screen
         name="TimeTable"
-        component={Login}
+        component={ManageTimeTable}
         options={{
           tabBarIcon: ({ color, size }) => (
             <MaterialCommunityIcons name="timetable" size={24} color="black" />

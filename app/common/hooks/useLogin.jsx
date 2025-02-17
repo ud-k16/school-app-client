@@ -12,8 +12,8 @@ const useLogin = () => {
       isLoading: true,
     }));
     const data = {
-      userId,
-      password,
+      userId: "uma",
+      password: "12345678",
     };
     const requestOptions = {
       method: "POST",

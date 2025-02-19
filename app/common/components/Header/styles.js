@@ -10,6 +10,8 @@ export const styles = StyleSheet.create({
     marginBottom: moderateScale(2),
     backgroundColor: Themes.white,
     alignItems: "center",
+    justifyContent: "space-evenly",
+    flexDirection: "row",
   },
   titleTextStyle: {
     alignSelf: "center",

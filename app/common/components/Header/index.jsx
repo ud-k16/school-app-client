@@ -12,6 +12,7 @@ const Header = ({ title = "" }) => {
         size={24}
         color="black"
         onPress={logoutUser}
+        style={{ alignSelf: "flex-end" }}
       />
     </View>
   );

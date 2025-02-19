@@ -17,7 +17,7 @@ const useLogin = () => {
       isLoading: true,
     }));
     const data = {
-      userId: "umak",
+      userId: "uma",
       password: "12345678",
     };
     const requestOptions = {
@@ -32,16 +32,17 @@ const useLogin = () => {
     const result = await response.json();
 
     if (result.status) {
-      const storageResponse = await setUser(JSON.stringify(result?.data));
-      if (storageResponse)
-        setAuthState((prev) => {
-          return {
-            ...prev,
-            authenticated: true,
-            user: result.data,
-          };
-        });
+      await setUser(JSON.stringify(result?.data));
+      // updating auth context values
+      setAuthState((prev) => {
+        return {
+          ...prev,
+          authenticated: true,
+          user: result.data,
+        };
+      });
     }
+    // toggle loading indicator
     setState((prev) => ({
       ...prev,
       isLoading: false,

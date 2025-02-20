@@ -8,14 +8,22 @@ export const styles = StyleSheet.create({
     borderWidth: 0,
     borderBottomWidth: moderateScale(1),
     marginBottom: moderateScale(2),
-    backgroundColor: Themes.white,
+    backgroundColor: Themes.secondary,
     alignItems: "center",
     justifyContent: "space-evenly",
     flexDirection: "row",
+    minHeight: moderateScale(70),
   },
   titleTextStyle: {
-    alignSelf: "center",
     fontWeight: 600,
     fontSize: moderateScale(26),
+    textTransform: "uppercase",
+    flex: 0.8,
+
+    color: Themes.white,
+  },
+  menuContainer: {
+    // flex: 0.2,
+    color: Themes.white,
   },
 });

@@ -17,10 +17,17 @@ const DataContextProvider = ({ children }) => {
   const { API_URL } = Constants.expoConfig.extra;
 
   const isTimeTableAvailable = async () => {
-    const timeTableInStorage = await getTimeTable();
-    console.log(timeTableInStorage, JSON.parse(timeTableInStorage).length);
+    // check if time table list available in local storage
+    console.log("check if time table list available in local storage");
 
-    if (JSON.parse(timeTableInStorage).length)
+    const timeTableInStorage = await getTimeTable();
+    console.log(
+      "time Table in local storage",
+      timeTableInStorage,
+      JSON.parse(timeTableInStorage).length
+    );
+
+    if (JSON.parse(timeTableInStorage).length > 0)
       setState((prev) => {
         return {
           ...prev,
@@ -33,6 +40,7 @@ const DataContextProvider = ({ children }) => {
     setState((prev) => ({ ...prev, isLoading: false }));
   };
   const fetchLatestTimeTable = async (id = "9") => {
+    console.log("fetching  time table for id  from server");
     const data = {
       id,
     };

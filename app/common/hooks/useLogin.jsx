@@ -17,7 +17,7 @@ const useLogin = () => {
       isLoading: true,
     }));
     const data = {
-      userId: "umak",
+      userId: "uma",
       password: "12345678",
     };
     const requestOptions = {

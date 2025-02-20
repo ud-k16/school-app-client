@@ -24,7 +24,7 @@ export const styles = StyleSheet.create({
     fontWeight: 600,
     width: "50%",
     fontSize: moderateScale(30),
-    color: Themes.lightFadedGreen,
+    color: Themes.textColor,
   },
   displayStack2: {
     flexDirection: "row",

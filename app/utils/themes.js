@@ -7,4 +7,5 @@ export const Themes = {
   textColor: "#072b73",
   backgroundColor: "",
   red: "red",
+  textColor: "#8ead1c",
 };

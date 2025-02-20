@@ -5,12 +5,12 @@ import { StyleSheet } from "react-native";
 export const styles = StyleSheet.create({
   container: {
     flex: 1,
-    paddingVertical: moderateScale(15),
+    rowGap: moderateScale(19),
   },
-
-  scrollViewContainer: {
-    flexGrow: 1,
-    rowGap: moderateScale(10),
+  headingTextStyle: {
+    color: Themes.textColor,
+    fontSize: moderateScale(15),
+    textAlign: "center",
   },
   textInputStyle: {
     alignSelf: "center",

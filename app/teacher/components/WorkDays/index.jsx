@@ -11,8 +11,9 @@ const WorkDays = () => {
 
   return (
     <View style={styles.container}>
+      <Text style={styles.headingTextStyle}>Edit TimeTable</Text>
       <Text style={styles.holidayTextStyle}> Holiday</Text>
-      <ScrollView contentContainerStyle={styles.scrollViewContainer}>
+      <View>
         {workDays.map((weekDays, index) => (
           <View style={styles.displayStack1} key={index}>
             <Text style={styles.weekDaysTextStyle}>{weekDays.day}</Text>
@@ -53,7 +54,7 @@ const WorkDays = () => {
             </View>
           </View>
         ))}
-      </ScrollView>
+      </View>
       <Pressable
         style={styles.previewButtonStyle}
         onPress={() => {

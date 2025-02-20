@@ -8,28 +8,29 @@ export const styles = StyleSheet.create({
     padding: moderateScale(10),
     rowGap: moderateScale(10),
   },
-  scrollViewContainer: {
-    flexGrow: 1,
-    rowGap: moderateScale(10),
+
+  headingTextStyle: {
+    color: Themes.textColor,
+    fontSize: moderateScale(15),
+    textAlign: "center",
   },
   displayStack1: {
     flexDirection: "row",
     alignItems: "center",
     flex: 1,
-
-    backgroundColor: Themes.white,
+    minHeight: moderateScale(50),
+    // backgroundColor: Themes.white,
   },
   weekDaysTextStyle: {
-    textTransform: "capitalize",
+    textTransform: "uppercase",
     fontWeight: 600,
     width: "50%",
-    fontSize: moderateScale(30),
+    fontSize: moderateScale(20),
     color: Themes.textColor,
   },
   displayStack2: {
     flexDirection: "row",
     width: "50%",
-
     alignItems: "center",
     justifyContent: "space-around",
   },
@@ -43,9 +44,11 @@ export const styles = StyleSheet.create({
   },
   holidayTextStyle: {
     alignSelf: "flex-end",
-    fontSize: moderateScale(25),
+    paddingRight: moderateScale(10),
+    fontSize: moderateScale(15),
     color: Themes.secondary,
     fontWeight: 600,
+    textTransform: "uppercase",
   },
   previewButtonStyle: {
     backgroundColor: Themes.secondary,

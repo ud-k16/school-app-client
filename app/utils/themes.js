@@ -4,8 +4,8 @@ export const Themes = {
   white: "white",
   greyShade: "grey",
   lightFadedGreen: "#70cc89",
-  textColor: "#072b73",
+  textColor: "#9e9e42",
   backgroundColor: "",
   red: "red",
-  textColor: "#8ead1c",
+  textColor: "#66661d",
 };

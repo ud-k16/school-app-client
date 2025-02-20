@@ -5,8 +5,11 @@ import Constants from "expo-constants";
 const DataContext = createContext();
 
 const DataContextProvider = ({ children }) => {
-  const { getItem: getTimeTable, setItem: setTimeTable } =
-    useAsyncStorage("timeTable");
+  const {
+    getItem: getTimeTable,
+    setItem: setTimeTable,
+    removeItem,
+  } = useAsyncStorage("timeTable");
   const [state, setState] = useState({
     isLoading: true,
     timeTable: null,
@@ -15,8 +18,9 @@ const DataContextProvider = ({ children }) => {
 
   const isTimeTableAvailable = async () => {
     const timeTableInStorage = await getTimeTable();
+    console.log(timeTableInStorage, JSON.parse(timeTableInStorage).length);
 
-    if (JSON.parse(timeTableInStorage).length > 0)
+    if (JSON.parse(timeTableInStorage).length)
       setState((prev) => {
         return {
           ...prev,
@@ -47,7 +51,11 @@ const DataContextProvider = ({ children }) => {
 
       const result = await response.json();
       if (result?.status) {
-        await setTimeTable(JSON.stringify(result.data));
+        const timeTableInStorage = await getTimeTable();
+        await setTimeTable([
+          ...timeTableInStorage,
+          JSON.stringify(result.data),
+        ]);
         setState((prev) => ({
           ...prev,
           timeTable: new Map(result.data),

@@ -5,29 +5,23 @@ import Constants from "expo-constants";
 const DataContext = createContext();
 
 const DataContextProvider = ({ children }) => {
-  const {
-    getItem: getTimeTable,
-    setItem: setTimeTable,
-    removeItem,
-  } = useAsyncStorage("timeTable");
+  const { getItem: getTimeTable, setItem: setTimeTable } =
+    useAsyncStorage("timeTable");
   const [state, setState] = useState({
     isLoading: true,
     timeTable: null,
   });
+  // get api url from extra field of expo
   const { API_URL } = Constants.expoConfig.extra;
 
   const isTimeTableAvailable = async () => {
     // check if time table list available in local storage
     console.log("check if time table list available in local storage");
-
+    // get if list available in local storage
     const timeTableInStorage = await getTimeTable();
-    console.log(
-      "time Table in local storage",
-      timeTableInStorage,
-      JSON.parse(timeTableInStorage).length
-    );
+    console.log("time Table in local storage", timeTableInStorage);
 
-    if (JSON.parse(timeTableInStorage).length > 0)
+    if (JSON.parse(timeTableInStorage))
       setState((prev) => {
         return {
           ...prev,
@@ -58,15 +52,25 @@ const DataContextProvider = ({ children }) => {
       );
 
       const result = await response.json();
+      console.log("time table for class fetched", result);
+
       if (result?.status) {
+        // get timetable list from local storage
         const timeTableInStorage = await getTimeTable();
-        await setTimeTable([
-          ...timeTableInStorage,
-          JSON.stringify(result.data),
-        ]);
+        let updatedList = [];
+        if (timeTableInStorage) {
+          updatedList = [
+            ...JSON.parse(timeTableInStorage, {
+              id: result.data.id,
+              timetable: result.data.timetable,
+            }),
+          ];
+        }
+        await setTimeTable(JSON.stringify(updatedList));
+
         setState((prev) => ({
           ...prev,
-          timeTable: new Map(result.data),
+          timeTable: new Map(result.data.timetable),
         }));
       }
     } catch (error) {

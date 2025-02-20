@@ -16,7 +16,7 @@ const DataContextProvider = ({ children }) => {
   const isTimeTableAvailable = async () => {
     const timeTableInStorage = await getTimeTable();
 
-    if (timeTableInStorage)
+    if (JSON.parse(timeTableInStorage).length > 0)
       setState((prev) => {
         return {
           ...prev,
@@ -28,7 +28,7 @@ const DataContextProvider = ({ children }) => {
     }
     setState((prev) => ({ ...prev, isLoading: false }));
   };
-  const fetchLatestTimeTable = async (id) => {
+  const fetchLatestTimeTable = async (id = "9") => {
     const data = {
       id,
     };

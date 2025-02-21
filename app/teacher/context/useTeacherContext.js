@@ -15,6 +15,11 @@ const TeacherContextProvider = ({ children }) => {
   ]);
   // variable that holds periods data for the respective day
   const [timeTable, setTimeTable] = useState(new Map());
+  // basic info holding
+  const [basicInfo, setBasicInfo] = useState({
+    classId: "",
+    mentorName: "",
+  });
 
   // toggle holiday flag function
   const toggleHolidayFlag = (day) => {
@@ -96,6 +101,8 @@ const TeacherContextProvider = ({ children }) => {
       value={{
         timeTable,
         workDays,
+        basicInfo,
+        setBasicInfo,
         setWorkDays,
         setTimeTable,
         addPeriodOfDay,

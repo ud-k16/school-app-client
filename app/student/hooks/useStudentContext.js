@@ -24,7 +24,7 @@ const StudentContextProvider = ({ children }) => {
     const timeTableInStorage = await getTimeTable();
     console.log("time Table in local storage", timeTableInStorage);
 
-    if (JSON.parse(timeTableInStorage))
+    if (JSON.parse(timeTableInStorage).length > 0)
       setState((prev) => {
         return {
           ...prev,
@@ -32,14 +32,15 @@ const StudentContextProvider = ({ children }) => {
         };
       });
     else {
+      // fetch timetable from server
       await fetchLatestTimeTable();
     }
     setState((prev) => ({ ...prev, isLoading: false }));
   };
-  const fetchLatestTimeTable = async (id = "9") => {
-    console.log("fetching  time table for id  from server");
+  const fetchLatestTimeTable = async () => {
+    console.log("fetching  time table for class id from server", user?.classId);
     const data = {
-      id,
+      id: user?.classId,
     };
     try {
       const requestOptions = {
@@ -55,21 +56,23 @@ const StudentContextProvider = ({ children }) => {
       );
 
       const result = await response.json();
+
       console.log("time table for class fetched", result);
 
       if (result?.status) {
-        // get timetable list from local storage
-        const timeTableInStorage = await getTimeTable();
-        let updatedList = [];
-        if (timeTableInStorage) {
-          updatedList = [
-            ...JSON.parse(timeTableInStorage, {
-              id: result.data.id,
-              timetable: result.data.timetable,
-            }),
-          ];
-        }
-        await setTimeTable(JSON.stringify(updatedList));
+        // // get timetable list from local storage
+        // const timeTableInStorage = await getTimeTable();
+        // let updatedList = [];
+        // if (timeTableInStorage) {
+        //   updatedList = [
+        //     ...JSON.parse(timeTableInStorage, {
+        //       id: result.data.id,
+        //       timetable: result.data.timetable,
+        //     }),
+        //   ];
+        // }
+
+        await setTimeTable(JSON.stringify(result?.data.timetable));
 
         setState((prev) => ({
           ...prev,

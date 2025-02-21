@@ -11,22 +11,21 @@ const Header = ({ title = "" }) => {
   return (
     <View style={styles.container}>
       <Text style={styles.titleTextStyle}>{title}</Text>
-      {user.user_type === "student" && (
-        <View style={styles.menuContainer}>
-          {/* <Entypo
+
+      <View style={styles.menuContainer}>
+        {/* <Entypo
             name="dots-three-vertical"
             size={24}
             color={Themes.white}
             onPress={logoutUser}
           /> */}
-          <MaterialCommunityIcons
-            name="menu"
-            size={24}
-            color={Themes.white}
-            onPress={logoutUser}
-          />
-        </View>
-      )}
+        <MaterialCommunityIcons
+          name="menu"
+          size={24}
+          color={Themes.white}
+          onPress={logoutUser}
+        />
+      </View>
     </View>
   );
 };

@@ -101,7 +101,7 @@ const TeacherContextProvider = ({ children }) => {
       value={{
         timeTable,
         workDays,
-        basicInfo,
+        ...basicInfo,
         setBasicInfo,
         setWorkDays,
         setTimeTable,

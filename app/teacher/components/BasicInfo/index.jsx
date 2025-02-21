@@ -5,7 +5,7 @@ import moderateScale from "@/app/utils/responsiveScale";
 import { Pressable, Text, TextInput, View } from "react-native";
 import { useTeacherContext } from "../../context/useTeacherContext";
 const BasicInfo = () => {
-  const { basicInfo, setBasicInfo } = useTeacherContext();
+  const { setBasicInfo } = useTeacherContext();
   return (
     <View style={styles.container}>
       <Text style={styles.headingTextStyle}>Basic Info</Text>
@@ -22,7 +22,7 @@ const BasicInfo = () => {
       <TextInput
         style={styles.textInputStyle}
         placeholder="Mentor Name"
-        onChange={(value) => {
+        onChangeText={(value) => {
           setBasicInfo((prev) => ({ ...prev, mentorName: value }));
         }}
       />

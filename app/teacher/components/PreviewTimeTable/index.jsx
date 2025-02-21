@@ -5,11 +5,13 @@ import { View, Text, ScrollView, Pressable } from "react-native";
 import useTimeTable from "../../hooks/useTimeTable";
 
 const PreviewTimeTable = () => {
-  const { timeTable, workDays } = useTeacherContext();
+  const { timeTable, workDays, classId, mentorName } = useTeacherContext();
   const { isLoading, publishTimeTable } = useTimeTable();
   return (
     <View style={styles.container}>
       <Headers title="Preview" />
+      <Text>{classId}</Text>
+      <Text>{mentorName}</Text>
       <ScrollView style={styles.scrollViewContainer}>
         {workDays.map(({ day, holiday }, index) => {
           return (
@@ -39,7 +41,7 @@ const PreviewTimeTable = () => {
         <Pressable
           style={styles.publishButtonStyle}
           onPress={() => {
-            publishTimeTable({ id: 10, timeTable });
+            publishTimeTable();
           }}
         >
           <Text style={styles.publishButtonTextStyle}>Publish</Text>

@@ -1,10 +1,16 @@
 import { useStudentContext } from "../../hooks/useStudentContext";
 import { styles } from "./styles";
-import { View } from "react-native";
+import { Text, View } from "react-native";
 
 const TodaysTimeTable = () => {
-  const { timeTable } = useStudentContext();
-  console.log(timeTable);
+  const { timeTable, isLoading } = useStudentContext();
+  if (isLoading)
+    return (
+      <View>
+        <Text>Loading</Text>
+      </View>
+    );
+  console.log("timetable available", timeTable);
 
   return <View style={styles.container}></View>;
 };

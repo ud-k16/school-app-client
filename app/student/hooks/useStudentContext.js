@@ -1,16 +1,19 @@
 import { createContext, useContext, useEffect, useState } from "react";
 import { useAsyncStorage } from "@react-native-async-storage/async-storage";
 import Constants from "expo-constants";
+import { useAuthContext } from "@/app/common/context/useAuthContext";
 
 const StudentContext = createContext();
 
 const StudentContextProvider = ({ children }) => {
   const { getItem: getTimeTable, setItem: setTimeTable } =
     useAsyncStorage("timeTable");
+  const { user } = useAuthContext();
   const [state, setState] = useState({
     isLoading: true,
     timeTable: null,
   });
+
   // get api url from extra field of expo
   const { API_URL } = Constants.expoConfig.extra;
 
@@ -79,7 +82,7 @@ const StudentContextProvider = ({ children }) => {
   };
   useEffect(() => {
     isTimeTableAvailable();
-  }, []);
+  }, [user?.classId]);
   return (
     <StudentContext.Provider value={{ ...state, setState }}>
       {children}

@@ -2,9 +2,9 @@ import { createContext, useContext, useEffect, useState } from "react";
 import { useAsyncStorage } from "@react-native-async-storage/async-storage";
 import Constants from "expo-constants";
 
-const DataContext = createContext();
+const StudentContext = createContext();
 
-const DataContextProvider = ({ children }) => {
+const StudentContextProvider = ({ children }) => {
   const { getItem: getTimeTable, setItem: setTimeTable } =
     useAsyncStorage("timeTable");
   const [state, setState] = useState({
@@ -81,16 +81,16 @@ const DataContextProvider = ({ children }) => {
     isTimeTableAvailable();
   }, []);
   return (
-    <DataContext.Provider value={{ ...state, setState }}>
+    <StudentContext.Provider value={{ ...state, setState }}>
       {children}
-    </DataContext.Provider>
+    </StudentContext.Provider>
   );
 };
-export const useDataContext = () => {
-  const context = useContext(DataContext);
+export const useStudentContext = () => {
+  const context = useContext(StudentContext);
   if (!context) {
     throw new Error("Error using Context");
   }
   return context;
 };
-export default DataContextProvider;
+export default StudentContextProvider;

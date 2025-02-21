@@ -1,9 +1,9 @@
-import { useDataContext } from "../../../common/context/useDataContext";
+import { useStudentContext } from "../../hooks/useStudentContext";
 import { styles } from "./styles";
 import { View } from "react-native";
 
 const TodaysTimeTable = () => {
-  const { timeTable } = useDataContext();
+  const { timeTable } = useStudentContext();
   console.log(timeTable);
 
   return <View style={styles.container}></View>;

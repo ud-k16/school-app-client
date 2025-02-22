@@ -28,5 +28,6 @@ export const styles = StyleSheet.create({
     width: "50%",
     paddingVertical: moderateScale(20),
     paddingHorizontal: moderateScale(20),
+    elevation: 16,
   },
 });

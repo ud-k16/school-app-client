@@ -53,10 +53,10 @@ const StudentContextProvider = ({ children }) => {
         },
         body: JSON.stringify(data),
       };
-      const response = await fetchWithTimeOut(
-        `${API_URL}/timetable/fetch`,
-        requestOptions
-      );
+      const response = await fetchWithTimeOut({
+        url: `${API_URL}/timetable/fetch`,
+        requestOptions,
+      });
       if (response) {
         const result = await response.json();
         console.log("time table for class fetched", result);

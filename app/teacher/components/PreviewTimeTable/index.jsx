@@ -3,6 +3,7 @@ import { styles } from "./styles";
 import Headers from "../../../common/components/Header";
 import { View, Text, ScrollView, Pressable } from "react-native";
 import useTimeTable from "../../hooks/useTimeTable";
+import RenderPeriod from "../../../common/components/RenderPeriod";
 
 const PreviewTimeTable = () => {
   const { timeTable, workDays, classId, mentorName } = useTeacherContext();
@@ -22,16 +23,7 @@ const PreviewTimeTable = () => {
               ) : (
                 <View>
                   {timeTable.get(day)?.map((period) => {
-                    return (
-                      <View style={styles.displayStack1}>
-                        <Text style={styles.periodTextStyle}>
-                          {period.time}
-                        </Text>
-                        <Text style={styles.periodTextStyle}>
-                          {period.subject}
-                        </Text>
-                      </View>
-                    );
+                    return <RenderPeriod period={period} />;
                   })}
                 </View>
               )}

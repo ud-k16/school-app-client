@@ -1,5 +1,5 @@
 import { styles } from "./styles";
-import { View, Modal, Pressable } from "react-native";
+import { Modal, Pressable } from "react-native";
 
 const CustomModal = ({
   children,
@@ -11,15 +11,16 @@ const CustomModal = ({
 }) => {
   return (
     <Modal visible={visibility} transparent onRequestClose={hideModal}>
-      <View
+      <Pressable
         style={[
           styles.modalContentDefaultStyle,
           contentContainerStyle,
           backdrop && { backgroundColor: "rgba(0, 0, 0, 0.7)" },
         ]}
+        onPress={hideModal}
       >
         {children}
-      </View>
+      </Pressable>
     </Modal>
   );
 };

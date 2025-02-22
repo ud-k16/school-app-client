@@ -2,6 +2,7 @@ import { createContext, useContext, useEffect, useState } from "react";
 import { useAsyncStorage } from "@react-native-async-storage/async-storage";
 import Constants from "expo-constants";
 import { useAuthContext } from "@/app/common/context/useAuthContext";
+import { fetchWithTimeOut } from "@/app/utils/helperFunctions";
 
 const StudentContext = createContext();
 
@@ -24,7 +25,7 @@ const StudentContextProvider = ({ children }) => {
     const timeTableInStorage = await getTimeTable();
     console.log("time Table in local storage", timeTableInStorage);
 
-    if (JSON.parse(timeTableInStorage).length > 0)
+    if (JSON.parse(timeTableInStorage))
       setState((prev) => {
         return {
           ...prev,
@@ -40,7 +41,7 @@ const StudentContextProvider = ({ children }) => {
     setState((prev) => ({ ...prev, isLoading: false }));
   };
   const fetchLatestTimeTable = async () => {
-    console.log("fetching  time table for class id from server", user?.classId);
+    console.log("Fetching  time table for class id from server", user?.classId);
     const data = {
       id: user?.classId,
     };
@@ -52,26 +53,26 @@ const StudentContextProvider = ({ children }) => {
         },
         body: JSON.stringify(data),
       };
-      const response = await fetch(
+      const response = await fetchWithTimeOut(
         `${API_URL}/timetable/fetch`,
         requestOptions
       );
+      if (response) {
+        const result = await response.json();
+        console.log("time table for class fetched", result);
 
-      const result = await response.json();
-
-      console.log("time table for class fetched", result);
-
-      if (result?.status) {
-        //  storing fetched time table to local storage
-        await setTimeTable(JSON.stringify(result?.data.time_table));
-        //
-        setState((prev) => ({
-          ...prev,
-          timeTable: new Map(result.data.time_table),
-        }));
+        if (result?.status) {
+          //  storing fetched time table to local storage
+          await setTimeTable(JSON.stringify(result?.data.time_table));
+          //
+          setState((prev) => ({
+            ...prev,
+            timeTable: new Map(result.data.time_table),
+          }));
+        }
       }
     } catch (error) {
-      console.log(error);
+      console.log("Fetch Latest Time Table Error", error);
     }
   };
   useEffect(() => {

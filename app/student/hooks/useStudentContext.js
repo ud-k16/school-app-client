@@ -17,7 +17,7 @@ const StudentContextProvider = ({ children }) => {
   // get api url from extra field of expo
   const { API_URL } = Constants.expoConfig.extra;
 
-  const isTimeTableAvailable = async () => {
+  const initializeTimeTableFetch = async () => {
     // check if time table list available in local storage
     console.log("check if time table list available in local storage");
     // get if list available in local storage
@@ -35,6 +35,8 @@ const StudentContextProvider = ({ children }) => {
       // fetch timetable from server
       await fetchLatestTimeTable();
     }
+    console.log("time Table in app : ", state.timeTable);
+
     setState((prev) => ({ ...prev, isLoading: false }));
   };
   const fetchLatestTimeTable = async () => {
@@ -73,7 +75,7 @@ const StudentContextProvider = ({ children }) => {
     }
   };
   useEffect(() => {
-    isTimeTableAvailable();
+    initializeTimeTableFetch();
   }, [user?.classId]);
   return (
     <StudentContext.Provider value={{ ...state, setState }}>

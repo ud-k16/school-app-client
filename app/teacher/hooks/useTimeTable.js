@@ -15,7 +15,7 @@ const useTimeTable = () => {
       setState((prev) => ({ ...prev, isLoading: true }));
       // modifying map to multidimention array to send to server
       const entries = Array.from(timeTable);
-      const data = { id: classId, timetable: entries };
+      const data = { id: classId, timeTable: entries };
       console.log("sending time table data to server : ", data);
       // request option object
       const requestOptions = {

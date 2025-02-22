@@ -61,11 +61,11 @@ const StudentContextProvider = ({ children }) => {
 
       if (result?.status) {
         //  storing fetched time table to local storage
-        await setTimeTable(JSON.stringify(result?.data.timetable));
+        await setTimeTable(JSON.stringify(result?.data.time_table));
         //
         setState((prev) => ({
           ...prev,
-          timeTable: new Map(result.data.timetable),
+          timeTable: new Map(result.data.time_table),
         }));
       }
     } catch (error) {

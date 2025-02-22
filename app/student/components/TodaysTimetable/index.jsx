@@ -3,6 +3,7 @@ import { useStudentContext } from "../../context/useStudentContext";
 import { styles } from "./styles";
 import { Text, View } from "react-native";
 import Header from "@/app/common/components/Header";
+import RenderPeriod from "@/app/common/components/RenderPeriod";
 
 const TodaysTimeTable = () => {
   // 1 based index on week days, to get todays dayOdWeek
@@ -15,14 +16,7 @@ const TodaysTimeTable = () => {
         <Text>Loading</Text>
       </View>
     );
-  const RenderPeriod = ({ period }) => {
-    return (
-      <View>
-        <Text>{period.time}</Text>
-        <Text>{period.subject}</Text>
-      </View>
-    );
-  };
+
   return (
     <View style={styles.container}>
       <Header title={Constants.common.weekdays[today - 1]} />

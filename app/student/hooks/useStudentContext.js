@@ -36,8 +36,7 @@ const StudentContextProvider = ({ children }) => {
       // fetch timetable from server
       await fetchLatestTimeTable();
     }
-    console.log("time Table in app : ", state.timeTable);
-
+    //  time table fetch indication set to false
     setState((prev) => ({ ...prev, isLoading: false }));
   };
   const fetchLatestTimeTable = async () => {

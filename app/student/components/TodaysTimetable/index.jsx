@@ -20,9 +20,11 @@ const TodaysTimeTable = () => {
   return (
     <View style={styles.container}>
       <Header title={Constants.common.weekdays[today - 1]} />
-      {todaySchedule.map((period) => (
-        <RenderPeriod period={period} />
-      ))}
+      <View style={styles.timeTableContainer}>
+        {todaySchedule?.map((period) => (
+          <RenderPeriod period={period} />
+        ))}
+      </View>
     </View>
   );
 };

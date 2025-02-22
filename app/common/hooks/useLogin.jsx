@@ -6,19 +6,21 @@ import { useAuthContext } from "../context/useAuthContext";
 const useLogin = () => {
   const [state, setState] = useState({
     isLoading: false,
+    userId: "uma k",
+    password: "12345678",
   });
   const { API_URL } = Constants.expoConfig.extra;
   const { setItem: setUser } = useAsyncStorage("user");
   const { setState: setAuthState } = useAuthContext();
 
-  const authenticateUser = async () => {
+  const authenticateUser = async ({}) => {
     setState((prev) => ({
       ...prev,
       isLoading: true,
     }));
     const data = {
-      userId: "uma k",
-      password: "12345678",
+      userId: state.userId,
+      password: state.password,
     };
     const requestOptions = {
       method: "POST",
@@ -51,7 +53,7 @@ const useLogin = () => {
 
   return {
     ...state,
-
+    setState,
     authenticateUser,
   };
 };

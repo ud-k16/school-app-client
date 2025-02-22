@@ -4,15 +4,22 @@ import { Image, Pressable, Text, TextInput, View } from "react-native";
 import useLogin from "../../hooks/useLogin";
 
 const Login = () => {
-  const { authenticateUser } = useLogin();
+  const { setState, authenticateUser } = useLogin();
   return (
     <View style={styles.container}>
       <Image alt="Image Not Found" style={styles.logoConatiner} source={LOGO} />
-      <TextInput style={styles.textInputStyle} placeholder="User Id" />
+      <TextInput
+        style={styles.textInputStyle}
+        placeholder="User Id"
+        onChangeText={(text) => setState((prev) => ({ ...prev, userId: text }))}
+      />
       <TextInput
         style={styles.textInputStyle}
         placeholder="Password"
         secureTextEntry
+        onChangeText={(text) =>
+          setState((prev) => ({ ...prev, password: text }))
+        }
       />
       <Pressable style={styles.loginButtonStyle} onPress={authenticateUser}>
         <Text style={styles.loginButtonTextStyle}>Login</Text>

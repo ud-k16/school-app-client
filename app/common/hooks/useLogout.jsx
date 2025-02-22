@@ -1,5 +1,4 @@
 import { useState } from "react";
-import Constants from "expo-constants";
 import { useAsyncStorage } from "@react-native-async-storage/async-storage";
 import { useAuthContext } from "../context/useAuthContext";
 
@@ -13,6 +12,7 @@ const useLogout = () => {
   const { setState: setAuthState } = useAuthContext();
 
   const logoutUser = async () => {
+    // logout in process indication
     setState((prev) => ({
       ...prev,
       isLoading: true,
@@ -21,6 +21,7 @@ const useLogout = () => {
     await removeUser();
     // clearing local storage of timetable
     await removeTimeTable();
+    // setting auth state for render logic to show login page
     setAuthState((prev) => {
       return {
         ...prev,
@@ -28,7 +29,7 @@ const useLogout = () => {
         user: null,
       };
     });
-
+    // logout done indication
     setState((prev) => ({
       ...prev,
       isLoading: false,

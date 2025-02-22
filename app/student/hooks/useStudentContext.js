@@ -28,7 +28,7 @@ const StudentContextProvider = ({ children }) => {
       setState((prev) => {
         return {
           ...prev,
-          timeTable: JSON.parse(timeTableInStorage),
+          timeTable: new Map(JSON.parse(timeTableInStorage)),
         };
       });
     else {
@@ -60,20 +60,9 @@ const StudentContextProvider = ({ children }) => {
       console.log("time table for class fetched", result);
 
       if (result?.status) {
-        // // get timetable list from local storage
-        // const timeTableInStorage = await getTimeTable();
-        // let updatedList = [];
-        // if (timeTableInStorage) {
-        //   updatedList = [
-        //     ...JSON.parse(timeTableInStorage, {
-        //       id: result.data.id,
-        //       timetable: result.data.timetable,
-        //     }),
-        //   ];
-        // }
-
+        //  storing fetched time table to local storage
         await setTimeTable(JSON.stringify(result?.data.timetable));
-
+        //
         setState((prev) => ({
           ...prev,
           timeTable: new Map(result.data.timetable),

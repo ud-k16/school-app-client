@@ -14,22 +14,10 @@ export const styles = StyleSheet.create({
   },
   textInputStyle: {
     alignSelf: "center",
-    width: "90%",
+    width: "95%",
     height: moderateScale(60),
     borderWidth: moderateScale(2),
     borderRadius: moderateScale(5),
     paddingHorizontal: moderateScale(10),
-  },
-  actionableButtonStyle: {
-    alignSelf: "center",
-    justifyContent: "center",
-    alignItems: "center",
-    backgroundColor: Themes.secondary,
-    width: "60%",
-    height: moderateScale(50),
-    borderRadius: moderateScale(5),
-  },
-  actionableButtonTextStyle: {
-    color: Themes.white,
   },
 });

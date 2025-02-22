@@ -26,9 +26,6 @@ const BasicInfo = () => {
           setBasicInfo((prev) => ({ ...prev, mentorName: value }));
         }}
       />
-      <Pressable style={styles.actionableButtonStyle}>
-        <Text style={styles.actionableButtonTextStyle}>Save</Text>
-      </Pressable>
     </View>
   );
 };

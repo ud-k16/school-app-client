@@ -7,10 +7,17 @@ const CustomModal = ({
   showModal = () => {},
   visibility = false,
   contentContainerStyle = {},
+  backdrop = true,
 }) => {
   return (
     <Modal visible={visibility} transparent onRequestClose={hideModal}>
-      <View style={[styles.modalContentDefaultStyle, contentContainerStyle]}>
+      <View
+        style={[
+          styles.modalContentDefaultStyle,
+          contentContainerStyle,
+          backdrop && { backgroundColor: "rgba(0, 0, 0, 0.7)" },
+        ]}
+      >
         {children}
       </View>
     </Modal>

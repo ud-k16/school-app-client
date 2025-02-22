@@ -23,7 +23,8 @@ export const styles = StyleSheet.create({
     color: Themes.white,
   },
   menuContainer: {
-    // flex: 0.2,
-    color: Themes.white,
+    height: moderateScale(100),
+    color: Themes.textColor,
+    backgroundColor: Themes.white,
   },
 });

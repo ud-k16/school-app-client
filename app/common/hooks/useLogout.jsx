@@ -9,6 +9,7 @@ const useLogout = () => {
   });
 
   const { removeItem: removeUser } = useAsyncStorage("user");
+  const { removeItem: removeTimeTable } = useAsyncStorage("timeTable");
   const { setState: setAuthState } = useAuthContext();
 
   const logoutUser = async () => {
@@ -16,9 +17,10 @@ const useLogout = () => {
       ...prev,
       isLoading: true,
     }));
-
+    // clearing local storage of user
     await removeUser();
-
+    // clearing local storage of timetable
+    await removeTimeTable();
     setAuthState((prev) => {
       return {
         ...prev,

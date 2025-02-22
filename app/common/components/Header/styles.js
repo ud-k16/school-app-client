@@ -22,12 +22,9 @@ export const styles = StyleSheet.create({
     color: Themes.white,
   },
   menuContainer: {
-    height: moderateScale(100),
     color: Themes.textColor,
     backgroundColor: Themes.white,
     width: "50%",
-    paddingVertical: moderateScale(20),
-    paddingHorizontal: moderateScale(20),
     elevation: 16,
   },
 });

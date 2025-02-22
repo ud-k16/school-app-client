@@ -1,27 +1,26 @@
 import { styles } from "./styles";
 import { Dimensions, Text, View } from "react-native";
 import useLogout from "../../hooks/useLogout";
-import MaterialIcons from "@expo/vector-icons/MaterialIcons";
 import MaterialCommunityIcons from "@expo/vector-icons/MaterialCommunityIcons";
 import { Themes } from "@/app/utils/themes";
 import { useAuthContext } from "../../context/useAuthContext";
 import { useRef, useState } from "react";
 import CustomModal from "../Modal";
+import MenuComponent from "./MenuComponent";
 
 const Header = ({ title = "" }) => {
   const ref = useRef();
-  const { logoutUser } = useLogout();
   const { user } = useAuthContext();
   const [modalVisible, setModalVisible] = useState(false);
+  // for locating menu placement position
   const [position, setPosition] = useState("");
 
   const showModal = () => setModalVisible(true);
   const hideModal = () => setModalVisible(false);
+
   const locatePosition = () => {
     if (ref.current) {
       ref.current.measureInWindow((x, y, width, height) => {
-        console.log(Dimensions.get("window").width, x);
-
         setPosition({
           width: Math.floor(width),
           left: Math.floor(x),
@@ -30,6 +29,7 @@ const Header = ({ title = "" }) => {
       });
     }
   };
+
   return (
     <View style={styles.container}>
       <Text style={styles.titleTextStyle}>{title}</Text>
@@ -47,11 +47,6 @@ const Header = ({ title = "" }) => {
         visibility={modalVisible}
         hideModal={hideModal}
         backdrop={false}
-        contentContainerStyle={
-          {
-            // right: position.left,
-          }
-        }
       >
         <View
           style={[
@@ -66,12 +61,7 @@ const Header = ({ title = "" }) => {
             },
           ]}
         >
-          <MaterialIcons
-            name="account-circle"
-            size={24}
-            color="black"
-            onPress={logoutUser}
-          />
+          <MenuComponent />
         </View>
       </CustomModal>
     </View>

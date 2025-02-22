@@ -9,7 +9,7 @@ const TodaysTimeTable = () => {
   // 1 based index on week days, to get todays dayOdWeek
   const today = new Date().getDay();
   const { timeTable, isLoading } = useStudentContext();
-  const todaySchedule = timeTable.get(Constants.common.weekdays[today - 1]);
+  const todaySchedule = timeTable?.get(Constants.common.weekdays[today - 1]);
   if (isLoading)
     return (
       <View>

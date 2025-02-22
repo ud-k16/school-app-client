@@ -6,7 +6,7 @@ import { Themes } from "@/app/utils/themes";
 import { useAuthContext } from "../../context/useAuthContext";
 import { useRef, useState } from "react";
 import CustomModal from "../Modal";
-import MenuComponent from "./MenuComponent";
+import MenuComponent from "../MenuComponent";
 
 const Header = ({ title = "" }) => {
   const ref = useRef();

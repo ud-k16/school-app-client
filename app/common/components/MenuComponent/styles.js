@@ -9,9 +9,9 @@ export const styles = StyleSheet.create({
   displayStack1: {
     flexDirection: "row",
     alignItems: "center",
-    paddingHorizontal: moderateScale(10),
+    justifyContent: "space-evenly",
   },
-  iconStyle: { width: "50%" },
+  iconStyle: { width: "15%" },
   itemTextStyle: {
     fontWeight: 600,
     fontSize: 24,

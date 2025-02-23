@@ -2,7 +2,7 @@ import { styles } from "./styles";
 import { ScrollView, Text, View } from "react-native";
 import { Constants } from "../../../common/constants";
 import Header from "@/app/common/components/Header";
-import useStudentContext from "@/app/student/context/useStudentContext";
+import { useStudentContext } from "@/app/student/context/useStudentContext";
 import RenderPeriod from "@/app/common/components/RenderPeriod";
 
 const EntireTimeTable = () => {

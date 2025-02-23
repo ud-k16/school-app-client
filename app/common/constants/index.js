@@ -1,13 +1,13 @@
 export const Constants = {
   common: {
     weekdays: [
+      "sunday",
       "monday",
       "tuesday",
       "wednesday",
       "thursday",
       "friday",
       "saturday",
-      "sunday",
     ],
     classIds: [
       { value: "CLASS6A" },

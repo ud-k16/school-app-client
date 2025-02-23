@@ -6,10 +6,10 @@ import Header from "@/app/common/components/Header";
 import RenderPeriod from "@/app/common/components/RenderPeriod";
 
 const TodaysTimeTable = () => {
-  // 1 based index on week days, to get todays dayOdWeek
+  // index on week days, to get todays dayOdWeek
   const today = new Date().getDay();
   const { timeTable, isLoading } = useStudentContext();
-  const todaySchedule = timeTable?.get(Constants.common.weekdays[today - 1]);
+  const todaySchedule = timeTable?.get(Constants.common.weekdays[today]);
   if (isLoading)
     return (
       <View>
@@ -19,7 +19,7 @@ const TodaysTimeTable = () => {
 
   return (
     <View style={styles.container}>
-      <Header title={Constants.common.weekdays[today - 1]} />
+      <Header title={Constants.common.weekdays[today]} />
       <View style={styles.timeTableContainer}>
         {todaySchedule?.map((period) => (
           <RenderPeriod period={period} />

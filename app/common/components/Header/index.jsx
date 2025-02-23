@@ -1,6 +1,6 @@
 import { styles } from "./styles";
 import { Dimensions, Text, View } from "react-native";
-import useLogout from "../../hooks/useLogout";
+
 import MaterialCommunityIcons from "@expo/vector-icons/MaterialCommunityIcons";
 import { Themes } from "@/app/utils/themes";
 import { useAuthContext } from "../../context/useAuthContext";
@@ -10,7 +10,7 @@ import MenuComponent from "../MenuComponent";
 
 const Header = ({ title = "" }) => {
   const ref = useRef();
-  const { user } = useAuthContext();
+
   const [modalVisible, setModalVisible] = useState(false);
   // for locating menu placement position
   const [position, setPosition] = useState("");

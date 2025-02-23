@@ -12,6 +12,7 @@ const StudentContextProvider = ({ children }) => {
   const { user } = useAuthContext();
   const [state, setState] = useState({
     isLoading: true,
+    //timeTable is a Map object with keys as week days and their respective periods array as value
     timeTable: null,
   });
 

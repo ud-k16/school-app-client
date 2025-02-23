@@ -1,10 +1,9 @@
 // app/Main.js
 import React from "react";
 
-import Login from "./common/screens/login";
-import TeacherTabNavigation from "./teacher/components/TeacherTabNavigation";
-import StudentTabNavigation from "./student/components/StudentTabNavigation";
-
+import Login from "../src/common/screens/login";
+import TeacherTabNavigation from "../src/teacher/components/TeacherTabNavigation";
+import StudentTabNavigation from "../src/student/components/StudentTabNavigation";
 import { useAuthContext } from "./common/context/useAuthContext";
 import { Text } from "react-native";
 

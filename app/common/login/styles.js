@@ -1,6 +1,8 @@
 const { StyleSheet } = require("react-native");
-const { Themes } = require("../../../utils/themes");
-const { default: moderateScale } = require("../../../utils/responsiveScale");
+const { Themes } = require("../../../src/utils/themes");
+const {
+  default: moderateScale,
+} = require("../../../src/utils/responsiveScale");
 
 export const styles = StyleSheet.create({
   container: {

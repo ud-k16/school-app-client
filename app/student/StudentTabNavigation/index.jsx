@@ -1,8 +1,6 @@
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import MaterialCommunityIcons from "@expo/vector-icons/MaterialCommunityIcons";
 import Entypo from "@expo/vector-icons/Entypo";
-import StudentHome from "../../src/student/screens/Home";
-import AIChat from "../../src/common/screens/chat";
 
 const Tab = createBottomTabNavigator();
 

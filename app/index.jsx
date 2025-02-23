@@ -1,7 +1,7 @@
 // app/Main.js
 import React from "react";
 
-import Login from "../src/common/screens/login";
+import Login from "./common/login";
 import TeacherTabNavigation from "../src/teacher/components/TeacherTabNavigation";
 import StudentTabNavigation from "../src/student/components/StudentTabNavigation";
 import { useAuthContext } from "./common/context/useAuthContext";

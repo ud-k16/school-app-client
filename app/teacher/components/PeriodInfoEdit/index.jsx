@@ -3,9 +3,9 @@ import { styles } from "./styles";
 import DropDown from "../../../common/components/DropDown";
 import { ScrollView, Text, TextInput, View } from "react-native";
 import AntDesign from "@expo/vector-icons/AntDesign";
-import { useState } from "react";
 import { useTeacherContext } from "../../context/useTeacherContext";
 import usePeriodModal from "../../hooks/usePeriodModal";
+import moderateScale from "@/app/utils/responsiveScale";
 
 const PeriodInfoEdit = ({ hideModal = () => {}, day = "" }) => {
   const {
@@ -49,6 +49,7 @@ const PeriodInfoEdit = ({ hideModal = () => {}, day = "" }) => {
             style={styles.timeInput}
             data={hoursOptions}
             placeHolder="hours"
+            containerStyle={{ height: moderateScale(160) }}
             onChange={(text) =>
               setState((prev) => ({
                 ...prev,
@@ -58,6 +59,7 @@ const PeriodInfoEdit = ({ hideModal = () => {}, day = "" }) => {
           />
           <DropDown
             style={styles.timeInput}
+            containerStyle={{ height: moderateScale(160) }}
             placeHolder="mins"
             data={minuteCreationFunction()}
             onChange={(text) =>
@@ -89,6 +91,7 @@ const PeriodInfoEdit = ({ hideModal = () => {}, day = "" }) => {
           <DropDown
             style={styles.timeInput}
             data={hoursOptions}
+            containerStyle={{ height: moderateScale(160) }}
             placeHolder="hours"
             onChange={(text) =>
               setState((prev) => ({
@@ -101,6 +104,7 @@ const PeriodInfoEdit = ({ hideModal = () => {}, day = "" }) => {
             style={styles.timeInput}
             placeHolder="mins"
             data={minuteCreationFunction()}
+            containerStyle={{ height: moderateScale(160) }}
             onChange={(text) =>
               setState((prev) => ({
                 ...prev,

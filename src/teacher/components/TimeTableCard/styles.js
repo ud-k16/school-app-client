@@ -11,4 +11,7 @@ export const styles = StyleSheet.create({
     elevation: 5,
     backgroundColor: Themes.white,
   },
+  classIdContainer: {
+    height: moderateScale(60),
+  },
 });

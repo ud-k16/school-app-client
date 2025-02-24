@@ -4,7 +4,7 @@ import { Pressable, ScrollView, Text, View } from "react-native";
 import FontAwesome5 from "@expo/vector-icons/FontAwesome5";
 import Entypo from "@expo/vector-icons/Entypo";
 import { Themes } from "@/src/utils/themes";
-import { Link, router } from "expo-router";
+import { router } from "expo-router";
 
 const WorkDays = () => {
   const { workDays, toggleHolidayFlag } = useTeacherContext();
@@ -24,7 +24,7 @@ const WorkDays = () => {
                     ? null
                     : () => {
                         router.navigate({
-                          pathname: "/teacher/components/UpdatePeriodsForDay",
+                          pathname: "/teacher/UpdatePeriodsForDay",
                           params: { dayOfWeek: weekDays.day },
                         });
                       }
@@ -59,7 +59,7 @@ const WorkDays = () => {
         style={styles.previewButtonStyle}
         onPress={() => {
           router.navigate({
-            pathname: "/teacher/components/PreviewTimeTable",
+            pathname: "/teacher/PreviewTimeTable",
           });
         }}
       >

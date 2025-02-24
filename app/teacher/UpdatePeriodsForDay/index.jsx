@@ -1,13 +1,13 @@
 import { styles } from "./styles";
 import FontAwesome5 from "@expo/vector-icons/FontAwesome5";
 import { Pressable, ScrollView, Text, View } from "react-native";
-import PeriodInfoEdit from "../PeriodInfoEdit";
-import CustomModalComponent from "../../../common/components/Modal";
-import { useTeacherContext } from "../../context/useTeacherContext";
+import PeriodInfoEdit from "@/src/teacher/components/PeriodInfoEdit";
+import CustomModalComponent from "@/src/common/components/Modal";
+import { useTeacherContext } from "@/src/teacher/context/useTeacherContext";
 import MaterialIcons from "@expo/vector-icons/MaterialIcons";
 import AntDesign from "@expo/vector-icons/AntDesign";
 import { Themes } from "@/src/utils/themes";
-import usePeriodModal from "../../hooks/usePeriodModal";
+import usePeriodModal from "@/src/teacher/hooks/usePeriodModal";
 import { useLocalSearchParams } from "expo-router/build/hooks";
 
 const UpdatePeriodsForDay = () => {

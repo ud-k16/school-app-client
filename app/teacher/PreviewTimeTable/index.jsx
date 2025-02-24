@@ -1,16 +1,16 @@
-import { useTeacherContext } from "../../context/useTeacherContext";
+import { useTeacherContext } from "@/src/teacher/context/useTeacherContext";
 import { styles } from "./styles";
-import Headers from "../../../common/components/Header";
+import Header from "@/src/common/components/Header";
 import { View, Text, ScrollView, Pressable } from "react-native";
-import useTimeTable from "../../hooks/useTimeTable";
-import RenderPeriod from "../../../common/components/RenderPeriod";
+import useTimeTable from "@/src/teacher/hooks/useTimeTable";
+import RenderPeriod from "@/src/common/components/RenderPeriod";
 
 const PreviewTimeTable = () => {
   const { timeTable, workDays, classId, mentorName } = useTeacherContext();
   const { isLoading, publishTimeTable } = useTimeTable();
   return (
     <View style={styles.container}>
-      <Headers title="Preview" />
+      <Header title="Preview" />
       <Text>{classId}</Text>
       <Text>{mentorName}</Text>
       <ScrollView style={styles.scrollViewContainer}>

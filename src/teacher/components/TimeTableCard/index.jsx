@@ -13,6 +13,7 @@ const TimeTableCard = ({}) => {
       onPress={() => {
         router.navigate({
           pathname: "/teacher/PreviewTimeTable",
+          params: { preview: false },
         });
       }}
     >

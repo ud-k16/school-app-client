@@ -4,13 +4,15 @@ import Header from "@/src/common/components/Header";
 import { View, Text, ScrollView, Pressable } from "react-native";
 import useTimeTable from "@/src/teacher/hooks/useTimeTable";
 import RenderPeriod from "@/src/common/components/RenderPeriod";
+import { useLocalSearchParams } from "expo-router/build/hooks";
 
-const PreviewTimeTable = ({ preview = true }) => {
+const PreviewTimeTable = () => {
+  const { preview = true } = useLocalSearchParams();
   const { timeTable, workDays, classId, mentorName } = useTeacherContext();
   const { isLoading, publishTimeTable } = useTimeTable();
   return (
     <View style={styles.container}>
-      <Header title="Preview" />
+      <Header title={preview ? "Preview" : "TimeTable"} />
       <Text>{classId}</Text>
       <Text>{mentorName}</Text>
       <ScrollView style={styles.scrollViewContainer}>

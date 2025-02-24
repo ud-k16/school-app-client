@@ -3,6 +3,13 @@ export const fetchWithTimeOut = async ({
   requestOptions,
   timeOut = 5000,
 }) => {
+  console.log(
+    "Fetch url : ",
+    url,
+    "\n Request Object : ",
+    JSON.stringify(requestOptions, null, 4)
+  );
+
   // creating new controller object
   const controller = new AbortController();
   const signal = controller.signal;

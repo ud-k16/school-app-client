@@ -2,6 +2,7 @@ import { useState } from "react";
 import Constants from "expo-constants";
 import { useAsyncStorage } from "@react-native-async-storage/async-storage";
 import { useAuthContext } from "../context/useAuthContext";
+import { fetchWithTimeOut } from "@/src/utils/helperFunctions";
 
 const useLogin = () => {
   const [state, setState] = useState({
@@ -29,7 +30,10 @@ const useLogin = () => {
       },
       body: JSON.stringify(data),
     };
-    const response = await fetch(`${API_URL}/auth/login`, requestOptions);
+    const response = await fetchWithTimeOut({
+      url: `${API_URL}/auth/login`,
+      requestOptions,
+    });
 
     const result = await response.json();
 

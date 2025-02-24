@@ -13,25 +13,7 @@ const TeacherContextProvider = ({ children }) => {
     { day: "saturday", holiday: true },
     { day: "sunday", holiday: true },
   ]);
-  // holds all user saved/published timetable
-  const [allTimeTable, setAllTimeTable] = useState([
-    {
-      id: "CLASS6A",
-      data: [["monday", [{ time: "3:00 am - 4:00 am" }]]],
-    },
-    {
-      id: "CLASS6B",
-      data: [["monday", [{ time: "3:00 am - 4:00 am" }]]],
-    },
-    {
-      id: "CLASS6C",
-      data: [["monday", [{ time: "3:00 am - 4:00 am" }]]],
-    },
-    {
-      id: "CLASS7A",
-      data: [["monday", [{ time: "3:00 am - 4:00 am" }]]],
-    },
-  ]);
+
   // variable that holds periods data for the respective day
   const [timeTable, setTimeTable] = useState(new Map());
   // basic info holding

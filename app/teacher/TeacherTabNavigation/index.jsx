@@ -3,6 +3,7 @@ import MaterialCommunityIcons from "@expo/vector-icons/MaterialCommunityIcons";
 import Entypo from "@expo/vector-icons/Entypo";
 import AIChat from "../../common/chat";
 import ManageTimeTable from "@/app/teacher/manageTimeTable";
+import TeacherHome from "@/app/teacher/TeacherHome";
 
 const Tab = createBottomTabNavigator();
 
@@ -18,7 +19,7 @@ const TeacherTabNavigation = () => {
     >
       <Tab.Screen
         name="TimeTable"
-        component={ManageTimeTable}
+        component={TeacherHome}
         options={{
           tabBarIcon: ({ color, size }) => (
             <MaterialCommunityIcons name="timetable" size={24} color="black" />

@@ -5,7 +5,7 @@ import { ScrollView, Text, TextInput, View } from "react-native";
 import AntDesign from "@expo/vector-icons/AntDesign";
 import { useTeacherContext } from "../../context/useTeacherContext";
 import usePeriodModal from "../../hooks/usePeriodModal";
-import moderateScale from "@/app/utils/responsiveScale";
+import moderateScale from "@/src/utils/responsiveScale";
 
 const PeriodInfoEdit = ({ hideModal = () => {}, day = "" }) => {
   const {

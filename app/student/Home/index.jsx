@@ -1,4 +1,4 @@
-import TodaysTimeTable from "../../components/TodaysTimetable";
+import TodaysTimeTable from "@/src/student/components/TodaysTimetable";
 import { styles } from "./styles";
 
 import { View } from "react-native";

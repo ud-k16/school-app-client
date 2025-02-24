@@ -3,7 +3,7 @@ import { useTeacherContext } from "../../context/useTeacherContext";
 import { Pressable, ScrollView, Text, View } from "react-native";
 import FontAwesome5 from "@expo/vector-icons/FontAwesome5";
 import Entypo from "@expo/vector-icons/Entypo";
-import { Themes } from "@/app/utils/themes";
+import { Themes } from "@/src/utils/themes";
 import { Link, router } from "expo-router";
 
 const WorkDays = () => {

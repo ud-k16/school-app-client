@@ -1,7 +1,7 @@
 import { styles } from "./styles";
-import LOGO from "../../../assets/logo.png";
+import LOGO from "@/src/assets/logo.png";
 import { Image, Pressable, Text, TextInput, View } from "react-native";
-import useLogin from "../../hooks/useLogin";
+import useLogin from "@/src/common/hooks/useLogin";
 
 const Login = () => {
   const { setState, authenticateUser } = useLogin();

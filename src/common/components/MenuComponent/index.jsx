@@ -1,4 +1,4 @@
-import useLogout from "@/app/common/hooks/useLogout";
+import useLogout from "@/src/common/hooks/useLogout";
 import { styles } from "./styles";
 import FontAwesome6 from "@expo/vector-icons/FontAwesome6";
 import MaterialIcons from "@expo/vector-icons/MaterialIcons";

@@ -1,9 +1,9 @@
-import { Constants } from "@/app/common/constants";
+import { Constants } from "@/src/common/constants";
 import { useStudentContext } from "../../context/useStudentContext";
 import { styles } from "./styles";
 import { Text, View } from "react-native";
-import Header from "@/app/common/components/Header";
-import RenderPeriod from "@/app/common/components/RenderPeriod";
+import Header from "@/src/common/components/Header";
+import RenderPeriod from "@/src/common/components/RenderPeriod";
 
 const TodaysTimeTable = () => {
   // index on week days, to get todays dayOdWeek

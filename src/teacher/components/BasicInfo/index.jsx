@@ -1,7 +1,7 @@
 import { styles } from "./styles";
 import DropDown from "@/app/common/components/DropDown";
 import { Constants } from "@/app/common/constants";
-import moderateScale from "@/app/utils/responsiveScale";
+import moderateScale from "@/src/utils/responsiveScale";
 import { Pressable, Text, TextInput, View } from "react-native";
 import { useTeacherContext } from "../../context/useTeacherContext";
 const BasicInfo = () => {

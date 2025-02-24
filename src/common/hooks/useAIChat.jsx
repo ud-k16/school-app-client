@@ -1,4 +1,3 @@
-import { isLoading } from "expo-font";
 import { useEffect, useRef, useState } from "react";
 import Constants from "expo-constants";
 

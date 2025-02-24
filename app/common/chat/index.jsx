@@ -1,14 +1,7 @@
-import {
-  Dimensions,
-  FlatList,
-  Keyboard,
-  Text,
-  TextInput,
-  View,
-} from "react-native";
+import { FlatList, Keyboard, Text, TextInput, View } from "react-native";
 import { styles } from "./styles";
 import MaterialIcons from "@expo/vector-icons/MaterialIcons";
-import useAIChat from "../../hooks/useAIChat";
+import useAIChat from "@/src/common/hooks/useAIChat";
 
 const AIChat = () => {
   const {

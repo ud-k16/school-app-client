@@ -2,9 +2,9 @@
 import React from "react";
 
 import Login from "./common/login";
-import TeacherTabNavigation from "../src/teacher/components/TeacherTabNavigation";
-import StudentTabNavigation from "../src/student/components/StudentTabNavigation";
-import { useAuthContext } from "./common/context/useAuthContext";
+import TeacherTabNavigation from "./teacher/TeacherTabNavigation";
+import StudentTabNavigation from "./student/StudentTabNavigation";
+import { useAuthContext } from "../src/common/context/useAuthContext";
 import { Text } from "react-native";
 
 const Main = () => {

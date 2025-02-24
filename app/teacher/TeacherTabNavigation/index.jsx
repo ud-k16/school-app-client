@@ -2,7 +2,7 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import MaterialCommunityIcons from "@expo/vector-icons/MaterialCommunityIcons";
 import Entypo from "@expo/vector-icons/Entypo";
 import AIChat from "../../common/chat";
-import ManageTimeTable from "../../../src/teacher/screens/manageTimeTable";
+import ManageTimeTable from "@/app/teacher/manageTimeTable";
 
 const Tab = createBottomTabNavigator();
 

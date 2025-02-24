@@ -1,5 +1,5 @@
-import moderateScale from "@/app/utils/responsiveScale";
-import { Themes } from "@/app/utils/themes";
+import moderateScale from "@/src/utils/responsiveScale";
+import { Themes } from "@/src/utils/themes";
 import { StyleSheet } from "react-native";
 
 export const styles = StyleSheet.create({

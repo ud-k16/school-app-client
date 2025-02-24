@@ -2,7 +2,7 @@ import { styles } from "./styles";
 import { Dimensions, Text, View } from "react-native";
 
 import MaterialCommunityIcons from "@expo/vector-icons/MaterialCommunityIcons";
-import { Themes } from "@/app/utils/themes";
+import { Themes } from "@/src/utils/themes";
 import { useAuthContext } from "../../context/useAuthContext";
 import { useRef, useState } from "react";
 import CustomModal from "../Modal";

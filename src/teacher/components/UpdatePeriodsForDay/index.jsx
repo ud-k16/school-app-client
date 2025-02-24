@@ -6,7 +6,7 @@ import CustomModalComponent from "../../../common/components/Modal";
 import { useTeacherContext } from "../../context/useTeacherContext";
 import MaterialIcons from "@expo/vector-icons/MaterialIcons";
 import AntDesign from "@expo/vector-icons/AntDesign";
-import { Themes } from "@/app/utils/themes";
+import { Themes } from "@/src/utils/themes";
 import usePeriodModal from "../../hooks/usePeriodModal";
 import { useLocalSearchParams } from "expo-router/build/hooks";
 

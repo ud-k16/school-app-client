@@ -4,10 +4,18 @@ import MaterialCommunityIcons from "@expo/vector-icons/MaterialCommunityIcons";
 import { Pressable, Text, View } from "react-native";
 import MaterialIcons from "@expo/vector-icons/MaterialIcons";
 import { Themes } from "@/src/utils/themes";
+import { router } from "expo-router";
 const TimeTableCard = ({}) => {
   const { user } = useAuthContext();
   return (
-    <View style={styles.container} onPress={() => {}}>
+    <Pressable
+      style={styles.container}
+      onPress={() => {
+        router.navigate({
+          pathname: "/teacher/PreviewTimeTable",
+        });
+      }}
+    >
       <View style={styles.classIdContainer}>
         <Text style={styles.classIdTextStyle}>{user.classId ?? "CLASS6A"}</Text>
       </View>
@@ -34,7 +42,7 @@ const TimeTableCard = ({}) => {
           <Text>Publish</Text>
         </Pressable>
       </View>
-    </View>
+    </Pressable>
   );
 };
 export default TimeTableCard;

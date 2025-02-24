@@ -5,7 +5,7 @@ import { View, Text, ScrollView, Pressable } from "react-native";
 import useTimeTable from "@/src/teacher/hooks/useTimeTable";
 import RenderPeriod from "@/src/common/components/RenderPeriod";
 
-const PreviewTimeTable = () => {
+const PreviewTimeTable = ({ preview = true }) => {
   const { timeTable, workDays, classId, mentorName } = useTeacherContext();
   const { isLoading, publishTimeTable } = useTimeTable();
   return (
@@ -30,14 +30,16 @@ const PreviewTimeTable = () => {
             </View>
           );
         })}
-        <Pressable
-          style={styles.publishButtonStyle}
-          onPress={() => {
-            publishTimeTable();
-          }}
-        >
-          <Text style={styles.publishButtonTextStyle}>Publish</Text>
-        </Pressable>
+        {preview && (
+          <Pressable
+            style={styles.publishButtonStyle}
+            onPress={() => {
+              publishTimeTable();
+            }}
+          >
+            <Text style={styles.publishButtonTextStyle}>Publish</Text>
+          </Pressable>
+        )}
       </ScrollView>
     </View>
   );

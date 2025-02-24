@@ -1,6 +1,6 @@
 import { styles } from "./styles";
 import { useTeacherContext } from "../../context/useTeacherContext";
-import { Pressable, ScrollView, Text, View } from "react-native";
+import { Pressable, Text, View } from "react-native";
 import FontAwesome5 from "@expo/vector-icons/FontAwesome5";
 import Entypo from "@expo/vector-icons/Entypo";
 import { Themes } from "@/src/utils/themes";

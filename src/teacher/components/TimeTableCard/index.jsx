@@ -13,7 +13,6 @@ const TimeTableCard = ({}) => {
       onPress={() => {
         router.navigate({
           pathname: "/teacher/EntireTimeTable",
-          params: { preview: false },
         });
       }}
     >
@@ -30,7 +29,14 @@ const TimeTableCard = ({}) => {
       </View>
 
       <View style={styles.displayStack1}>
-        <Pressable style={styles.displayStack2}>
+        <Pressable
+          style={styles.displayStack2}
+          onPress={() => {
+            router.navigate({
+              pathname: "/teacher/EditTimeTable",
+            });
+          }}
+        >
           <MaterialCommunityIcons
             name="file-document-edit-outline"
             size={24}
@@ -38,7 +44,14 @@ const TimeTableCard = ({}) => {
           />
           <Text>Edit</Text>
         </Pressable>
-        <Pressable style={styles.displayStack2}>
+        <Pressable
+          style={styles.displayStack2}
+          onPress={() => {
+            router.navigate({
+              pathname: "/teacher/PreviewTimeTable",
+            });
+          }}
+        >
           <MaterialIcons name="table-view" size={24} color="black" />
           <Text>Publish</Text>
         </Pressable>

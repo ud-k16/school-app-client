@@ -2,7 +2,7 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import MaterialCommunityIcons from "@expo/vector-icons/MaterialCommunityIcons";
 import Entypo from "@expo/vector-icons/Entypo";
 import AIChat from "../../common/chat";
-import ManageTimeTable from "@/app/teacher/manageTimeTable";
+import EditTimeTable from "@/app/teacher/EditTimeTable";
 import TeacherHome from "@/app/teacher/TeacherHome";
 
 const Tab = createBottomTabNavigator();
@@ -28,7 +28,7 @@ const TeacherTabNavigation = () => {
       />
       <Tab.Screen
         name="Course"
-        component={ManageTimeTable}
+        component={EditTimeTable}
         options={{
           tabBarIcon: ({ color, size }) => (
             <Entypo name="book" size={24} color="black" />

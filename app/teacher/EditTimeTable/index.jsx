@@ -3,7 +3,7 @@ import { styles } from "./styles";
 import BasicInfo from "@/src/teacher/components/BasicInfo";
 import WorkDays from "@/src/teacher/components/WorkDays";
 import Header from "@/src/common/components/Header";
-const ManageTimeTable = () => {
+const EditTimeTable = () => {
   return (
     <View style={styles.container}>
       <Header title="Time Table" />
@@ -14,4 +14,4 @@ const ManageTimeTable = () => {
     </View>
   );
 };
-export default ManageTimeTable;
+export default EditTimeTable;

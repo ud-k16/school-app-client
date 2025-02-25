@@ -16,7 +16,7 @@ const MenuComponent = () => {
           style={styles.displayStack1}
           onPress={() => {
             router.navigate({
-              pathname: "/student/components/EntireTimeTable",
+              pathname: "/student/EntireTimeTable",
             });
           }}
         >

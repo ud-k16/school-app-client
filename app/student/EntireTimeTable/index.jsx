@@ -1,9 +1,9 @@
 import { styles } from "./styles";
 import { ScrollView, Text, View } from "react-native";
-import { Constants } from "../../../common/constants";
-import Header from "@/app/common/components/Header";
-import { useStudentContext } from "@/app/student/context/useStudentContext";
-import RenderPeriod from "@/app/common/components/RenderPeriod";
+import { Constants } from "@/src/common/constants";
+import Header from "@/src/common/components/Header";
+import { useStudentContext } from "@/src/student/context/useStudentContext";
+import RenderPeriod from "@/src/common/components/RenderPeriod";
 
 const EntireTimeTable = () => {
   const { timeTable } = useStudentContext();

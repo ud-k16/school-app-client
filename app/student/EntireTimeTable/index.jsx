@@ -12,8 +12,8 @@ const EntireTimeTable = () => {
       <Header title="Time Table " />
       <ScrollView contentContainerStyle={styles.scrollViewContainer}>
         {Constants.common.weekdays.map((weekDay, index) => (
-          <View>
-            <Text>{weekDay}</Text>
+          <View style={styles.weekDayTextContainer}>
+            <Text style={styles.weekDaysTextStyle}>{weekDay}</Text>
             {timeTable?.get(weekDay)?.map((period) => (
               <RenderPeriod period={period} />
             ))}

@@ -5,7 +5,6 @@ import { StyleSheet } from "react-native";
 export const styles = StyleSheet.create({
   container: {
     flex: 1,
-
     rowGap: moderateScale(10),
   },
   scrollViewContainer: {
@@ -18,12 +17,13 @@ export const styles = StyleSheet.create({
     width: "90%",
     alignSelf: "center",
     minHeight: moderateScale(60),
-    backgroundColor: Themes.white,
+    marginBottom: moderateScale(10),
   },
   weekDaysTextStyle: {
-    textTransform: "capitalize",
+    textTransform: "uppercase",
     fontWeight: 600,
     fontSize: moderateScale(20),
-    color: Themes.lightFadedGreen,
+    color: Themes.textColor,
+    width: "100%",
   },
 });

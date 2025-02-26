@@ -14,7 +14,7 @@ export const styles = StyleSheet.create({
   iconStyle: { width: "15%" },
   itemTextStyle: {
     fontWeight: 600,
-    fontSize: 24,
+    fontSize: 20,
     width: "50%",
   },
 });

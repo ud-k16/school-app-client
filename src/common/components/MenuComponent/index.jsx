@@ -2,7 +2,6 @@ import useLogout from "@/src/common/hooks/useLogout";
 import { styles } from "./styles";
 import FontAwesome6 from "@expo/vector-icons/FontAwesome6";
 import MaterialIcons from "@expo/vector-icons/MaterialIcons";
-
 import { Pressable, Text, View } from "react-native";
 import { router } from "expo-router";
 import { useAuthContext } from "../../context/useAuthContext";
@@ -21,7 +20,20 @@ const MenuComponent = () => {
           }}
         >
           <FontAwesome6 name="table-list" size={24} color="black" />
-          <Text style={styles.itemTextStyle}>View All</Text>
+          <Text style={styles.itemTextStyle}>Schedule</Text>
+        </Pressable>
+      )}
+      {user?.user_type === "student" && (
+        <Pressable
+          style={styles.displayStack1}
+          onPress={() => {
+            router.navigate({
+              pathname: "/student/ViewCourse",
+            });
+          }}
+        >
+          <MaterialIcons name="subject" size={24} color="black" />
+          <Text style={styles.itemTextStyle}>Course</Text>
         </Pressable>
       )}
       <Pressable style={styles.displayStack1} onPress={logoutUser}>

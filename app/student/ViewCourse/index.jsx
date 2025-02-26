@@ -1,5 +1,6 @@
 import { StyleSheet, Text, View } from "react-native";
 import Header from "@/src/common/components/Header";
+import CourseCard from "@/src/common/components/CourseCard";
 import { useStudentContext } from "@/src/student/context/useStudentContext";
 const ViewCourse = () => {
   const { course } = useStudentContext();
@@ -7,11 +8,7 @@ const ViewCourse = () => {
     <View style={styles.container}>
       <Header title={"Course"} />
       {course?.map((course, index) => (
-        <View key={index}>
-          <Text>{course.subject}</Text>
-          <Text>{course.description}</Text>
-          <Text>{course.teacher}</Text>
-        </View>
+        <CourseCard key={index} course={course} />
       ))}
     </View>
   );

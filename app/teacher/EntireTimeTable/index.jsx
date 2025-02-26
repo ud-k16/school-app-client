@@ -6,7 +6,13 @@ import { useTeacherContext } from "@/src/teacher/context/useTeacherContext";
 import RenderPeriod from "@/src/common/components/RenderPeriod";
 
 const EntireTimeTable = () => {
-  const { timeTable } = useTeacherContext();
+  const { timeTable, isLoading } = useTeacherContext();
+  if (isLoading)
+    return (
+      <View>
+        <Text>Loaading</Text>
+      </View>
+    );
   return (
     <View style={styles.container}>
       <Header title="Time Table " />

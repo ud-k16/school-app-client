@@ -1,8 +1,15 @@
-import { createContext, useContext, useState } from "react";
+import { useAuthContext } from "@/src/common/context/useAuthContext";
+import { fetchWithTimeOut } from "@/src/utils/helperFunctions";
+import { createContext, useContext, useEffect, useState } from "react";
 
 const TeacherContext = createContext();
 
 const TeacherContextProvider = ({ children }) => {
+  const [state, setState] = useState({
+    isLoading: true,
+    course: null,
+  });
+  const { user } = useAuthContext();
   // variable to hold info about working weekdays in the timetable
   const [workDays, setWorkDays] = useState([
     { day: "monday", holiday: false },
@@ -97,9 +104,93 @@ const TeacherContextProvider = ({ children }) => {
     });
   };
 
+  const fetchLatestTimeTable = async () => {
+    console.log("Fetching  time table for class id from server", user?.classId);
+    const data = {
+      id: user?.classId,
+    };
+    try {
+      const requestOptions = {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+      };
+      const response = await fetchWithTimeOut({
+        url: `${API_URL}/timetable/fetch`,
+        requestOptions,
+      });
+      if (response) {
+        const result = await response.json();
+        console.log("time table for class fetched", result);
+
+        if (result?.status) {
+          //  storing fetched time table to local storage
+          // await setTimeTable(JSON.stringify(result?.data.time_table));
+
+          setTimeTable((prev) => ({
+            ...prev,
+            timeTable: new Map(result.data.time_table),
+          }));
+        }
+      }
+    } catch (error) {
+      console.log("Fetch Latest Time Table Error", error);
+    }
+  };
+  const fetchLatestCourseData = async () => {
+    console.log("Fetching  course for class id from server", user?.classId);
+    const data = {
+      id: user?.classId,
+    };
+    try {
+      const requestOptions = {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+      };
+      const response = await fetchWithTimeOut({
+        url: `${API_URL}/course/fetch`,
+        requestOptions,
+      });
+      if (response) {
+        const result = await response.json();
+        console.log("course  class fetched", JSON.stringify(result, null, 4));
+
+        if (result?.status) {
+          //  storing fetched time table to local storage
+          // await setTimeTable(JSON.stringify(result?.data.time_table));
+
+          setState((prev) => ({
+            ...prev,
+            course: result.data.course,
+          }));
+        }
+      }
+    } catch (error) {
+      console.log("Fetch Latest Time Table Error", error);
+    }
+  };
+
+  const initializeFetchRequestForTeacher = async () => {
+    //  course/time_table fetch indication set to true
+    setState((prev) => ({ ...prev, isLoading: true }));
+    await fetchLatestTimeTable();
+    await fetchLatestCourseData();
+    //  course/time_table fetch indication set to false
+    setState((prev) => ({ ...prev, isLoading: false }));
+  };
+  useEffect(() => {
+    initializeFetchRequestForTeacher();
+  }, [user?.classId]);
+
   return (
     <TeacherContext.Provider
       value={{
+        ...state,
         timeTable,
         workDays,
         ...basicInfo,

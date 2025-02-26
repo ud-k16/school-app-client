@@ -8,18 +8,17 @@ const StudentContext = createContext();
 
 const StudentContextProvider = ({ children }) => {
   // get api url from extra field of expo
-  const { API_URL, SOCKET_URL } = Constants.expoConfig.extra;
-  const { getItem: getTimeTable, setItem: setTimeTable } =
-    useAsyncStorage("timeTable");
+  const { API_URL } = Constants.expoConfig.extra;
+  /* const { getItem: getTimeTable, setItem: setTimeTable } =
+  useAsyncStorage("timeTable");*/
   const { user } = useAuthContext();
   const [state, setState] = useState({
     isLoading: true,
     //timeTable is a Map object with keys as week days and their respective periods array as value
     timeTable: null,
     course: null,
-    socket: new WebSocket(SOCKET_URL),
   });
-
+  // involves local storage logic not used in current version
   const initializeTimeTableFetch = async () => {
     // check if time table list available in local storage
     console.log("check if time table list available in local storage");
@@ -64,8 +63,8 @@ const StudentContextProvider = ({ children }) => {
 
         if (result?.status) {
           //  storing fetched time table to local storage
-          await setTimeTable(JSON.stringify(result?.data.time_table));
-          //
+          // await setTimeTable(JSON.stringify(result?.data.time_table));
+
           setState((prev) => ({
             ...prev,
             timeTable: new Map(result.data.time_table),
@@ -76,11 +75,52 @@ const StudentContextProvider = ({ children }) => {
       console.log("Fetch Latest Time Table Error", error);
     }
   };
-  useEffect(() => {
-    state.socket.onopen = () => {
-      console.log("WebSocket connected!");
+  const fetchLatestCourseData = async () => {
+    console.log("Fetching  course for class id from server", user?.classId);
+    const data = {
+      id: user?.classId,
     };
-    initializeTimeTableFetch();
+    try {
+      const requestOptions = {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+      };
+      const response = await fetchWithTimeOut({
+        url: `${API_URL}/course/fetch`,
+        requestOptions,
+      });
+      if (response) {
+        const result = await response.json();
+        console.log("course  class fetched", JSON.stringify(result, null, 4));
+
+        if (result?.status) {
+          //  storing fetched time table to local storage
+          // await setTimeTable(JSON.stringify(result?.data.time_table));
+
+          setState((prev) => ({
+            ...prev,
+            course: result.data.course,
+          }));
+        }
+      }
+    } catch (error) {
+      console.log("Fetch Latest Time Table Error", error);
+    }
+  };
+
+  const initializeFetchRequestForStudent = async () => {
+    //  course/time_table fetch indication set to true
+    setState((prev) => ({ ...prev, isLoading: true }));
+    await fetchLatestTimeTable();
+    await fetchLatestCourseData();
+    //  course/time_table fetch indication set to false
+    setState((prev) => ({ ...prev, isLoading: false }));
+  };
+  useEffect(() => {
+    initializeFetchRequestForStudent();
   }, [user?.classId]);
   return (
     <StudentContext.Provider value={{ ...state, setState }}>

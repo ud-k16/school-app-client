@@ -2,6 +2,7 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import MaterialCommunityIcons from "@expo/vector-icons/MaterialCommunityIcons";
 import Entypo from "@expo/vector-icons/Entypo";
 import StudentHome from "@/app/student/Home";
+import ViewCourse from "@/app/student/ViewCourse";
 import AIChat from "@/app/common/chat";
 
 const Tab = createBottomTabNavigator();
@@ -27,7 +28,7 @@ const StudentTabNavigation = () => {
       />
       <Tab.Screen
         name="Course"
-        component={StudentHome}
+        component={ViewCourse}
         options={{
           tabBarIcon: ({ color, size }) => (
             <Entypo name="book" size={24} color="black" />

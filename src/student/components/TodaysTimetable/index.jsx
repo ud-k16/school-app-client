@@ -21,8 +21,8 @@ const TodaysTimeTable = () => {
     <View style={styles.container}>
       <Header title={Constants.common.weekdays[today]} />
       <View style={styles.timeTableContainer}>
-        {todaySchedule?.map((period) => (
-          <RenderPeriod period={period} />
+        {todaySchedule?.map((period, index) => (
+          <RenderPeriod period={period} key={index} />
         ))}
       </View>
     </View>

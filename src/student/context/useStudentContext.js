@@ -7,6 +7,8 @@ import { fetchWithTimeOut } from "@/src/utils/helperFunctions";
 const StudentContext = createContext();
 
 const StudentContextProvider = ({ children }) => {
+  // get api url from extra field of expo
+  const { API_URL, SOCKET_URL } = Constants.expoConfig.extra;
   const { getItem: getTimeTable, setItem: setTimeTable } =
     useAsyncStorage("timeTable");
   const { user } = useAuthContext();
@@ -14,10 +16,9 @@ const StudentContextProvider = ({ children }) => {
     isLoading: true,
     //timeTable is a Map object with keys as week days and their respective periods array as value
     timeTable: null,
+    course: null,
+    socket: new WebSocket(SOCKET_URL),
   });
-
-  // get api url from extra field of expo
-  const { API_URL } = Constants.expoConfig.extra;
 
   const initializeTimeTableFetch = async () => {
     // check if time table list available in local storage
@@ -76,6 +77,9 @@ const StudentContextProvider = ({ children }) => {
     }
   };
   useEffect(() => {
+    state.socket.onopen = () => {
+      console.log("WebSocket connected!");
+    };
     initializeTimeTableFetch();
   }, [user?.classId]);
   return (

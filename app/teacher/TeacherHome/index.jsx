@@ -1,15 +1,32 @@
 import { StyleSheet, View } from "react-native";
 import { useAuthContext } from "@/src/common/context/useAuthContext";
-import TimeTableCard from "@/src/teacher/components/TimeTableCard";
+import ClassCard from "@/src/teacher/components/ClassCard";
 import Header from "@/src/common/components/Header";
 import moderateScale from "@/src/utils/responsiveScale";
+import { router } from "expo-router";
 const TeacherHome = () => {
   const { user } = useAuthContext();
 
   return (
     <View style={styles.container}>
       <Header title={user?.name} />
-      <TimeTableCard />
+      <ClassCard
+        onCardPress={() => {
+          router.navigate({
+            pathname: "/teacher/EntireTimeTable",
+          });
+        }}
+        onEdit={() => {
+          router.navigate({
+            pathname: "/teacher/EditTimeTable",
+          });
+        }}
+        onPublish={() => {
+          router.navigate({
+            pathname: "/teacher/PreviewTimeTable",
+          });
+        }}
+      />
     </View>
   );
 };

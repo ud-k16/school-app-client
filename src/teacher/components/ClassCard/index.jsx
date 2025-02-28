@@ -5,19 +5,20 @@ import { Pressable, Text, View } from "react-native";
 import MaterialIcons from "@expo/vector-icons/MaterialIcons";
 import { Themes } from "@/src/utils/themes";
 import { router } from "expo-router";
-const TimeTableCard = ({}) => {
+
+const ClassCard = ({
+  classId,
+  onEdit = () => {},
+  onPublish = () => {},
+  onCardPress = () => {},
+}) => {
   const { user } = useAuthContext();
   return (
-    <Pressable
-      style={styles.container}
-      onPress={() => {
-        router.navigate({
-          pathname: "/teacher/EntireTimeTable",
-        });
-      }}
-    >
+    <Pressable style={styles.container} onPress={onCardPress}>
       <View style={styles.classIdContainer}>
-        <Text style={styles.classIdTextStyle}>{user.classId ?? "CLASS6A"}</Text>
+        <Text style={styles.classIdTextStyle}>
+          {user.classId ?? "No Class"}
+        </Text>
       </View>
       <View style={styles.statusContainer}>
         <Text style={styles.statusTextStyle}>{"Status : "}</Text>
@@ -29,14 +30,7 @@ const TimeTableCard = ({}) => {
       </View>
 
       <View style={styles.displayStack1}>
-        <Pressable
-          style={styles.displayStack2}
-          onPress={() => {
-            router.navigate({
-              pathname: "/teacher/EditTimeTable",
-            });
-          }}
-        >
+        <Pressable style={styles.displayStack2} onPress={onEdit}>
           <MaterialCommunityIcons
             name="file-document-edit-outline"
             size={24}
@@ -44,14 +38,7 @@ const TimeTableCard = ({}) => {
           />
           <Text>Edit</Text>
         </Pressable>
-        <Pressable
-          style={styles.displayStack2}
-          onPress={() => {
-            router.navigate({
-              pathname: "/teacher/PreviewTimeTable",
-            });
-          }}
-        >
+        <Pressable style={styles.displayStack2} onPress={onPublish}>
           <MaterialIcons name="table-view" size={24} color="black" />
           <Text>Publish</Text>
         </Pressable>
@@ -59,4 +46,4 @@ const TimeTableCard = ({}) => {
     </Pressable>
   );
 };
-export default TimeTableCard;
+export default ClassCard;

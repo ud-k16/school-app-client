@@ -7,6 +7,7 @@ import RenderPeriod from "@/src/common/components/RenderPeriod";
 
 const EntireTimeTable = () => {
   const { timeTable, isLoading } = useTeacherContext();
+
   if (isLoading)
     return (
       <View>
@@ -20,7 +21,7 @@ const EntireTimeTable = () => {
         {Constants.common.weekdays.map((weekDay, index) => (
           <View style={styles.weekDayTextContainer} key={index}>
             <Text style={styles.weekDaysTextStyle}>{weekDay}</Text>
-            {timeTable?.get(weekDay)?.map((period) => (
+            {timeTable.get(weekDay)?.map((period) => (
               <RenderPeriod period={period} />
             ))}
           </View>

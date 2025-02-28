@@ -135,10 +135,7 @@ const TeacherContextProvider = ({ children }) => {
           //  storing fetched time table to local storage
           // await setTimeTable(JSON.stringify(result?.data.time_table));
 
-          setTimeTable((prev) => ({
-            ...prev,
-            timeTable: new Map(result.data.time_table),
-          }));
+          setTimeTable(new Map(result.data.time_table));
         }
       }
     } catch (error) {

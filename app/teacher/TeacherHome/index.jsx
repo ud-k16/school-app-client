@@ -38,7 +38,7 @@ const TeacherHome = () => {
           }}
           onEdit={() => {
             router.navigate({
-              pathname: "/teacher/EditTimeTable",
+              pathname: "/teacher/EditCourse",
             });
           }}
           onPublish={() => {

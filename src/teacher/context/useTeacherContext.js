@@ -108,10 +108,10 @@ const TeacherContextProvider = ({ children }) => {
   };
 
   const fetchLatestTimeTable = async () => {
-    console.log(
-      "Fetching  time table for class id from server for teacher",
-      user?.classId
-    );
+    // console.log(
+    //   "Fetching  time table for class id from server for teacher",
+    //   user?.classId
+    // );
     const data = {
       id: user?.classId,
     };
@@ -146,7 +146,10 @@ const TeacherContextProvider = ({ children }) => {
     }
   };
   const fetchLatestCourseData = async () => {
-    console.log("Fetching  course for class id from server", user?.classId);
+    // console.log(
+    //   "Fetching  course for class id from server for teacher",
+    //   user?.classId
+    // );
     const data = {
       id: user?.classId,
     };
@@ -190,7 +193,9 @@ const TeacherContextProvider = ({ children }) => {
     setState((prev) => ({ ...prev, isLoading: false }));
   };
   useEffect(() => {
-    initializeFetchRequestForTeacher();
+    user?.classId &&
+      user?.user_type === "teacher" &&
+      initializeFetchRequestForTeacher();
   }, [user?.classId]);
 
   return (

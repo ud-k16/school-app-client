@@ -120,7 +120,9 @@ const StudentContextProvider = ({ children }) => {
     setState((prev) => ({ ...prev, isLoading: false }));
   };
   useEffect(() => {
-    initializeFetchRequestForStudent();
+    user?.classId &&
+      user?.user_type === "student" &&
+      initializeFetchRequestForStudent();
   }, [user?.classId]);
   return (
     <StudentContext.Provider value={{ ...state, setState }}>

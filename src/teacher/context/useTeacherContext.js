@@ -1,10 +1,13 @@
 import { useAuthContext } from "@/src/common/context/useAuthContext";
 import { fetchWithTimeOut } from "@/src/utils/helperFunctions";
 import { createContext, useContext, useEffect, useState } from "react";
+import Constants from "expo-constants";
 
 const TeacherContext = createContext();
 
 const TeacherContextProvider = ({ children }) => {
+  // get api url from extra field of expo
+  const { API_URL } = Constants.expoConfig.extra;
   const [state, setState] = useState({
     isLoading: true,
     course: null,
@@ -105,7 +108,10 @@ const TeacherContextProvider = ({ children }) => {
   };
 
   const fetchLatestTimeTable = async () => {
-    console.log("Fetching  time table for class id from server", user?.classId);
+    console.log(
+      "Fetching  time table for class id from server for teacher",
+      user?.classId
+    );
     const data = {
       id: user?.classId,
     };

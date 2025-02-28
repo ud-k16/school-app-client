@@ -123,7 +123,7 @@ const TeacherContextProvider = ({ children }) => {
       });
       if (response) {
         const result = await response.json();
-        console.log("time table for class fetched", result);
+        // console.log("time table for class fetched", result);
 
         if (result?.status) {
           //  storing fetched time table to local storage
@@ -158,7 +158,7 @@ const TeacherContextProvider = ({ children }) => {
       });
       if (response) {
         const result = await response.json();
-        console.log("course  class fetched", JSON.stringify(result, null, 4));
+        // console.log("course  class fetched", JSON.stringify(result, null, 4));
 
         if (result?.status) {
           //  storing fetched time table to local storage

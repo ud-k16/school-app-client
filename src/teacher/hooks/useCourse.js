@@ -1,5 +1,5 @@
 import { useState } from "react";
-import useTeacherContext from "@/src/context/useTeacherContext";
+import { useTeacherContext } from "@/src/teacher/context/useTeacherContext";
 const useCourse = () => {
   const [state, setState] = useState();
   const { setState: setTeacherContext } = useTeacherContext();

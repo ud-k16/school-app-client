@@ -41,7 +41,7 @@ const StudentContextProvider = ({ children }) => {
     setState((prev) => ({ ...prev, isLoading: false }));
   };
   const fetchLatestTimeTable = async () => {
-    console.log("Fetching  time table for class id from server", user?.classId);
+    // console.log("Fetching  time table for class id from server for student", user?.classId);
     const data = {
       id: user?.classId,
     };
@@ -59,7 +59,7 @@ const StudentContextProvider = ({ children }) => {
       });
       if (response) {
         const result = await response.json();
-        console.log("time table for class fetched", result);
+        // console.log("time table for class fetched", result);
 
         if (result?.status) {
           //  storing fetched time table to local storage
@@ -76,7 +76,7 @@ const StudentContextProvider = ({ children }) => {
     }
   };
   const fetchLatestCourseData = async () => {
-    console.log("Fetching  course for class id from server", user?.classId);
+    // console.log("Fetching  course for class id from server for student ", user?.classId);
     const data = {
       id: user?.classId,
     };
@@ -94,7 +94,7 @@ const StudentContextProvider = ({ children }) => {
       });
       if (response) {
         const result = await response.json();
-        console.log("course  class fetched", JSON.stringify(result, null, 4));
+        // console.log("course  class fetched", JSON.stringify(result, null, 4));
 
         if (result?.status) {
           //  storing fetched time table to local storage
@@ -107,7 +107,7 @@ const StudentContextProvider = ({ children }) => {
         }
       }
     } catch (error) {
-      console.log("Fetch Latest Time Table Error", error);
+      console.log("Fetch Latest course  Error", error);
     }
   };
 

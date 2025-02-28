@@ -7,7 +7,7 @@ import { Themes } from "@/src/utils/themes";
 import { router } from "expo-router";
 
 const ClassCard = ({
-  classId,
+  title = "",
   onEdit = () => {},
   onPublish = () => {},
   onCardPress = () => {},
@@ -16,9 +16,7 @@ const ClassCard = ({
   return (
     <Pressable style={styles.container} onPress={onCardPress}>
       <View style={styles.classIdContainer}>
-        <Text style={styles.classIdTextStyle}>
-          {user.classId ?? "No Class"}
-        </Text>
+        <Text style={styles.classIdTextStyle}>{title}</Text>
       </View>
       <View style={styles.statusContainer}>
         <Text style={styles.statusTextStyle}>{"Status : "}</Text>

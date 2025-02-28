@@ -10,23 +10,44 @@ const TeacherHome = () => {
   return (
     <View style={styles.container}>
       <Header title={user?.name} />
-      <ClassCard
-        onCardPress={() => {
-          router.navigate({
-            pathname: "/teacher/EntireTimeTable",
-          });
-        }}
-        onEdit={() => {
-          router.navigate({
-            pathname: "/teacher/EditTimeTable",
-          });
-        }}
-        onPublish={() => {
-          router.navigate({
-            pathname: "/teacher/PreviewTimeTable",
-          });
-        }}
-      />
+      <View style={styles.cardContainer}>
+        <ClassCard
+          title="Time Table"
+          onCardPress={() => {
+            router.navigate({
+              pathname: "/teacher/EntireTimeTable",
+            });
+          }}
+          onEdit={() => {
+            router.navigate({
+              pathname: "/teacher/EditTimeTable",
+            });
+          }}
+          onPublish={() => {
+            router.navigate({
+              pathname: "/teacher/PreviewTimeTable",
+            });
+          }}
+        />
+        <ClassCard
+          title="Courses"
+          onCardPress={() => {
+            router.navigate({
+              pathname: "/teacher/EntireTimeTable",
+            });
+          }}
+          onEdit={() => {
+            router.navigate({
+              pathname: "/teacher/EditTimeTable",
+            });
+          }}
+          onPublish={() => {
+            router.navigate({
+              pathname: "/teacher/PreviewTimeTable",
+            });
+          }}
+        />
+      </View>
     </View>
   );
 };
@@ -34,7 +55,11 @@ const TeacherHome = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    rowGap: moderateScale(20),
+  },
+  cardContainer: {
+    flex: 1,
+    marginTop: moderateScale(20),
+    rowGap: moderateScale(30),
   },
 });
 export default TeacherHome;

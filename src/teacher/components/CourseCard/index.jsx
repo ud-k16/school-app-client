@@ -7,7 +7,8 @@ const CourseCard = ({ subject, teacher, description, onDelete = () => {} }) => {
       <View style={styles.displayStack1}>
         <Text>{subject}</Text>
         <Text>{description}</Text>
-        <Text>{teacher}</Text>
+        <View style={styles.displayStack2}></View>
+        <Text>Assigned Teacher : {teacher}</Text>
       </View>
       <AntDesign
         name="delete"

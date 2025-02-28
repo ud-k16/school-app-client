@@ -26,17 +26,9 @@ const TeacherTabNavigation = () => {
           ),
         }}
       />
+
       <Tab.Screen
-        name="Course"
-        component={EditTimeTable}
-        options={{
-          tabBarIcon: ({ color, size }) => (
-            <Entypo name="book" size={24} color="black" />
-          ),
-        }}
-      />
-      <Tab.Screen
-        name="Settings"
+        name="Gemini AI"
         component={AIChat}
         options={{
           tabBarIcon: ({ color, size }) => (

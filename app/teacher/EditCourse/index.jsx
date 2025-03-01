@@ -1,7 +1,7 @@
 import FontAwesome5 from "@expo/vector-icons/FontAwesome5";
 import { ScrollView, StyleSheet, Text, View } from "react-native";
 import { useTeacherContext } from "@/src/teacher/context/useTeacherContext";
-import CourseCard from "../../../src/teacher/components/CourseCard";
+import CourseCard from "../../../src/common/components/CourseCard";
 import useCourse from "../../../src/teacher/hooks/useCourse";
 import moderateScale from "@/src/utils/responsiveScale";
 

@@ -10,29 +10,21 @@ export const styles = StyleSheet.create({
   },
   scrollViewContainer: {
     flexGrow: 1,
-    rowGap: moderateScale(10),
   },
   weekDayTextStyle: {
     fontWeight: 600,
     alignSelf: "center",
     height: "auto",
-    fontSize: moderateScale(40),
+    fontSize: moderateScale(20),
     color: Themes.secondary,
-    textTransform: "capitalize",
+    textTransform: "uppercase",
   },
   displayStack1: {
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "space-between",
   },
-  textInputStyle: {
-    alignSelf: "center",
-    width: "90%",
-    height: moderateScale(60),
-    borderWidth: moderateScale(2),
-    borderRadius: moderateScale(5),
-    paddingHorizontal: moderateScale(10),
-  },
+
   addButtonStyle: {
     backgroundColor: Themes.white,
     borderRadius: moderateScale(5),
@@ -41,7 +33,7 @@ export const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-evenly",
     alignItems: "center",
-    height: moderateScale(50),
+    height: moderateScale(40),
     elevation: 6,
     shadowColor: Themes.greyShade,
     shadowOffset: moderateScale(15),
@@ -50,27 +42,26 @@ export const styles = StyleSheet.create({
   },
   addButtonTextStyle: {
     fontWeight: 600,
-    fontSize: moderateScale(20),
+    fontSize: moderateScale(15),
   },
   periodDisplayCardContainer: {
+    marginBottom: moderateScale(10),
     alignSelf: "center",
-    width: "90%",
+    width: "99%",
     minHeight: moderateScale(60),
     flexDirection: "row",
     alignItems: "center",
-    justifyContent: "space-evenly",
     borderWidth: moderateScale(1),
-    borderColor: Themes.lightFadedGreen,
+    borderColor: Themes.greyShade,
+    paddingHorizontal: moderateScale(10),
   },
   periodTextStyle: {
-    fontWeight: 600,
-    color: Themes.greyShade,
-    fontSize: moderateScale(20),
+    color: Themes.textColor,
+    fontSize: moderateScale(16),
   },
   subjectTextStyle: {
-    fontWeight: 900,
-    color: Themes.lightFadedGreen,
-    fontSize: moderateScale(20),
+    color: Themes.secondary,
+    fontSize: moderateScale(18),
     textTransform: "uppercase",
   },
   arrowContainer: {
@@ -79,6 +70,6 @@ export const styles = StyleSheet.create({
     justifyContent: "space-around",
   },
   displayStackData: {
-    maxWidth: moderateScale(200),
+    flex: 1,
   },
 });

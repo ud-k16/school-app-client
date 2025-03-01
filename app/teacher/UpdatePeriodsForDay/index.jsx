@@ -32,7 +32,7 @@ const UpdatePeriodsForDay = () => {
                 <View style={styles.displayStackData}>
                   <Text style={styles.periodTextStyle}>{period.time}</Text>
                   <Text style={styles.subjectTextStyle}>
-                    {period.subject || "Assembly For The People Replublic"}
+                    {period.subject || "Assembly "}
                   </Text>
                 </View>
                 <View style={styles.arrowContainer}>

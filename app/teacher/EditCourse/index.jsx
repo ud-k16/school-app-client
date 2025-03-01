@@ -23,7 +23,38 @@ const EditCourse = () => {
     subject: "",
     description: "",
     teacher: "",
+    subjectError: "",
+    teacherError: "",
+    descriptionError: "",
   });
+  const validation = () => {
+    if (state.subject && state.description && state.teacher) {
+      insertCourse({
+        subject: state.subject,
+        teacher: state.teacher,
+        description: state.description,
+      });
+      hideCourseField();
+    } else {
+      setState((prev) => ({
+        ...prev,
+        subjectError: !Boolean(prev.subject),
+        teacherError: !Boolean(prev.teacher),
+        descriptionError: !Boolean(prev.description),
+      }));
+    }
+  };
+  const resetState = () => {
+    setState({
+      addCourse: false,
+      subject: "",
+      description: "",
+      teacher: "",
+      subjectError: "",
+      teacherError: "",
+      descriptionError: "",
+    });
+  };
   const showCourseField = () =>
     setState((prev) => ({ ...prev, addCourse: true }));
   const hideCourseField = () =>
@@ -44,7 +75,10 @@ const EditCourse = () => {
       {!!state.addCourse && (
         <View style={styles.editContainer}>
           <TextInput
-            style={styles.textInputStyle}
+            style={[
+              styles.textInputStyle,
+              state.subjectError && styles.errorStyle,
+            ]}
             placeholder="Course name"
             onChangeText={(text) =>
               setState((prev) => ({
@@ -54,7 +88,10 @@ const EditCourse = () => {
             }
           />
           <TextInput
-            style={styles.textInputStyle}
+            style={[
+              styles.textInputStyle,
+              state.teacherError && styles.errorStyle,
+            ]}
             onChangeText={(text) =>
               setState((prev) => ({
                 ...prev,
@@ -75,21 +112,32 @@ const EditCourse = () => {
             style={[
               styles.textInputStyle,
               { height: moderateScale(100), textAlignVertical: "top" },
+              state.descriptionError && styles.errorStyle,
             ]}
           />
-          <Pressable
-            style={styles.saveButton}
-            onPress={() => {
-              insertCourse({
-                subject: state.subject,
-                teacher: state.teacher,
-                description: state.description,
-              });
-              hideCourseField();
-            }}
-          >
-            <Text style={{ color: styles.saveButton.color }}>Save</Text>
-          </Pressable>
+          {(state.descriptionError ||
+            state.subjectError ||
+            state.teacherError) && (
+            <Text style={styles.errorTextStyle}> *Fill All Fields</Text>
+          )}
+          <View style={styles.actionContainer}>
+            <Pressable
+              style={styles.actionButton}
+              onPress={() => {
+                resetState();
+              }}
+            >
+              <Text style={{ color: styles.actionButton.color }}>Cancel</Text>
+            </Pressable>
+            <Pressable
+              style={styles.actionButton}
+              onPress={() => {
+                validation();
+              }}
+            >
+              <Text style={{ color: styles.actionButton.color }}>Save</Text>
+            </Pressable>
+          </View>
         </View>
       )}
       <ScrollView contentContainerStyle={styles.scrollViewContainer}>
@@ -124,6 +172,21 @@ const styles = StyleSheet.create({
     flexGrow: 1,
     rowGap: moderateScale(10),
   },
+  actionContainer: {
+    alignSelf: "center",
+    flexDirection: "row",
+    width: "80%",
+    justifyContent: "space-evenly",
+  },
+  errorTextStyle: {
+    alignSelf: "center",
+    color: Themes.red,
+    fontWeight: 600,
+  },
+  errorStyle: {
+    borderColor: Themes.red,
+    borderWidth: moderateScale(2),
+  },
   addButton: {
     flexDirection: "row",
     alignItems: "center",
@@ -151,7 +214,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: moderateScale(10),
     fontSize: moderateScale(17),
   },
-  saveButton: {
+  actionButton: {
     alignSelf: "center",
     width: moderateScale(100),
     height: moderateScale(40),

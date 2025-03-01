@@ -22,29 +22,7 @@ const CourseCard = ({
   const hideEdit = () => setEditVisible(false);
   return (
     <View style={styles.container}>
-      {!editVisible ? (
-        <View style={styles.courseDatacontainer}>
-          <View style={styles.displayStack1}>
-            <Text>{subject}</Text>
-            <Text>{description}</Text>
-            <View style={styles.displayStack2}></View>
-            <Text>Assigned Teacher : {teacher}</Text>
-          </View>
-          <AntDesign
-            name="delete"
-            size={24}
-            color="black"
-            style={{ alignSelf: "flex-end" }}
-            onPress={onDelete}
-          />
-          <Foundation
-            name="page-edit"
-            size={24}
-            color="black"
-            onPress={showEdit}
-          />
-        </View>
-      ) : (
+      {!!editVisible ? (
         <View style={styles.editContainer}>
           <TextInput
             style={styles.textInputStyle}
@@ -85,6 +63,28 @@ const CourseCard = ({
           >
             <Text style={{ color: styles.saveButton.color }}>Save</Text>
           </Pressable>
+        </View>
+      ) : (
+        <View style={styles.courseDatacontainer}>
+          <View style={styles.displayStack1}>
+            <Text>{subject}</Text>
+            <Text>{description}</Text>
+            <View style={styles.displayStack2}></View>
+            <Text>Assigned Teacher : {teacher}</Text>
+          </View>
+          <AntDesign
+            name="delete"
+            size={24}
+            color="black"
+            style={{ alignSelf: "flex-end" }}
+            onPress={onDelete}
+          />
+          <Foundation
+            name="page-edit"
+            size={24}
+            color="black"
+            onPress={showEdit}
+          />
         </View>
       )}
     </View>

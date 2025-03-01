@@ -28,6 +28,7 @@ const EditCourse = () => {
                 subject={coursedata.subject}
                 description={coursedata.description}
                 teacher={coursedata.teacher}
+                editable={true}
                 onDelete={() => {
                   deleteCourse(index);
                 }}

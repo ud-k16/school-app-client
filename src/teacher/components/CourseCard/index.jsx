@@ -9,6 +9,7 @@ const CourseCard = ({
   subject,
   teacher,
   description,
+  editable = false,
   onDelete = () => {},
   onEdit = () => {},
 }) => {
@@ -22,7 +23,7 @@ const CourseCard = ({
   const hideEdit = () => setEditVisible(false);
   return (
     <View style={styles.container}>
-      {!!editVisible ? (
+      {!!editVisible && !!editable ? (
         <View style={styles.editContainer}>
           <TextInput
             style={styles.textInputStyle}
@@ -74,19 +75,22 @@ const CourseCard = ({
               <Text style={styles.teacherTextStyle}> {teacher}</Text>
             </View>
           </View>
-          <AntDesign
-            name="delete"
-            size={24}
-            color="black"
-            style={{ alignSelf: "flex-end" }}
-            onPress={onDelete}
-          />
-          <Foundation
-            name="page-edit"
-            size={24}
-            color="black"
-            onPress={showEdit}
-          />
+          {!!editable && (
+            <View style={styles.displayStack3}>
+              <AntDesign
+                name="delete"
+                size={24}
+                color="black"
+                onPress={onDelete}
+              />
+              <Foundation
+                name="page-edit"
+                size={24}
+                color="black"
+                onPress={showEdit}
+              />
+            </View>
+          )}
         </View>
       )}
     </View>

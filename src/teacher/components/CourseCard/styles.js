@@ -21,10 +21,15 @@ export const styles = StyleSheet.create({
   },
   displayStack1: {
     justifyContent: "space-evenly",
-    flex: 1,
+    flex: 2,
   },
   displayStack2: {
     flexDirection: "row",
+  },
+  displayStack3: {
+    flexDirection: "row",
+    flex: 1,
+    justifyContent: "space-evenly",
   },
   teacherTextStyle: {
     color: Themes.lightFadedGreen,

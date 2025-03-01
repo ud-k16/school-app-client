@@ -10,9 +10,9 @@ export const styles = StyleSheet.create({
     width: "50%",
     flexGrow: "row",
     borderWidth: moderateScale(1),
-
+    textAlign: "center",
     height: moderateScale(40),
-    lineHeight: moderateScale(40),
+    textAlignVertical: "center",
   },
   timeStyle: {
     backgroundColor: Themes.secondary,

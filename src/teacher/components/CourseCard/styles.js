@@ -9,7 +9,11 @@ export const styles = StyleSheet.create({
     width: "90%",
     alignSelf: "center",
     alignItems: "center",
-    justifyContent: "space-evenly",
+    backgroundColor: Themes.white,
+    marginVertical: moderateScale(5),
+    padding: moderateScale(10),
+    borderRadius: moderateScale(5),
+    elevation: 6,
   },
   editContainer: {
     marginVertical: moderateScale(5),
@@ -20,8 +24,10 @@ export const styles = StyleSheet.create({
     flex: 1,
   },
   displayStack2: {
-    justifyContent: "space-evenly",
     flexDirection: "row",
+  },
+  teacherTextStyle: {
+    color: Themes.lightFadedGreen,
   },
   textInputStyle: {
     alignSelf: "center",
@@ -33,6 +39,13 @@ export const styles = StyleSheet.create({
     borderRadius: moderateScale(5),
     paddingHorizontal: moderateScale(10),
     fontSize: moderateScale(17),
+  },
+  subjectTextStyle: {
+    fontWeight: 600,
+    fontSize: moderateScale(20),
+  },
+  descriptionTextStyle: {
+    color: Themes.greyShade,
   },
   saveButton: {
     alignSelf: "center",

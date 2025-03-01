@@ -67,10 +67,12 @@ const CourseCard = ({
       ) : (
         <View style={styles.courseDatacontainer}>
           <View style={styles.displayStack1}>
-            <Text>{subject}</Text>
-            <Text>{description}</Text>
-            <View style={styles.displayStack2}></View>
-            <Text>Assigned Teacher : {teacher}</Text>
+            <Text style={styles.subjectTextStyle}>{subject}</Text>
+            <Text style={styles.descriptionTextStyle}>{description}</Text>
+            <View style={styles.displayStack2}>
+              <Text>Assigned Teacher :</Text>
+              <Text style={styles.teacherTextStyle}> {teacher}</Text>
+            </View>
           </View>
           <AntDesign
             name="delete"

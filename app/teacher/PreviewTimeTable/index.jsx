@@ -1,20 +1,24 @@
 import { useTeacherContext } from "@/src/teacher/context/useTeacherContext";
 import { styles } from "./styles";
 import Header from "@/src/common/components/Header";
+import { useAuthContext } from "@/src/common/context/useAuthContext";
 import { View, Text, ScrollView, Pressable } from "react-native";
 import useTimeTable from "@/src/teacher/hooks/useTimeTable";
 import RenderPeriod from "@/src/common/components/RenderPeriod";
 
 const PreviewTimeTable = () => {
-  const { timeTable, workDays, classId, mentorName } = useTeacherContext();
+  const { timeTable, workDays } = useTeacherContext();
+  const { user } = useAuthContext();
   const { isLoading, publishTimeTable } = useTimeTable();
   return (
     <View style={styles.container}>
       <Header title={"Preview"} />
-      <Text>{classId}</Text>
 
-      <Text>{mentorName}</Text>
       <ScrollView style={styles.scrollViewContainer}>
+        <View>
+          <Text>Class Id : {user?.classId}</Text>
+          <Text>Class Teacher Name : {user?.name}</Text>
+        </View>
         {workDays.map(({ day, holiday }, index) => {
           return (
             <View key={index}>

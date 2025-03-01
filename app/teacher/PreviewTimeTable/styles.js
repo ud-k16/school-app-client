@@ -8,14 +8,14 @@ export const styles = StyleSheet.create({
   },
   scrollViewContainer: {
     flexGrow: 1,
-    rowGap: moderateScale(10),
-    paddingHorizontal: moderateScale(20),
+    paddingHorizontal: moderateScale(10),
   },
   dayTextStyle: {
     fontWeight: 600,
-    fontSize: moderateScale(20),
-    textTransform: "capitalize",
-    color: Themes.lightFadedGreen,
+    fontSize: moderateScale(16),
+    textTransform: "uppercase",
+    color: Themes.textColor,
+    marginTop: moderateScale(10),
   },
   displayStack1: {
     flexDirection: "row",
@@ -26,15 +26,15 @@ export const styles = StyleSheet.create({
     flex: 1,
   },
   holidayText: {
-    color: Themes.textColor,
-    fontSize: moderateScale(15),
-    fontWeight: 600,
+    color: Themes.secondary,
+    fontSize: moderateScale(14),
+    textTransform: "uppercase",
   },
   publishButtonStyle: {
     backgroundColor: Themes.secondary,
     borderRadius: moderateScale(5),
     marginTop: moderateScale(20),
-    width: "60%",
+    width: "50%",
     alignSelf: "center",
     justifyContent: "center",
     alignItems: "center",
@@ -46,8 +46,7 @@ export const styles = StyleSheet.create({
     shadowRadius: 2,
   },
   publishButtonTextStyle: {
-    fontWeight: 600,
-    fontSize: moderateScale(20),
+    fontSize: moderateScale(16),
     color: Themes.white,
   },
 });

@@ -52,7 +52,7 @@ export const styles = StyleSheet.create({
   descriptionTextStyle: {
     color: Themes.greyShade,
   },
-  saveButton: {
+  actionButton: {
     alignSelf: "center",
     width: moderateScale(100),
     height: moderateScale(40),
@@ -61,5 +61,20 @@ export const styles = StyleSheet.create({
     justifyContent: "center",
     color: Themes.white,
     backgroundColor: Themes.secondary,
+  },
+  actionContainer: {
+    alignSelf: "center",
+    flexDirection: "row",
+    width: "80%",
+    justifyContent: "space-evenly",
+  },
+  errorTextStyle: {
+    alignSelf: "center",
+    color: Themes.red,
+    fontWeight: 600,
+  },
+  errorStyle: {
+    borderColor: Themes.red,
+    borderWidth: moderateScale(2),
   },
 });

@@ -18,15 +18,51 @@ const CourseCard = ({
     subject,
     teacher,
     description,
+    subjectError: "",
+    teacherError: "",
+    descriptionError: "",
   });
   const showEdit = () => setEditVisible(true);
   const hideEdit = () => setEditVisible(false);
+  const validation = () => {
+    if (state.subject && state.description && state.teacher) {
+      onEdit({
+        index,
+        subject: state.subject,
+        teacher: state.teacher,
+        description: state.description,
+      });
+      hideEdit();
+    } else {
+      setState((prev) => ({
+        ...prev,
+        subjectError: !Boolean(prev.subject),
+        teacherError: !Boolean(prev.teacher),
+        descriptionError: !Boolean(prev.description),
+      }));
+    }
+  };
+  const resetState = () => {
+    hideEdit();
+    setState((prev) => ({
+      ...prev,
+      subject,
+      description,
+      teacher,
+      subjectError: "",
+      teacherError: "",
+      descriptionError: "",
+    }));
+  };
   return (
     <View style={styles.container}>
       {!!editVisible && !!editable ? (
         <View style={styles.editContainer}>
           <TextInput
-            style={styles.textInputStyle}
+            style={[
+              styles.textInputStyle,
+              state.subjectError && styles.errorStyle,
+            ]}
             defaultValue={subject ?? ""}
             placeholder="Course name"
             onChangeText={(text) =>
@@ -37,9 +73,18 @@ const CourseCard = ({
             }
           />
           <TextInput
-            style={styles.textInputStyle}
+            style={[
+              styles.textInputStyle,
+              state.teacherError && styles.errorStyle,
+            ]}
             defaultValue={teacher ?? ""}
             placeholder="Teacher incharge"
+            onChangeText={(text) =>
+              setState((prev) => ({
+                ...prev,
+                teacher: text,
+              }))
+            }
           />
           <TextInput
             multiline
@@ -48,22 +93,38 @@ const CourseCard = ({
             style={[
               styles.textInputStyle,
               { height: moderateScale(100), textAlignVertical: "top" },
+              state.descriptionError && styles.errorStyle,
             ]}
+            onChangeText={(text) =>
+              setState((prev) => ({
+                ...prev,
+                description: text,
+              }))
+            }
           />
-          <Pressable
-            style={styles.saveButton}
-            onPress={() => {
-              onEdit({
-                index,
-                subject: state.subject,
-                teacher: state.teacher,
-                description: state.description,
-              });
-              hideEdit();
-            }}
-          >
-            <Text style={{ color: styles.saveButton.color }}>Save</Text>
-          </Pressable>
+          {(state.descriptionError ||
+            state.subjectError ||
+            state.teacherError) && (
+            <Text style={styles.errorTextStyle}> *Fill All Fields</Text>
+          )}
+          <View style={styles.actionContainer}>
+            <Pressable
+              style={styles.actionButton}
+              onPress={() => {
+                resetState();
+              }}
+            >
+              <Text style={{ color: styles.actionButton.color }}>Cancel</Text>
+            </Pressable>
+            <Pressable
+              style={styles.actionButton}
+              onPress={() => {
+                validation();
+              }}
+            >
+              <Text style={{ color: styles.actionButton.color }}>Save</Text>
+            </Pressable>
+          </View>
         </View>
       ) : (
         <View style={styles.courseDatacontainer}>

@@ -18,7 +18,7 @@ const PeriodInfoEdit = ({ hideModal = () => {}, day = "" }) => {
     addValidPeriodDataToRespectiveDay,
     minuteCreationFunction,
   } = usePeriodModal();
-  const { addPeriodOfDay } = useTeacherContext();
+  const { addPeriodOfDay, course } = useTeacherContext();
   return (
     <View style={styles.container}>
       <AntDesign
@@ -40,7 +40,11 @@ const PeriodInfoEdit = ({ hideModal = () => {}, day = "" }) => {
         <DropDown
           style={styles.textInputStyle}
           placeHolder="Course"
+          data={course}
+          valueField="subject"
+          labelField="subject"
           placeHolderStyle={styles.dropdownPlaceHolderStyle}
+          onChange={(text) => setState((prev) => ({ ...prev, subject: text }))}
         />
         <Text style={styles.errorTextStyle}>{subjectError}</Text>
         <Text style={styles.inputTitleTextStyle}>Start Time</Text>

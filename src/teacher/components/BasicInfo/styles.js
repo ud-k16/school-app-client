@@ -12,12 +12,26 @@ export const styles = StyleSheet.create({
     fontSize: moderateScale(15),
     textAlign: "center",
   },
-  textInputStyle: {
+  infoStyle: {
     alignSelf: "center",
-    width: "95%",
+    width: "90%",
     height: moderateScale(60),
+    backgroundColor: Themes.white,
+    // elevation: 6,
+    borderColor: Themes.greyShade,
+    paddingHorizontal: moderateScale(10),
+    paddingTop: moderateScale(2),
     borderWidth: moderateScale(2),
     borderRadius: moderateScale(5),
-    paddingHorizontal: moderateScale(10),
+  },
+  textStyle: {
+    textAlign: "center",
+    textAlignVertical: "center",
+    fontSize: moderateScale(16),
+    color: Themes.greyShade,
+  },
+  infoHeaderText: {
+    fontSize: moderateScale(10),
+    color: Themes.secondary,
   },
 });

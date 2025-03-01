@@ -123,7 +123,7 @@ const StudentContextProvider = ({ children }) => {
     user?.classId &&
       user?.user_type === "student" &&
       initializeFetchRequestForStudent();
-  }, [user?.classId]);
+  }, [user?.classId, user?.user_type]);
   return (
     <StudentContext.Provider value={{ ...state, setState }}>
       {children}

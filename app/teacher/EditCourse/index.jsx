@@ -7,7 +7,7 @@ import moderateScale from "@/src/utils/responsiveScale";
 
 const EditCourse = () => {
   const { course, isLoading } = useTeacherContext();
-  const { deleteCourse } = useCourse();
+  const { deleteCourse, editCourse } = useCourse();
   if (isLoading)
     return (
       <View>
@@ -24,12 +24,14 @@ const EditCourse = () => {
             return (
               <CourseCard
                 key={index}
+                index={index}
                 subject={coursedata.subject}
                 description={coursedata.description}
                 teacher={coursedata.teacher}
                 onDelete={() => {
                   deleteCourse(index);
                 }}
+                onEdit={editCourse}
               />
             );
           })}

@@ -33,7 +33,7 @@ const TeacherHome = () => {
           title="Courses"
           onCardPress={() => {
             router.navigate({
-              pathname: "/teacher/EntireTimeTable",
+              pathname: "/teacher/ViewCourse",
             });
           }}
           onEdit={() => {

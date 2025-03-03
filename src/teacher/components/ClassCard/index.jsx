@@ -9,38 +9,58 @@ import { router } from "expo-router";
 const ClassCard = ({
   title = "",
   onEdit = () => {},
-  onPublish = () => {},
   onCardPress = () => {},
 }) => {
   const { user } = useAuthContext();
   return (
-    <Pressable style={styles.container} onPress={onCardPress}>
+    <Pressable style={styles.container}>
       <View style={styles.classIdContainer}>
         <Text style={styles.classIdTextStyle}>{title}</Text>
       </View>
-      <View style={styles.statusContainer}>
+      {/* <View style={styles.statusContainer}>
         <Text style={styles.statusTextStyle}>{"Status : "}</Text>
         <Text
           style={[styles.statusTextStyle, { color: Themes.lightFadedGreen }]}
         >
           {"Published"}
         </Text>
-      </View>
-
+      </View> */}
       <View style={styles.displayStack1}>
         <Pressable style={styles.displayStack2} onPress={onEdit}>
+          <MaterialCommunityIcons
+            name="file-document-edit-outline"
+            size={30}
+            color="black"
+          />
+          <Text style={styles.editTextStyle}>Edit</Text>
+        </Pressable>
+        <Pressable style={styles.displayStack2} onPress={onCardPress}>
+          <MaterialIcons name="table-view" size={30} color="black" />
+          <Text style={styles.editTextStyle}>View</Text>
+        </Pressable>
+      </View>
+      {/* <Pressable style={styles.displayStack2} onPress={onEdit}>
+        <MaterialCommunityIcons
+          name="file-document-edit-outline"
+          size={30}
+          color="black"
+        />
+        <Text style={styles.editTextStyle}>Edit</Text>
+      </Pressable> */}
+      {/* <View style={styles.displayStack1}> */}
+      {/* <Pressable style={styles.displayStack2} onPress={onEdit}>
           <MaterialCommunityIcons
             name="file-document-edit-outline"
             size={24}
             color="black"
           />
           <Text>Edit</Text>
-        </Pressable>
-        <Pressable style={styles.displayStack2} onPress={onPublish}>
+        </Pressable> */}
+      {/* <Pressable style={styles.displayStack2} onPress={onPublish}>
           <MaterialIcons name="table-view" size={24} color="black" />
           <Text>Publish</Text>
-        </Pressable>
-      </View>
+        </Pressable> */}
+      {/* </View>  */}
     </Pressable>
   );
 };

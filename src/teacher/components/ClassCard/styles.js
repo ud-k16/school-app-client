@@ -32,12 +32,18 @@ export const styles = StyleSheet.create({
     fontWeight: 600,
   },
   displayStack1: {
+    flex: 1,
     flexDirection: "row",
     justifyContent: "space-evenly",
     alignItems: "center",
   },
   displayStack2: {
+    flex: 1,
     justifyContent: "center",
     alignItems: "center",
+  },
+  editTextStyle: {
+    fontSize: moderateScale(16),
+    fontWeight: 600,
   },
 });

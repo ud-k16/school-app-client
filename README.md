@@ -34,18 +34,42 @@ every body login with common login page , gets differentiated in the application
 signup page is yet to be developed
 two test login credentials are available to access the app for respective user type
 Both student/teacher has a classId
-A student has view access to both time table and course of the class they are in
+A student has view access to both time table and course of the class they belong
 A Teacher can view,create,edit both time table and course data for the class they are incharge.
 Both Teacher and Student can chat with Gemini API [Gemini api is integrated]
 
-# server
+# Teacher
+
+A teacher has a home screen with time table and course card
+both card contains option to view current published respective data and an option to edit it to publish with updated value
+
+menu bar from header section for teacher includes
+gemini ai ==> chat page navigation
+logout ==> logouts the user
+
+# Student
+
+A student is presented with 3 tabs
+first tab ==> todays time table,
+second tab ==> courses data
+third tab ==> gemini AI chat
+
+menu bar from header section for student includes
+Schedule ==> display entire time table for week
+course ==> migrates to courses page
+gemini ai ==> chat page navigation
+logout ==> logouts the user
+
+## server
 
 A Nodejs backend server is involved in login,view/edit of timetable and course
 this server also host gemini api request for client
 login is not developed entirely, as of now no database is involved
 Major focus of the App is in TimeTable and Course data
 
-# Database
+APIs for timetable/courses update,login
+
+## Database
 
 RXDB is used for database,
 It is a NoSql DB , with the syntax of MongoDB

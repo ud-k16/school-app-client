@@ -152,7 +152,7 @@ const EditCourse = () => {
                 teacher={coursedata.teacher}
                 editable={true}
                 onDelete={() => {
-                  deleteCourse(index);
+                  deleteCourse({ index });
                 }}
                 onEdit={editCourse}
               />

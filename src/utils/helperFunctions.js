@@ -25,6 +25,6 @@ export const fetchWithTimeOut = async ({
     return response;
   } catch (error) {
     console.log("Error occured in the Fetch With TimeOut Function", error);
-    throw new Error(error);
+    throw new Error("Error" + error);
   }
 };

@@ -61,8 +61,8 @@ const useCourse = () => {
     }
   };
   return {
-    ...state,
-    setState,
+    // ...state,
+    // setState,
     insertCourse,
     editCourse,
     deleteCourse,

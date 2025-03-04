@@ -17,7 +17,7 @@ import { useState } from "react";
 
 const EditCourse = () => {
   const { course, isLoading } = useTeacherContext();
-  const { deleteCourse, editCourse, insertCourse } = useCourse();
+  const { deleteCourse, editCourse, insertCourse, publishCourse } = useCourse();
   const [state, setState] = useState({
     addCourse: false,
     subject: "",
@@ -160,6 +160,16 @@ const EditCourse = () => {
           })}
         </View>
       </ScrollView>
+      {course && (
+        <Pressable
+          style={[styles.actionButton, styles.publishButton]}
+          onPress={publishCourse}
+        >
+          <Text style={{ color: styles.actionButton.color }}>
+            Publish Course
+          </Text>
+        </Pressable>
+      )}
     </View>
   );
 };
@@ -223,6 +233,10 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     color: Themes.white,
     backgroundColor: Themes.secondary,
+  },
+  publishButton: {
+    marginVertical: moderateScale(10),
+    borderRadius: moderateScale(0),
   },
 });
 export default EditCourse;

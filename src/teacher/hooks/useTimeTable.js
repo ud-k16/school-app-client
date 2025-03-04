@@ -1,11 +1,14 @@
 import { useState } from "react";
 import Constants from "expo-constants";
 import { useTeacherContext } from "../context/useTeacherContext";
+import { useAuthContext } from "@/src/common/context/useAuthContext";
+
 const useTimeTable = () => {
   const [state, setState] = useState({
     isLoading: false,
   });
-  const { timeTable, classId } = useTeacherContext();
+  const { user } = useAuthContext();
+  const { timeTable } = useTeacherContext();
   const { API_URL } = Constants.expoConfig.extra;
 
   const publishTimeTable = async () => {
@@ -15,7 +18,7 @@ const useTimeTable = () => {
       setState((prev) => ({ ...prev, isLoading: true }));
       // modifying map to multidimention array to send to server
       const entries = Array.from(timeTable);
-      const data = { id: classId, timeTable: entries };
+      const data = { id: user?.classId, timeTable: entries };
       console.log("sending time table data to server : ", data);
       // request option object
       const requestOptions = {
@@ -33,6 +36,7 @@ const useTimeTable = () => {
       setState((prev) => ({ ...prev, isLoading: false }));
     } catch (error) {
       console.log("Publish time table error", error);
+      setState((prev) => ({ ...prev, isLoading: false }));
     }
   };
   return {

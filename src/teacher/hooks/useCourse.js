@@ -68,6 +68,8 @@ const useCourse = () => {
       // set loading indicator false
       setState((prev) => ({ ...prev, isLoading: false }));
     } catch (error) {
+      setState((prev) => ({ ...prev, isLoading: false }));
+      alert("unable to publish course");
       console.log(error);
     }
   };

@@ -2,9 +2,10 @@
 import { useTeacherContext } from "@/src/teacher/context/useTeacherContext";
 import { useAuthContext } from "@/src/common/context/useAuthContext";
 import { fetchWithTimeOut } from "@/src/utils/helperFunctions";
+import Constants from "expo-constants";
 
 const useCourse = () => {
-  // const [state, setState] = useState();
+  const { API_URL } = Constants.expoConfig.extra;
   const { user } = useAuthContext();
   const { setState: setTeacherContext, course } = useTeacherContext();
   const editCourse = ({ index, subject, teacher, description }) => {
@@ -21,11 +22,21 @@ const useCourse = () => {
   };
   const insertCourse = ({ subject, description, teacher }) => {
     setTeacherContext((prev) => {
-      prev.course.push({
-        subject,
-        teacher,
-        description,
-      });
+      if (prev.course)
+        prev.course.push({
+          subject,
+          teacher,
+          description,
+        });
+      else {
+        prev.course = [
+          {
+            subject,
+            teacher,
+            description,
+          },
+        ];
+      }
       return { ...prev };
     });
   };

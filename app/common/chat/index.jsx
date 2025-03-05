@@ -10,6 +10,8 @@ import {
 import MaterialIcons from "@expo/vector-icons/MaterialIcons";
 import useAIChat from "@/src/common/hooks/useAIChat";
 import Header from "@/src/common/components/Header";
+import { Themes } from "@/src/utils/themes";
+import moderateScale from "@/src/utils/responsiveScale";
 
 const AIChat = () => {
   const {
@@ -97,20 +99,20 @@ const styles = StyleSheet.create({
     marginVertical: 10,
   },
   questionContainer: {
-    padding: 5,
+    padding: moderateScale(10),
     color: "white",
-    borderRadius: 5,
-    backgroundColor: "green",
+    borderRadius: moderateScale(18),
+    borderTopRightRadius: 0,
+    backgroundColor: Themes.secondary,
     alignSelf: "flex-end",
     width: "50%",
   },
   answerContainer: {
     padding: 5,
-    color: "white",
+    color: Themes.textColor,
     borderRadius: 5,
-    backgroundColor: "green",
+
     left: 0,
-    width: "50%",
   },
 });
 export default AIChat;

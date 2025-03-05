@@ -20,11 +20,15 @@ const EntireTimeTable = () => {
       <Header title="Time Table " />
       <ScrollView contentContainerStyle={styles.scrollViewContainer}>
         {Constants.common.weekdays.map((weekDay, index) => (
-          <View style={styles.weekDayTextContainer} key={index}>
+          <View key={index}>
             <Text style={styles.weekDaysTextStyle}>{weekDay}</Text>
-            {timeTable.get(weekDay)?.map((period) => (
-              <RenderPeriod period={period} />
-            ))}
+            {timeTable.get(weekDay) ? (
+              timeTable
+                .get(weekDay)
+                ?.map((period) => <RenderPeriod period={period} />)
+            ) : (
+              <Text style={styles.holidayText}>Holiday</Text>
+            )}
           </View>
         ))}
       </ScrollView>
@@ -54,6 +58,11 @@ const styles = StyleSheet.create({
     fontSize: moderateScale(20),
     color: Themes.textColor,
     width: "100%",
+  },
+  holidayText: {
+    color: Themes.secondary,
+    fontSize: moderateScale(14),
+    textTransform: "uppercase",
   },
 });
 

@@ -62,7 +62,7 @@ const useCourse = () => {
         body: JSON.stringify(data),
       };
       const url = `${API_URL}/course/publish`;
-      const response = await fetchWithTimeOut(url, requestOptions);
+      const response = await fetchWithTimeOut({ url, requestOptions });
       const result = await response.json();
       console.log("Response from server on publish of course", result);
       // set loading indicator false

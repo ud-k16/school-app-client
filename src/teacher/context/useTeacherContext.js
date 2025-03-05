@@ -10,7 +10,12 @@ const TeacherContextProvider = ({ children }) => {
   const { API_URL } = Constants.expoConfig.extra;
   const [state, setState] = useState({
     isLoading: true,
+    // stores course data for edit
     course: null,
+    // stores course fetched from server [latest published course available]
+    coursePosted: null,
+    // stores published time table[latest one]
+    timeTablePosted: new Map(),
   });
   const { user } = useAuthContext();
   // variable to hold info about working weekdays in the timetable
@@ -135,7 +140,10 @@ const TeacherContextProvider = ({ children }) => {
           //  storing fetched time table to local storage
           // await setTimeTable(JSON.stringify(result?.data.time_table));
 
-          setTimeTable(new Map(result.data.time_table));
+          setState((prev) => ({
+            ...prev,
+            timeTablePosted: new Map(result.data.time_table),
+          }));
         }
       }
     } catch (error) {
@@ -176,7 +184,7 @@ const TeacherContextProvider = ({ children }) => {
 
           setState((prev) => ({
             ...prev,
-            course: result.data.course,
+            coursePosted: result.data.course,
           }));
         }
       }

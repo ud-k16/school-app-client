@@ -7,12 +7,12 @@ import moderateScale from "@/src/utils/responsiveScale";
 import { Themes } from "@/src/utils/themes";
 
 const EntireTimeTable = () => {
-  const { timeTable, isLoading } = useTeacherContext();
+  const { timeTablePosted, isLoading } = useTeacherContext();
 
   if (isLoading)
     return (
       <View>
-        <Text>Loaading</Text>
+        <Text>Loading</Text>
       </View>
     );
   return (
@@ -22,8 +22,8 @@ const EntireTimeTable = () => {
         {Constants.common.weekdays.map((weekDay, index) => (
           <View key={index}>
             <Text style={styles.weekDaysTextStyle}>{weekDay}</Text>
-            {timeTable.get(weekDay) ? (
-              timeTable
+            {timeTablePosted.get(weekDay) ? (
+              timeTablePosted
                 .get(weekDay)
                 ?.map((period) => <RenderPeriod period={period} />)
             ) : (

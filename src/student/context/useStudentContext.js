@@ -73,6 +73,7 @@ const StudentContextProvider = ({ children }) => {
       }
     } catch (error) {
       console.log("Fetch Latest Time Table Error", error);
+      throw error;
     }
   };
   const fetchLatestCourseData = async () => {
@@ -108,16 +109,23 @@ const StudentContextProvider = ({ children }) => {
       }
     } catch (error) {
       console.log("Fetch Latest course  Error", error);
+      throw error;
     }
   };
 
   const initializeFetchRequestForStudent = async () => {
-    //  course/time_table fetch indication set to true
-    setState((prev) => ({ ...prev, isLoading: true }));
-    await fetchLatestTimeTable();
-    await fetchLatestCourseData();
-    //  course/time_table fetch indication set to false
-    setState((prev) => ({ ...prev, isLoading: false }));
+    try {
+      //  course/time_table fetch indication set to true
+      setState((prev) => ({ ...prev, isLoading: true }));
+      await fetchLatestTimeTable();
+      await fetchLatestCourseData();
+      //  course/time_table fetch indication set to false
+      setState((prev) => ({ ...prev, isLoading: false }));
+    } catch (error) {
+      //  course/time_table fetch indication set to false
+      setState((prev) => ({ ...prev, isLoading: false }));
+      alert("Something went wrong....");
+    }
   };
   useEffect(() => {
     user?.classId &&

@@ -15,44 +15,51 @@ const useLogin = () => {
   const { setState: setAuthState } = useAuthContext();
 
   const authenticateUser = async ({}) => {
-    setState((prev) => ({
-      ...prev,
-      isLoading: true,
-    }));
-    const data = {
-      userId: state.userId,
-      password: state.password,
-    };
-    const requestOptions = {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(data),
-    };
-    const response = await fetchWithTimeOut({
-      url: `${API_URL}/auth/login`,
-      requestOptions,
-    });
-
-    const result = await response.json();
-
-    if (result.status) {
-      await setUser(JSON.stringify(result?.data));
-      // updating auth context values
-      setAuthState((prev) => {
-        return {
-          ...prev,
-          authenticated: true,
-          user: result.data,
-        };
+    try {
+      setState((prev) => ({
+        ...prev,
+        isLoading: true,
+      }));
+      const data = {
+        userId: state.userId,
+        password: state.password,
+      };
+      const requestOptions = {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+      };
+      const response = await fetchWithTimeOut({
+        url: `${API_URL}/auth/login`,
+        requestOptions,
       });
+
+      const result = await response.json();
+      if (result.status) {
+        await setUser(JSON.stringify(result?.data));
+        // updating auth context values
+        setAuthState((prev) => {
+          return {
+            ...prev,
+            authenticated: true,
+            user: result.data,
+          };
+        });
+      }
+      // toggle loading indicator
+      setState((prev) => ({
+        ...prev,
+        isLoading: false,
+      }));
+    } catch (error) {
+      setState((prev) => ({
+        ...prev,
+        isLoading: false,
+      }));
+      alert("Something went wrong, Try after Sometime");
     }
-    // toggle loading indicator
-    setState((prev) => ({
-      ...prev,
-      isLoading: false,
-    }));
   };
 
   return {

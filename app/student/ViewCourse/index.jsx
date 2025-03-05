@@ -4,6 +4,7 @@ import { useStudentContext } from "@/src/student/context/useStudentContext";
 import CourseCard from "../../../src/common/components/CourseCard";
 import Header from "../../../src/common/components/Header";
 import moderateScale from "@/src/utils/responsiveScale";
+import EmptyContent from "@/app/common/EmptyScreen";
 
 const ViewCourse = () => {
   const { course, isLoading } = useStudentContext();
@@ -14,24 +15,29 @@ const ViewCourse = () => {
         <Text>Loading ...</Text>
       </View>
     );
+
   return (
     <View style={styles.container}>
       <Header title={"Courses"} />
-      <ScrollView contentContainerStyle={styles.scrollViewContainer}>
-        <View>
-          {course?.map((coursedata, index) => {
-            return (
-              <CourseCard
-                key={index}
-                index={index}
-                subject={coursedata.subject}
-                description={coursedata.description}
-                teacher={coursedata.teacher}
-              />
-            );
-          })}
-        </View>
-      </ScrollView>
+      {course ? (
+        <ScrollView contentContainerStyle={styles.scrollViewContainer}>
+          <View>
+            {course?.map((coursedata, index) => {
+              return (
+                <CourseCard
+                  key={index}
+                  index={index}
+                  subject={coursedata.subject}
+                  description={coursedata.description}
+                  teacher={coursedata.teacher}
+                />
+              );
+            })}
+          </View>
+        </ScrollView>
+      ) : (
+        <EmptyContent />
+      )}
     </View>
   );
 };

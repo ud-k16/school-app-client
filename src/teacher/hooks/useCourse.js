@@ -3,6 +3,7 @@ import { useTeacherContext } from "@/src/teacher/context/useTeacherContext";
 import { useAuthContext } from "@/src/common/context/useAuthContext";
 import { fetchWithTimeOut } from "@/src/utils/helperFunctions";
 import Constants from "expo-constants";
+import { router } from "expo-router";
 
 const useCourse = () => {
   const { API_URL } = Constants.expoConfig.extra;
@@ -66,10 +67,11 @@ const useCourse = () => {
       const result = await response.json();
       console.log("Response from server on publish of course", result);
       // set loading indicator false
-      setState((prev) => ({ ...prev, isLoading: false }));
+      setTeacherContext((prev) => ({ ...prev, isLoading: false }));
+      router.navigate("/common/publish/successful");
     } catch (error) {
-      setState((prev) => ({ ...prev, isLoading: false }));
-      alert("unable to publish course");
+      setTeacherContext((prev) => ({ ...prev, isLoading: false }));
+      router.navigate("/common/publish/failure");
       console.log(error);
     }
   };

@@ -4,6 +4,7 @@ import { useTeacherContext } from "@/src/teacher/context/useTeacherContext";
 import CourseCard from "../../../src/common/components/CourseCard";
 import Header from "../../../src/common/components/Header";
 import moderateScale from "@/src/utils/responsiveScale";
+import EmptyContent from "../../common/EmptyScreen";
 
 const ViewCourse = () => {
   const { course, isLoading } = useTeacherContext();
@@ -14,6 +15,7 @@ const ViewCourse = () => {
         <Text>Loading ...</Text>
       </View>
     );
+  if (!course) return <EmptyContent />;
   return (
     <View style={styles.container}>
       <Header title={"Courses"} />

@@ -53,6 +53,7 @@ const useAiChat = () => {
         ...prev,
         isLoading: false,
       }));
+      alert("Something went wrong, Try after Sometime");
     }
   };
   useEffect(() => {

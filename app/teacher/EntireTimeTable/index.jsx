@@ -1,9 +1,10 @@
-import { styles } from "./styles";
-import { ScrollView, Text, View } from "react-native";
+import { ScrollView, StyleSheet, Text, View } from "react-native";
 import { Constants } from "@/src/common/constants";
 import Header from "@/src/common/components/Header";
 import { useTeacherContext } from "@/src/teacher/context/useTeacherContext";
 import RenderPeriod from "@/src/common/components/RenderPeriod";
+import moderateScale from "@/src/utils/responsiveScale";
+import { Themes } from "@/src/utils/themes";
 
 const EntireTimeTable = () => {
   const { timeTable, isLoading } = useTeacherContext();
@@ -30,4 +31,30 @@ const EntireTimeTable = () => {
     </View>
   );
 };
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    rowGap: moderateScale(10),
+  },
+  scrollViewContainer: {
+    flexGrow: 1,
+    rowGap: moderateScale(10),
+  },
+  weekDayTextContainer: {
+    justifyContent: "center",
+    alignItems: "center",
+    width: "90%",
+    alignSelf: "center",
+    minHeight: moderateScale(60),
+    marginBottom: moderateScale(10),
+  },
+  weekDaysTextStyle: {
+    textTransform: "uppercase",
+    fontWeight: 600,
+    fontSize: moderateScale(20),
+    color: Themes.textColor,
+    width: "100%",
+  },
+});
+
 export default EntireTimeTable;

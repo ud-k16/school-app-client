@@ -15,25 +15,29 @@ const ViewCourse = () => {
         <Text>Loading ...</Text>
       </View>
     );
-  if (!course) return <EmptyContent />;
+
   return (
     <View style={styles.container}>
       <Header title={"Courses"} />
-      <ScrollView contentContainerStyle={styles.scrollViewContainer}>
-        <View>
-          {course?.map((coursedata, index) => {
-            return (
-              <CourseCard
-                key={index}
-                index={index}
-                subject={coursedata.subject}
-                description={coursedata.description}
-                teacher={coursedata.teacher}
-              />
-            );
-          })}
-        </View>
-      </ScrollView>
+      {course ? (
+        <ScrollView contentContainerStyle={styles.scrollViewContainer}>
+          <View>
+            {course?.map((coursedata, index) => {
+              return (
+                <CourseCard
+                  key={index}
+                  index={index}
+                  subject={coursedata.subject}
+                  description={coursedata.description}
+                  teacher={coursedata.teacher}
+                />
+              );
+            })}
+          </View>
+        </ScrollView>
+      ) : (
+        <EmptyContent />
+      )}
     </View>
   );
 };

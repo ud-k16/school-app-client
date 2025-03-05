@@ -20,8 +20,8 @@ const TeacherContextProvider = ({ children }) => {
     { day: "wednesday", holiday: false },
     { day: "thursday", holiday: false },
     { day: "friday", holiday: false },
-    { day: "saturday", holiday: true },
-    { day: "sunday", holiday: true },
+    { day: "saturday", holiday: false },
+    { day: "sunday", holiday: false },
   ]);
 
   // variable that holds periods data for the respective day

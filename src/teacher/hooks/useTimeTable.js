@@ -37,12 +37,12 @@ const useTimeTable = () => {
       // set loading indicator false
       setState((prev) => ({ ...prev, isLoading: false }));
       // show success
-      router.navigate("/common/successful");
+      router.navigate("/common/publish/successful");
     } catch (error) {
       console.log("Publish time table error", error);
       setState((prev) => ({ ...prev, isLoading: false }));
       // show failure
-      router.navigate("/common/failure");
+      router.navigate("/common/publish/failure");
     }
   };
   return {

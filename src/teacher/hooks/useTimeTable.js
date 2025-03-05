@@ -2,6 +2,8 @@ import { useState } from "react";
 import Constants from "expo-constants";
 import { useTeacherContext } from "../context/useTeacherContext";
 import { useAuthContext } from "@/src/common/context/useAuthContext";
+import { fetchWithTimeOut } from "@/src/utils/helperFunctions";
+import { router } from "expo-router";
 
 const useTimeTable = () => {
   const [state, setState] = useState({
@@ -29,14 +31,18 @@ const useTimeTable = () => {
         body: JSON.stringify(data),
       };
       const url = `${API_URL}/timetable/publish`;
-      const response = await fetch(url, requestOptions);
+      const response = await fetchWithTimeOut({ url, requestOptions });
       const result = await response.json();
       console.log("Response from server on publish of time table", result);
       // set loading indicator false
       setState((prev) => ({ ...prev, isLoading: false }));
+      // show success
+      router.navigate("/common/successful");
     } catch (error) {
       console.log("Publish time table error", error);
       setState((prev) => ({ ...prev, isLoading: false }));
+      // show failure
+      router.navigate("/common/failure");
     }
   };
   return {

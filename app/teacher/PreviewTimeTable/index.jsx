@@ -40,9 +40,13 @@ const PreviewTimeTable = () => {
 
         <Pressable
           style={styles.publishButtonStyle}
-          onPress={() => {
-            publishTimeTable();
-          }}
+          onPress={
+            isLoading
+              ? null
+              : () => {
+                  publishTimeTable();
+                }
+          }
         >
           <Text style={styles.publishButtonTextStyle}>Publish</Text>
         </Pressable>

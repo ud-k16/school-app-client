@@ -40,7 +40,7 @@ const PeriodInfoEdit = ({ hideModal = () => {}, day = "" }) => {
         <DropDown
           style={styles.textInputStyle}
           placeHolder="Course"
-          data={course}
+          data={course ?? []}
           valueField="subject"
           labelField="subject"
           placeHolderStyle={styles.dropdownPlaceHolderStyle}
@@ -137,6 +137,7 @@ const PeriodInfoEdit = ({ hideModal = () => {}, day = "" }) => {
               day,
               callback: addPeriodOfDay,
             });
+            hideModal();
           }}
         >
           <Text style={styles.saveButtonTextStyle}>Save</Text>

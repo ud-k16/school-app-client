@@ -28,7 +28,7 @@ const UpdatePeriodsForDay = () => {
         {timeTable.get(dayOfWeek)?.length > 0 &&
           timeTable.get(dayOfWeek)?.map((period, index) => {
             return (
-              <View style={styles.periodDisplayCardContainer}>
+              <View style={styles.periodDisplayCardContainer} key={index}>
                 <View style={styles.displayStackData}>
                   <Text style={styles.periodTextStyle}>{period.time}</Text>
                   <Text style={styles.subjectTextStyle}>

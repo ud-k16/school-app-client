@@ -2,7 +2,6 @@ import moderateScale from "@/src/utils/responsiveScale";
 import FontAwesome5 from "@expo/vector-icons/FontAwesome5";
 import { Pressable, ScrollView, StyleSheet, Text, View } from "react-native";
 import PeriodInfoEdit from "@/src/teacher/components/PeriodInfoEdit";
-import CustomModalComponent from "@/src/common/components/Modal";
 import { useTeacherContext } from "@/src/teacher/context/useTeacherContext";
 import MaterialIcons from "@expo/vector-icons/MaterialIcons";
 import AntDesign from "@expo/vector-icons/AntDesign";
@@ -71,23 +70,28 @@ const UpdatePeriodsForDay = () => {
           })}
       </ScrollView>
 
-      <CustomModalComponent
-        visibility={addPeriodModalVisibility}
-        hideModal={hideModal}
-      >
-        <PeriodInfoEdit hideModal={hideModal} day={dayOfWeek} />
-      </CustomModalComponent>
+      {addPeriodModalVisibility && (
+        <View
+          style={{
+            backgroundColor: "rgba(0, 0, 0, 0.7)",
+            position: "absolute",
+            width: "100%",
+            height: "100%",
+          }}
+        >
+          <PeriodInfoEdit hideModal={hideModal} day={dayOfWeek} />
+        </View>
+      )}
     </View>
   );
 };
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    padding: moderateScale(15),
-    rowGap: moderateScale(10),
   },
   scrollViewContainer: {
     flexGrow: 1,
+    padding: moderateScale(15),
   },
   weekDayTextStyle: {
     fontWeight: 600,
@@ -98,6 +102,8 @@ const styles = StyleSheet.create({
     textTransform: "uppercase",
   },
   displayStack1: {
+    padding: moderateScale(15),
+
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "space-between",

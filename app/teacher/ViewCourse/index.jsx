@@ -7,7 +7,7 @@ import moderateScale from "@/src/utils/responsiveScale";
 import EmptyContent from "../../common/EmptyScreen";
 
 const ViewCourse = () => {
-  const { course, isLoading } = useTeacherContext();
+  const { coursePosted: course, isLoading } = useTeacherContext();
 
   if (isLoading)
     return (

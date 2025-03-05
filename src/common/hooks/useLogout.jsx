@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useAsyncStorage } from "@react-native-async-storage/async-storage";
 import { useAuthContext } from "../context/useAuthContext";
+import { router } from "expo-router";
 
 const useLogout = () => {
   const [state, setState] = useState({
@@ -8,7 +9,7 @@ const useLogout = () => {
   });
 
   const { removeItem: removeUser } = useAsyncStorage("user");
-  const { removeItem: removeTimeTable } = useAsyncStorage("timeTable");
+  // const { removeItem: removeTimeTable } = useAsyncStorage("timeTable");
   const { setState: setAuthState } = useAuthContext();
 
   const logoutUser = async () => {
@@ -19,8 +20,10 @@ const useLogout = () => {
     }));
     // clearing local storage of user
     await removeUser();
-    // clearing local storage of timetable
-    await removeTimeTable();
+    // // clearing local storage of timetable
+    // await removeTimeTable();
+    // reset navigation object
+    router.dismissAll();
     // setting auth state for render logic to show login page
     setAuthState((prev) => {
       return {

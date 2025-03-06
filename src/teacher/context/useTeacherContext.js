@@ -16,6 +16,8 @@ const TeacherContextProvider = ({ children }) => {
     coursePosted: null,
     // stores published time table[latest one]
     timeTablePosted: new Map(),
+    // socket instance
+    ws: new WebSocket(`ws://192.168.1.7:5004`),
   });
   const { user } = useAuthContext();
   // variable to hold info about working weekdays in the timetable
@@ -209,9 +211,18 @@ const TeacherContextProvider = ({ children }) => {
     }
   };
   useEffect(() => {
+    state.ws.onopen = () => {
+      console.log("connected to socket");
+    };
+
     user?.classId &&
       user?.user_type === "teacher" &&
       initializeFetchRequestForTeacher();
+
+    return () => {
+      // closing websocket on unmount
+      state.ws.close();
+    };
   }, [user?.classId]);
 
   return (

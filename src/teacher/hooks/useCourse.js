@@ -4,11 +4,13 @@ import { useAuthContext } from "@/src/common/context/useAuthContext";
 import { fetchWithTimeOut } from "@/src/utils/helperFunctions";
 import Constants from "expo-constants";
 import { router } from "expo-router";
+import { useAsyncStorage } from "@react-native-async-storage/async-storage";
 
 const useCourse = () => {
   const { API_URL } = Constants.expoConfig.extra;
   const { user } = useAuthContext();
   const { setState: setTeacherContext, course } = useTeacherContext();
+  const { setItem: setCourse } = useAsyncStorage("course");
   const editCourse = ({ index, subject, teacher, description }) => {
     setTeacherContext((prev) => {
       prev.course[index] = {

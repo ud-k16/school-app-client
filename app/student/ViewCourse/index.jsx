@@ -14,7 +14,8 @@ import EmptyContent from "@/app/common/EmptyScreen";
 import { useEffect } from "react";
 
 const ViewCourse = () => {
-  const { course, isLoading, fetchLatestCourseData } = useStudentContext();
+  const { course, isLoading, fetchLatestCourseData, setState } =
+    useStudentContext();
 
   useEffect(() => {
     loadCourse();

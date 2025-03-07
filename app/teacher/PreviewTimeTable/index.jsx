@@ -17,7 +17,7 @@ const PreviewTimeTable = () => {
       <Header title={"Preview"} />
 
       <ScrollView style={styles.scrollViewContainer}>
-        <View>
+        <View style={{ marginVertical: moderateScale(10) }}>
           <Text>Class Id : {user?.classId}</Text>
           <Text>Class Teacher Name : {user?.name}</Text>
         </View>
@@ -29,28 +29,27 @@ const PreviewTimeTable = () => {
                 <Text style={styles.holidayText}>Holiday</Text>
               ) : (
                 <View>
-                  {timeTable.get(day)?.map((period) => {
-                    return <RenderPeriod period={period} />;
+                  {timeTable.get(day)?.map((period, periodIndex) => {
+                    return <RenderPeriod period={period} key={periodIndex} />;
                   })}
                 </View>
               )}
             </View>
           );
         })}
-
-        <Pressable
-          style={styles.publishButtonStyle}
-          onPress={
-            isLoading
-              ? null
-              : () => {
-                  publishTimeTable();
-                }
-          }
-        >
-          <Text style={styles.publishButtonTextStyle}>Publish</Text>
-        </Pressable>
       </ScrollView>
+      <Pressable
+        style={styles.publishButtonStyle}
+        onPress={
+          isLoading
+            ? null
+            : () => {
+                publishTimeTable();
+              }
+        }
+      >
+        <Text style={styles.publishButtonTextStyle}>Publish</Text>
+      </Pressable>
     </View>
   );
 };
@@ -86,16 +85,17 @@ const styles = StyleSheet.create({
     backgroundColor: Themes.secondary,
     borderRadius: moderateScale(5),
     marginTop: moderateScale(20),
-    width: "50%",
+    width: moderateScale(150),
     alignSelf: "center",
     justifyContent: "center",
     alignItems: "center",
-    height: moderateScale(50),
+    height: moderateScale(40),
     elevation: 6,
     shadowColor: Themes.greyShade,
     shadowOffset: moderateScale(15),
     shadowOpacity: 0.5,
     shadowRadius: 2,
+    marginVertical: moderateScale(10),
   },
   publishButtonTextStyle: {
     fontSize: moderateScale(16),

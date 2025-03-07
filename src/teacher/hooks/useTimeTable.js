@@ -115,7 +115,8 @@ const useTimeTable = () => {
   };
   useEffect(() => {
     // changes in the time table are added to local storage
-    setTimeTableToLocal(JSON.stringify(timeTable));
+    const updatedTimeTable = Array.from(timeTable);
+    setTimeTableToLocal(JSON.stringify(updatedTimeTable));
   }, [timeTable?.size]);
   return {
     ...state,

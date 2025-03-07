@@ -160,7 +160,7 @@ const TeacherContextProvider = ({ children }) => {
       ...prev,
       course: JSON.parse(courseInLocalStorage),
     }));
-    setTimeTable(JSON.parse(timeTableInLocalStorage));
+    setTimeTable(new Map(JSON.parse(timeTableInLocalStorage)));
   };
   useEffect(() => {
     state.ws.onopen = () => {

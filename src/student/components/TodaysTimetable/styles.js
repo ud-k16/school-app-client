@@ -8,4 +8,8 @@ export const styles = StyleSheet.create({
   timeTableContainer: {
     padding: moderateScale(10),
   },
+  scrollViewContainer: {
+    flexGrow: 1,
+    rowGap: moderateScale(10),
+  },
 });

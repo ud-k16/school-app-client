@@ -5,9 +5,18 @@ import CourseCard from "../../../src/common/components/CourseCard";
 import Header from "../../../src/common/components/Header";
 import moderateScale from "@/src/utils/responsiveScale";
 import EmptyContent from "../../common/EmptyScreen";
+import { useEffect } from "react";
 
 const ViewCourse = () => {
-  const { coursePosted: course, isLoading } = useTeacherContext();
+  const {
+    coursePosted: course,
+    isLoading,
+    fetchLatestCourseData,
+  } = useTeacherContext();
+
+  useEffect(() => {
+    fetchLatestCourseData();
+  }, []);
 
   if (isLoading)
     return (

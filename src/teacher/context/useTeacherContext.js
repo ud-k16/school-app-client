@@ -162,10 +162,12 @@ const TeacherContextProvider = ({ children }) => {
     }));
     setTimeTable(new Map(JSON.parse(timeTableInLocalStorage)));
   };
+
   useEffect(() => {
-    state.ws.onopen = () => {
-      console.log("connected to socket");
-    };
+    // socket connection
+    // state.ws.onopen = () => {
+    //   console.log("connected to socket");
+    // };
 
     user?.classId &&
       user?.user_type === "teacher" &&
@@ -189,7 +191,8 @@ const TeacherContextProvider = ({ children }) => {
         setBasicInfo,
         setWorkDays,
         setTimeTable,
-
+        fetchLatestCourseData,
+        fetchLatestTimeTable,
         toggleHolidayFlag,
       }}
     >

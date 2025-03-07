@@ -5,9 +5,15 @@ import { useTeacherContext } from "@/src/teacher/context/useTeacherContext";
 import RenderPeriod from "@/src/common/components/RenderPeriod";
 import moderateScale from "@/src/utils/responsiveScale";
 import { Themes } from "@/src/utils/themes";
+import { useEffect } from "react";
 
 const EntireTimeTable = () => {
-  const { timeTablePosted, isLoading } = useTeacherContext();
+  const { timeTablePosted, isLoading, fetchLatestTimeTable } =
+    useTeacherContext();
+
+  useEffect(() => {
+    fetchLatestTimeTable();
+  }, []);
 
   if (isLoading)
     return (

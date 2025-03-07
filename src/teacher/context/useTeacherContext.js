@@ -2,6 +2,7 @@ import { useAuthContext } from "@/src/common/context/useAuthContext";
 import { fetchWithTimeOut } from "@/src/utils/helperFunctions";
 import { createContext, useContext, useEffect, useState } from "react";
 import Constants from "expo-constants";
+import { useAsyncStorage } from "@react-native-async-storage/async-storage";
 
 const TeacherContext = createContext();
 
@@ -20,6 +21,9 @@ const TeacherContextProvider = ({ children }) => {
     ws: new WebSocket(`ws://192.168.1.7:5004`),
   });
   const { user } = useAuthContext();
+  const { setItem: setCourse, getItem: getCourse } = useAsyncStorage("course");
+  const { setItem: setTimetable, getItem: getTimeTable } =
+    useAsyncStorage("timeTable");
   // variable to hold info about working weekdays in the timetable
   const [workDays, setWorkDays] = useState([
     { day: "monday", holiday: false },
@@ -45,72 +49,6 @@ const TeacherContextProvider = ({ children }) => {
       const index = prev.findIndex((value) => value.day === day);
       prev[index].holiday = !prev[index].holiday;
       return [...prev];
-    });
-  };
-  // function to mark a day as working day
-  // function to add period to particular day
-  const addPeriodOfDay = ({ day, payload }) => {
-    // payload is an object with format {time:"",subject:""}
-    setTimeTable((prev) => {
-      //   retriving already available periods for the particular day
-      const availablePeriods = prev.get(day) || [];
-      //   adding in the new period
-      availablePeriods.push({
-        time: payload.time,
-        subject: payload.subject,
-      });
-      //   updating the day and its periods
-      prev.set(day, availablePeriods);
-      return new Map(prev);
-    });
-  };
-
-  // function to delete period to particular day
-  const deletePeriodOfDay = ({ day, time }) => {
-    setTimeTable((prev) => {
-      //   retriving already available periods for the particular day
-      const availablePeriods = prev.get(day) || [];
-      //   deleting given time period
-      const newPeriodSet = availablePeriods.filter(
-        (period) => period.time !== time
-      );
-      //   updating the day and its periods
-      prev.set(day, newPeriodSet);
-      return new Map(prev);
-    });
-  };
-
-  // function to swap up  period to particular day
-  const swapUpPeriod = ({ day, index }) => {
-    setTimeTable((prev) => {
-      //   retriving already available periods for the particular day
-      const availablePeriods = prev.get(day) || [];
-      //   deleting given time period and previous state
-      const deleted = availablePeriods.splice(index - 1, 2);
-
-      // adding in the deleted times by swaping it
-      availablePeriods.splice(index - 1, 0, deleted[1]);
-      availablePeriods.splice(index, 0, deleted[0]);
-      //   updating the day and its periods
-      prev.set(day, availablePeriods);
-      // return new updated timetable
-      return new Map(prev);
-    });
-  };
-
-  // function to swap down  period to particular day
-  const swapDownPeriod = ({ day, index }) => {
-    setTimeTable((prev) => {
-      //   retriving already available periods for the particular day
-      const availablePeriods = prev.get(day) || [];
-      //   deleting given time period and previous state
-      const deleted = availablePeriods.splice(index, 2);
-      // adding in the deleted times by swaping it
-      availablePeriods.splice(index, 0, deleted[1]);
-      availablePeriods.splice(index + 1, 0, deleted[0]);
-      //   updating the day and its periods
-      prev.set(day, availablePeriods);
-      return new Map(prev);
     });
   };
 
@@ -210,6 +148,20 @@ const TeacherContextProvider = ({ children }) => {
       alert("something went wrong!");
     }
   };
+  const locallyStoredEditedData = async () => {
+    const courseInLocalStorage = await getCourse();
+    const timeTableInLocalStorage = await getTimeTable();
+    // console.log("course in local for initial fetch",courseInLocalStorage);
+    // console.log(
+    //   "time table in local for initial fetch",
+    //   timeTableInLocalStorage
+    // );
+    setState((prev) => ({
+      ...prev,
+      course: JSON.parse(courseInLocalStorage),
+    }));
+    setTimeTable(JSON.parse(timeTableInLocalStorage));
+  };
   useEffect(() => {
     state.ws.onopen = () => {
       console.log("connected to socket");
@@ -217,7 +169,8 @@ const TeacherContextProvider = ({ children }) => {
 
     user?.classId &&
       user?.user_type === "teacher" &&
-      initializeFetchRequestForTeacher();
+      initializeFetchRequestForTeacher() &&
+      locallyStoredEditedData();
 
     return () => {
       // closing websocket on unmount
@@ -236,10 +189,7 @@ const TeacherContextProvider = ({ children }) => {
         setBasicInfo,
         setWorkDays,
         setTimeTable,
-        addPeriodOfDay,
-        deletePeriodOfDay,
-        swapUpPeriod,
-        swapDownPeriod,
+
         toggleHolidayFlag,
       }}
     >

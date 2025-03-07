@@ -8,11 +8,13 @@ import AntDesign from "@expo/vector-icons/AntDesign";
 import { Themes } from "@/src/utils/themes";
 import usePeriodModal from "@/src/teacher/hooks/usePeriodModal";
 import { useLocalSearchParams } from "expo-router/build/hooks";
+import useTimeTable from "../../../src/teacher/hooks/useTimeTable";
 
 const UpdatePeriodsForDay = () => {
   const { dayOfWeek = "Monday" } = useLocalSearchParams();
-  const { timeTable, deletePeriodOfDay, swapUpPeriod, swapDownPeriod } =
-    useTeacherContext();
+  const { timeTable } = useTeacherContext();
+  const { addPeriodOfDay, deletePeriodOfDay, swapUpPeriod, swapDownPeriod } =
+    useTimeTable();
   const { addPeriodModalVisibility, showModal, hideModal } = usePeriodModal();
   return (
     <View style={styles.container}>
@@ -24,8 +26,8 @@ const UpdatePeriodsForDay = () => {
         </Pressable>
       </View>
       <ScrollView style={styles.scrollViewContainer}>
-        {timeTable.get(dayOfWeek)?.length > 0 &&
-          timeTable.get(dayOfWeek)?.map((period, index) => {
+        {timeTable?.get(dayOfWeek)?.length > 0 &&
+          timeTable?.get(dayOfWeek)?.map((period, index) => {
             return (
               <View style={styles.periodDisplayCardContainer} key={index}>
                 <View style={styles.displayStackData}>
@@ -79,7 +81,11 @@ const UpdatePeriodsForDay = () => {
             height: "100%",
           }}
         >
-          <PeriodInfoEdit hideModal={hideModal} day={dayOfWeek} />
+          <PeriodInfoEdit
+            hideModal={hideModal}
+            day={dayOfWeek}
+            addPeriodOfDay={addPeriodOfDay}
+          />
         </View>
       )}
     </View>

@@ -7,7 +7,11 @@ import { useTeacherContext } from "../../context/useTeacherContext";
 import usePeriodModal from "../../hooks/usePeriodModal";
 import moderateScale from "@/src/utils/responsiveScale";
 
-const PeriodInfoEdit = ({ hideModal = () => {}, day = "" }) => {
+const PeriodInfoEdit = ({
+  hideModal = () => {},
+  day = "",
+  addPeriodOfDay = () => {},
+}) => {
   const {
     subjectError,
     startTimeError,
@@ -18,7 +22,7 @@ const PeriodInfoEdit = ({ hideModal = () => {}, day = "" }) => {
     addValidPeriodDataToRespectiveDay,
     minuteCreationFunction,
   } = usePeriodModal();
-  const { addPeriodOfDay, course } = useTeacherContext();
+  const { course } = useTeacherContext();
   return (
     <View style={styles.container}>
       <AntDesign

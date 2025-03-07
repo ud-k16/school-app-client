@@ -5,6 +5,7 @@ import { fetchWithTimeOut } from "@/src/utils/helperFunctions";
 import Constants from "expo-constants";
 import { router } from "expo-router";
 import { useAsyncStorage } from "@react-native-async-storage/async-storage";
+import { useEffect } from "react";
 
 const useCourse = () => {
   const { API_URL } = Constants.expoConfig.extra;
@@ -77,6 +78,13 @@ const useCourse = () => {
       console.log(error);
     }
   };
+
+  useEffect(() => {
+    console.log("course data is stored in local");
+    
+    // changes in the course are added to local storage
+    setCourse(JSON.stringify(course));
+  }, [course?.length]);
   return {
     // ...state,
     // setState,

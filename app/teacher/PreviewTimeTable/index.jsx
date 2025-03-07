@@ -2,6 +2,7 @@ import { useTeacherContext } from "@/src/teacher/context/useTeacherContext";
 
 import moderateScale from "../../../src/utils/responsiveScale";
 import { Themes } from "@/src/utils/themes";
+import { Constants } from "@/src/common/constants";
 import Header from "@/src/common/components/Header";
 import { useAuthContext } from "@/src/common/context/useAuthContext";
 import { View, Text, ScrollView, Pressable, StyleSheet } from "react-native";
@@ -9,7 +10,7 @@ import useTimeTable from "@/src/teacher/hooks/useTimeTable";
 import RenderPeriod from "@/src/common/components/RenderPeriod";
 
 const PreviewTimeTable = () => {
-  const { timeTable, workDays } = useTeacherContext();
+  const { timeTable } = useTeacherContext();
   const { user } = useAuthContext();
   const { isLoading, publishTimeTable } = useTimeTable();
   return (
@@ -21,18 +22,18 @@ const PreviewTimeTable = () => {
           <Text>Class Id : {user?.classId}</Text>
           <Text>Class Teacher Name : {user?.name}</Text>
         </View>
-        {workDays.map(({ day, holiday }, index) => {
+        {Constants.common.weekdays.map((day, index) => {
           return (
             <View key={index}>
               <Text style={styles.dayTextStyle}>{day}</Text>
-              {holiday ? (
-                <Text style={styles.holidayText}>Holiday</Text>
-              ) : (
+              {timeTable.get(day) ? (
                 <View>
                   {timeTable.get(day)?.map((period, periodIndex) => {
                     return <RenderPeriod period={period} key={periodIndex} />;
                   })}
                 </View>
+              ) : (
+                <Text style={styles.holidayText}>Holiday</Text>
               )}
             </View>
           );

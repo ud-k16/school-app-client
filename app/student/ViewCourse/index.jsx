@@ -1,13 +1,30 @@
 import FontAwesome5 from "@expo/vector-icons/FontAwesome5";
-import { ScrollView, StyleSheet, Text, View } from "react-native";
+import {
+  RefreshControl,
+  ScrollView,
+  StyleSheet,
+  Text,
+  View,
+} from "react-native";
 import { useStudentContext } from "@/src/student/context/useStudentContext";
 import CourseCard from "../../../src/common/components/CourseCard";
 import Header from "../../../src/common/components/Header";
 import moderateScale from "@/src/utils/responsiveScale";
 import EmptyContent from "@/app/common/EmptyScreen";
+import { useEffect } from "react";
 
 const ViewCourse = () => {
-  const { course, isLoading } = useStudentContext();
+  const { course, isLoading, fetchLatestCourseData } = useStudentContext();
+
+  useEffect(() => {
+    loadCourse();
+  }, []);
+
+  const loadCourse = async () => {
+    setState((prev) => ({ ...prev, isLoading: true }));
+    await fetchLatestCourseData();
+    setState((prev) => ({ ...prev, isLoading: false }));
+  };
 
   if (isLoading)
     return (
@@ -20,7 +37,12 @@ const ViewCourse = () => {
     <View style={styles.container}>
       <Header title={"Courses"} />
       {course ? (
-        <ScrollView contentContainerStyle={styles.scrollViewContainer}>
+        <ScrollView
+          contentContainerStyle={styles.scrollViewContainer}
+          refreshControl={
+            <RefreshControl refreshing={isLoading} onRefresh={loadCourse} />
+          }
+        >
           <View>
             {course?.map((coursedata, index) => {
               return (

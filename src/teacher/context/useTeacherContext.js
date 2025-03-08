@@ -145,7 +145,6 @@ const TeacherContextProvider = ({ children }) => {
     } catch (error) {
       //  course/time_table fetch indication set to false
       setState((prev) => ({ ...prev, isLoading: false }));
-      alert("something went wrong!");
     }
   };
   const locallyStoredEditedData = async () => {

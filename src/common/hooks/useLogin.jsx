@@ -7,8 +7,9 @@ import { fetchWithTimeOut } from "@/src/utils/helperFunctions";
 const useLogin = () => {
   const [state, setState] = useState({
     isLoading: false,
-    userId: "uma k",
-    password: "12345678",
+    userId: "",
+    password: "",
+    loginError: false,
   });
   const { API_URL } = Constants.expoConfig.extra;
   const { setItem: setUser } = useAsyncStorage("user");
@@ -19,7 +20,16 @@ const useLogin = () => {
       setState((prev) => ({
         ...prev,
         isLoading: true,
+        loginError: "",
       }));
+      if (!state.userId && !state.password) {
+        setState((prev) => ({
+          ...prev,
+          isLoading: false,
+          loginError: "Enter All Fields",
+        }));
+        return;
+      }
       const data = {
         userId: state.userId,
         password: state.password,
@@ -47,6 +57,11 @@ const useLogin = () => {
             user: result.data,
           };
         });
+      } else {
+        setState((prev) => ({
+          ...prev,
+          loginError: "Invalid credentials",
+        }));
       }
       // toggle loading indicator
       setState((prev) => ({
@@ -57,8 +72,8 @@ const useLogin = () => {
       setState((prev) => ({
         ...prev,
         isLoading: false,
+        loginError: "Server down try after sometime",
       }));
-      alert("Something went wrong, Try after Sometime");
     }
   };
 

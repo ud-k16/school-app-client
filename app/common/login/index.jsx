@@ -14,10 +14,10 @@ const {
 } = require("../../../src/utils/responsiveScale");
 
 const Login = () => {
-  const { setState, authenticateUser } = useLogin();
+  const { loginError, isLoading, setState, authenticateUser } = useLogin();
   return (
     <View style={styles.container}>
-      <Image alt="Image Not Found" style={styles.logoConatiner} source={LOGO} />
+      <Text style={styles.logoConatiner} children={"School Application"} />
       <TextInput
         style={styles.textInputStyle}
         placeholder="User Id"
@@ -31,8 +31,11 @@ const Login = () => {
           setState((prev) => ({ ...prev, password: text }))
         }
       />
+      {loginError && <Text style={styles.loginErrorStyle}>{loginError}</Text>}
       <Pressable style={styles.loginButtonStyle} onPress={authenticateUser}>
-        <Text style={styles.loginButtonTextStyle}>Login</Text>
+        <Text style={styles.loginButtonTextStyle}>
+          {isLoading ? "Logging..." : "Login"}
+        </Text>
       </Pressable>
     </View>
   );
@@ -41,13 +44,16 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     padding: moderateScale(10),
-    rowGap: moderateScale(20),
+    rowGap: moderateScale(30),
+    alignItems: "center",
+    justifyContent: "center",
   },
   logoConatiner: {
-    alignSelf: "center",
-    height: moderateScale(200),
+    textTransform: "uppercase",
+    fontSize: moderateScale(20),
     width: "90%",
-    resizeMode: "contain",
+    fontWeight: 600,
+    textAlign: "center",
   },
   textInputStyle: {
     alignSelf: "center",
@@ -70,6 +76,12 @@ const styles = StyleSheet.create({
   },
   loginButtonTextStyle: {
     color: Themes.white,
+  },
+  loginErrorStyle: {
+    color: Themes.red,
+    textAlign: "center",
+    fontSize: moderateScale(16),
+    alignSelf: "center",
   },
 });
 

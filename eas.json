@@ -3,6 +3,9 @@
     "preview": {
       "android": {
         "buildType": "apk"
+      },
+      "env": {
+        "API_URL": "https://school-app-server.onrender.com/api"
       }
     },
     "preview2": {

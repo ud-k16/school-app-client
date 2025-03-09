@@ -3,7 +3,7 @@ config();
 
 export default {
   expo: {
-    name: "school-time-schedule",
+    name: "school-app",
     slug: "school-time-schedule",
     version: "1.0.0",
     orientation: "portrait",
@@ -19,6 +19,7 @@ export default {
         foregroundImage: "./assets/images/adaptive-icon.png",
         backgroundColor: "#ffffff",
       },
+      package: "com.schoolapp",
     },
     web: {
       bundler: "metro",
@@ -41,8 +42,11 @@ export default {
       typedRoutes: true,
     },
     extra: {
-      API_URL: process.env.BASE_API_URL,
+      API_URL: process.env.API_URL,
       SOCKET_URL: process.env.SOCKET_URL,
+      eas: {
+        projectId: "47f8d937-a3cd-47b3-978b-ca85fe282e0c",
+      },
     },
   },
 };

@@ -11,13 +11,29 @@ const ViewCourse = () => {
   const {
     coursePosted: course,
     isLoading,
+    setState: setTeacherState,
     fetchLatestCourseData,
   } = useTeacherContext();
 
   useEffect(() => {
-    fetchLatestCourseData();
+    loadCourse();
   }, []);
 
+  const loadCourse = async () => {
+    try {
+      setTeacherState((prev) => ({
+        ...prev,
+        isLoading: true,
+      }));
+      await fetchLatestCourseData();
+      setTeacherState((prev) => ({
+        ...prev,
+        isLoading: false,
+      }));
+    } catch (error) {
+      console.log(error);
+    }
+  };
   if (isLoading)
     return (
       <View>

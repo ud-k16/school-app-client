@@ -8,12 +8,32 @@ import { Themes } from "@/src/utils/themes";
 import { useEffect } from "react";
 
 const EntireTimeTable = () => {
-  const { timeTablePosted, isLoading, fetchLatestTimeTable } =
-    useTeacherContext();
+  const {
+    timeTablePosted,
+    isLoading,
+    setState: setTeacherState,
+    fetchLatestTimeTable,
+  } = useTeacherContext();
 
   useEffect(() => {
-    fetchLatestTimeTable();
+    loadTable();
   }, []);
+
+  const loadTable = async () => {
+    try {
+      setTeacherState((prev) => ({
+        ...prev,
+        isLoading: true,
+      }));
+      await fetchLatestTimeTable();
+      setTeacherState((prev) => ({
+        ...prev,
+        isLoading: false,
+      }));
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   if (isLoading)
     return (

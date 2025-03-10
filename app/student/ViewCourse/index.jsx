@@ -22,9 +22,13 @@ const ViewCourse = () => {
   }, []);
 
   const loadCourse = async () => {
-    setState((prev) => ({ ...prev, isLoading: true }));
-    await fetchLatestCourseData();
-    setState((prev) => ({ ...prev, isLoading: false }));
+    try {
+      setState((prev) => ({ ...prev, isLoading: true }));
+      await fetchLatestCourseData();
+      setState((prev) => ({ ...prev, isLoading: false }));
+    } catch (error) {
+      setState((prev) => ({ ...prev, isLoading: false }));
+    }
   };
 
   if (isLoading)

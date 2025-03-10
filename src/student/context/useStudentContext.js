@@ -124,7 +124,7 @@ const StudentContextProvider = ({ children }) => {
     } catch (error) {
       //  course/time_table fetch indication set to false
       setState((prev) => ({ ...prev, isLoading: false }));
-      alert("Something went wrong....");
+      // alert("Something went wrong....");
     }
   };
   useEffect(() => {

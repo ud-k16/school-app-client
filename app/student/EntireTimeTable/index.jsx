@@ -22,9 +22,13 @@ const EntireTimeTable = () => {
   }, []);
 
   const loadTimeTable = async () => {
-    setState((prev) => ({ ...prev, isLoading: true }));
-    await fetchLatestTimeTable();
-    setState((prev) => ({ ...prev, isLoading: false }));
+    try {
+      setState((prev) => ({ ...prev, isLoading: true }));
+      await fetchLatestTimeTable();
+      setState((prev) => ({ ...prev, isLoading: false }));
+    } catch (error) {
+      setState((prev) => ({ ...prev, isLoading: false }));
+    }
   };
   return (
     <View style={styles.container}>

@@ -124,12 +124,12 @@ const TeacherContextProvider = ({ children }) => {
 
           setState((prev) => ({
             ...prev,
-            coursePosted: result.data.course,
+            coursePosted: result.data?.course,
           }));
         }
       }
     } catch (error) {
-      console.log("Fetch Latest Time Table Error", error);
+      console.log("Fetch Latest course Error", error);
       throw error;
     }
   };

@@ -21,17 +21,19 @@ const Login = () => {
       <TextInput
         style={styles.textInputStyle}
         placeholder="User Id"
+        autoCapitalize="none"
         onChangeText={(text) => setState((prev) => ({ ...prev, userId: text }))}
       />
       <TextInput
         style={styles.textInputStyle}
+        autoCapitalize="none"
         placeholder="Password"
         secureTextEntry
         onChangeText={(text) =>
           setState((prev) => ({ ...prev, password: text }))
         }
       />
-      {loginError && <Text style={styles.loginErrorStyle}>{loginError}</Text>}
+      {<Text style={styles.loginErrorStyle}>{loginError && loginError}</Text>}
       <Pressable style={styles.loginButtonStyle} onPress={authenticateUser}>
         <Text style={styles.loginButtonTextStyle}>
           {isLoading ? "Logging..." : "Login"}

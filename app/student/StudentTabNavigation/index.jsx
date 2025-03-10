@@ -36,7 +36,7 @@ const StudentTabNavigation = () => {
         }}
       />
       <Tab.Screen
-        name="Settings"
+        name="AI chat"
         component={AIChat}
         options={{
           tabBarIcon: ({ color, size }) => (

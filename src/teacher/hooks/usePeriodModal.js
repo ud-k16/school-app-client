@@ -118,7 +118,7 @@ const usePeriodModal = () => {
       callback({
         day,
         payload: {
-          time: `${state.startTime.hr}:${state.startTime.min} ${state.startTime.meridiam}-${state.endTime.hr}:${state.endTime.min} ${state.endTime.meridiam}`,
+          time: `${state.startTime.hr}:${state.startTime.min} ${state.startTime.meridiam} - ${state.endTime.hr}:${state.endTime.min} ${state.endTime.meridiam}`,
           subject: state.subject,
         },
       });

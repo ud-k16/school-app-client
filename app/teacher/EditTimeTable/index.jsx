@@ -1,9 +1,10 @@
-import { ScrollView, View, StyleSheet } from "react-native";
+import { ScrollView, View, StyleSheet, Pressable, Text } from "react-native";
 import BasicInfo from "@/src/teacher/components/BasicInfo";
 import WorkDays from "@/src/teacher/components/WorkDays";
 import Header from "@/src/common/components/Header";
 import moderateScale from "@/src/utils/responsiveScale";
 import { Themes } from "@/src/utils/themes";
+import { router } from "expo-router";
 
 const EditTimeTable = () => {
   return (
@@ -13,6 +14,16 @@ const EditTimeTable = () => {
         <BasicInfo />
         <WorkDays />
       </ScrollView>
+      <Pressable
+        style={styles.previewButtonStyle}
+        onPress={() => {
+          router.navigate({
+            pathname: "/teacher/PreviewTimeTable",
+          });
+        }}
+      >
+        <Text style={styles.previewButtonTextStyle}>Preview</Text>
+      </Pressable>
     </View>
   );
 };
@@ -24,6 +35,26 @@ const styles = StyleSheet.create({
   scrollViewContainer: {
     flexGrow: 1,
     rowGap: moderateScale(10),
+  },
+  previewButtonStyle: {
+    backgroundColor: Themes.secondary,
+    borderRadius: moderateScale(5),
+    marginVertical: moderateScale(10),
+    width: moderateScale(150),
+    alignSelf: "center",
+    justifyContent: "center",
+    alignItems: "center",
+    height: moderateScale(50),
+    elevation: 6,
+    shadowColor: Themes.greyShade,
+    shadowOffset: moderateScale(15),
+    shadowOpacity: 0.5,
+    shadowRadius: 2,
+  },
+  previewButtonTextStyle: {
+    fontWeight: 600,
+    fontSize: moderateScale(20),
+    color: Themes.white,
   },
   textInputStyle: {
     alignSelf: "center",

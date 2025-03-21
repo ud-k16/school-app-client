@@ -74,7 +74,7 @@ const styles = StyleSheet.create({
   weekDaysTextStyle: {
     textTransform: "uppercase",
     fontWeight: 600,
-    fontSize: moderateScale(20),
+    fontSize: moderateScale(15),
     color: Themes.textColor,
     width: "100%",
   },

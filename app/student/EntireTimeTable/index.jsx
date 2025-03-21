@@ -40,7 +40,11 @@ const EntireTimeTable = () => {
       >
         {Constants.common.weekdays.map((weekDay, index) => (
           <View style={styles.weekDayTextContainer} key={index}>
-            <Text style={styles.weekDaysTextStyle}>{weekDay}</Text>
+            {timeTable?.get(weekDay) ? (
+              <Text style={styles.weekDaysTextStyle}>{weekDay}</Text>
+            ) : (
+              <Text children="Holiday" />
+            )}
             {timeTable?.get(weekDay)?.map((period, index) => (
               <RenderPeriod period={period} key={index} />
             ))}

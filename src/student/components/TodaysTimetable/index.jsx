@@ -5,24 +5,27 @@ import { RefreshControl, ScrollView, Text, View } from "react-native";
 import Header from "@/src/common/components/Header";
 import RenderPeriod from "@/src/common/components/RenderPeriod";
 import EmptyContent from "@/app/common/EmptyScreen";
-import { useEffect, useState } from "react";
+import { useCallback, useState } from "react";
 
 const TodaysTimeTable = () => {
   // index on week days, to get todays dayOdWeek
   const today = new Date().getDay();
-  const { timeTable, isLoading, setState, fetchLatestTimeTable } =
-    useStudentContext();
+  const { timeTable, isLoading, fetchLatestTimeTable } = useStudentContext();
   const todaySchedule = timeTable?.get(Constants.common.weekdays[today]) ?? [];
 
-  useEffect(() => {
-    loadTimeTable();
-  }, []);
+  const [refreshing, setRefreshing] = useState(false);
 
-  const loadTimeTable = async () => {
-    setState((prev) => ({ ...prev, isLoading: true }));
-    await fetchLatestTimeTable();
-    setState((prev) => ({ ...prev, isLoading: false }));
-  };
+  const onRefresh = useCallback(async () => {
+    setRefreshing(true);
+    try {
+      await fetchLatestTimeTable();
+    } catch (error) {
+      // log error
+      console.log(error.message);
+    } finally {
+      setRefreshing(false);
+    }
+  }, []);
 
   if (isLoading)
     return (
@@ -37,7 +40,7 @@ const TodaysTimeTable = () => {
       <ScrollView
         contentContainerStyle={styles.scrollViewContainer}
         refreshControl={
-          <RefreshControl refreshing={isLoading} onRefresh={loadTimeTable} />
+          <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
         }
       >
         {todaySchedule.length === 0 ? (

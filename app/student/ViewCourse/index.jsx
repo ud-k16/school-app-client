@@ -11,32 +11,24 @@ import CourseCard from "../../../src/common/components/CourseCard";
 import Header from "../../../src/common/components/Header";
 import moderateScale from "@/src/utils/responsiveScale";
 import EmptyContent from "@/app/common/EmptyScreen";
-import { useEffect } from "react";
+import { useCallback, useState } from "react";
 
 const ViewCourse = () => {
-  const { course, isLoading, fetchLatestCourseData, setState } =
-    useStudentContext();
+  const { course, fetchLatestCourseData } = useStudentContext();
 
-  useEffect(() => {
-    loadCourse();
-  }, []);
+  const [refreshing, setRefreshing] = useState(false);
 
-  const loadCourse = async () => {
+  const onRefresh = useCallback(async () => {
+    setRefreshing(true);
     try {
-      setState((prev) => ({ ...prev, isLoading: true }));
       await fetchLatestCourseData();
-      setState((prev) => ({ ...prev, isLoading: false }));
     } catch (error) {
-      setState((prev) => ({ ...prev, isLoading: false }));
+      // log error
+      console.log(error.message);
+    } finally {
+      setRefreshing(false);
     }
-  };
-
-  if (isLoading)
-    return (
-      <View>
-        <Text>Loading ...</Text>
-      </View>
-    );
+  }, []);
 
   return (
     <View style={styles.container}>
@@ -45,7 +37,7 @@ const ViewCourse = () => {
         <ScrollView
           contentContainerStyle={styles.scrollViewContainer}
           refreshControl={
-            <RefreshControl refreshing={isLoading} onRefresh={loadCourse} />
+            <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
           }
         >
           <View>
